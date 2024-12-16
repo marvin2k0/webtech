@@ -1,0 +1,13 @@
+.footer {
+  background-color: var(--primary-color);
+}
+
+.footer h2, a {
+  color: white;
+}
+
+@media (prefers-color-scheme: dark) {
+  .footer {
+    color: white;
+  }
+}

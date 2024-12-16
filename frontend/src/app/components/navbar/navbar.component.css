@@ -1,0 +1,4 @@
+.nav-register-login-buttons {
+  display: flex;
+  gap: 8px;
+}
