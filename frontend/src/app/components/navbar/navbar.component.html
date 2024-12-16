@@ -10,10 +10,10 @@
         <div class="nav-register-login-buttons">
           <!-- @TODO: Überprüfen, wie angular router für current route benutzt werden kann -->
           @if(window.location.pathname !== "/signin") {
-            <button routerLink="/signin" class="button">Sign In</button>
+            <button routerLink="/signin" class="button">{{ "sign_in_button" | translate}}</button>
           }
           @if (window.location.pathname !== "/signup") {
-            <button class="call-to-action" routerLink="/signup">Sign Up</button>
+            <button class="call-to-action" routerLink="/signup">{{ "sign_up_button" | translate }}</button>
           }
         </div>
       } @else {

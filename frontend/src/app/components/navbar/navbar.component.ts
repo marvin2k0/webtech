@@ -1,12 +1,13 @@
 import {Component, inject} from '@angular/core';
-import {ButtonComponent} from '../button/button.component';
 import {Router, RouterLink} from '@angular/router';
+import {TranslatePipe} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
   imports: [
-    RouterLink
+    RouterLink,
+    TranslatePipe
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
