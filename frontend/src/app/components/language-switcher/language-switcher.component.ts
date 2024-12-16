@@ -11,6 +11,11 @@ import {TranslateService} from '@ngx-translate/core';
 export class LanguageSwitcherComponent {
   translateService: TranslateService = inject(TranslateService)
 
+  languages: { code: string, name: string }[] = [
+    {code: "en", name: "English"},
+    {code: "de", name: "German"}
+  ]
+
   changeLanguage(language: string): void {
     this.translateService.use(language)
   }
