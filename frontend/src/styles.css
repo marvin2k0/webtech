@@ -2,3 +2,87 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --primary-color: #151923;
+  --secondary-color: #202833;
+  --accent-color: #4F46E5;
+  --complementary-color: #3f39b6;
+  --shadow-color: rgba(0, 0, 0, .2);
+  --text-primary-color: white;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: content-box;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+.call-to-action {
+  background-color: var(--accent-color);
+  box-shadow: var(--shadow-color) 0px 4px 12px;
+  width: fit-content;
+  padding-block: calc(.5rem - 1px);
+  padding-inline: 1rem;
+  border: 1px solid var(--accent-color);
+  border-radius: .5rem;
+  color: var(--text-primary-color);
+  cursor: pointer;
+  transition-duration: .2s;
+  font-weight: 600;
+  font-size: .875rem;
+}
+
+.call-to-action:hover {
+  background-color: var(--complementary-color);
+}
+
+.button {
+  background-color: transparent;
+  /*box-shadow: var(--shadow-color) 0px 4px 12px;*/
+  width: fit-content;
+  padding-block: calc(.5rem - 1px);
+  padding-inline: 1rem;
+  color: var(--primary-color);
+  cursor: pointer;
+  transition-duration: .2s;
+}
+
+.check-box {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 10px;
+  height: 10px;
+  border: 1px solid black;
+  cursor: pointer;
+  transition-duration: .2s;
+}
+
+.check-box:checked {
+  background-color: pink;
+  background-position: center;
+}
+
+.submit-button {
+  width: 100%;
+}
+
+.fancy-background-pattern-part {
+  position: absolute;
+  z-index: -1;
+  -webkit-filter: blur(64px);
+  filter: blur(64px);
+}
+
+.fancy-background-pattern-part:nth-child(1) {
+  left: -15%;
+}
+
+.fancy-background-pattern-part:nth-child(2) {
+  right: -80%;
+  top: 5%;
+}
