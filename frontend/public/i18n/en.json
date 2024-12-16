@@ -1,4 +1,8 @@
 {
   "sign_in_button": "Sign In",
-  "sign_up_button": "Sign Up"
+  "sign_up_button": "Sign Up",
+  "nav_link_home": "Home",
+  "nav_link_course": "Courses",
+  "nav_link_services": "Services",
+  "nav_link_contact": "Contact"
 }
