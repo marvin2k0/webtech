@@ -4,5 +4,11 @@
   "nav_link_home": "Startseite",
   "nav_link_course": "Kurse",
   "nav_link_services": "Services",
-  "nav_link_contact": "Kontakt"
+  "nav_link_contact": "Kontakt",
+
+  "user_view_focus_point": "Schwerpunkt*",
+  "user_view_institute": "Lerninstitut",
+  "user_view_dob": "Geburtsdatum",
+  "user_view_my_courses": "Meine Kurse",
+  "user_view_required_fields": "*Erforderliche Felder"
 }
