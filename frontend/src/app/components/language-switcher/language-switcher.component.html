@@ -1,0 +1,6 @@
+<!-- Ja ich weiß, sieht hässlich aus. Ist aber nur fürs testen... :) -->
+<div class="language-switcher">
+  @for (language of languages; track language.code) {
+    <button (click)="changeLanguage(language.code)">{{ language.name }}</button>
+  }
+</div>
