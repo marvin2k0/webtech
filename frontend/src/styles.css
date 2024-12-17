@@ -70,6 +70,8 @@ html, body {
 
 .submit-button {
   width: 100%;
+  display: block;
+  padding: 0.625rem;
 }
 
 .form-container-padding {
