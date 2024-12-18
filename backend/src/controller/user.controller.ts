@@ -9,8 +9,16 @@ export const getUserDetails = (req: Request, res: Response) => {
  */
 
 export const createUser = async (req: Request, res: Response) => {
-    const {username, email} = req.body
-    await new User({username, email}).save()
+    const {
+        username,
+        email,
+        dateOfBirth
+    } = req.body
+    await new User({
+        username,
+        email,
+        dateOfBirth
+    }).save()
 
     res.status(200).json({"message": "Success"})
 }
