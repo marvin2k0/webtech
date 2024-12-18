@@ -3,8 +3,17 @@
   <div class="flex items-center justify-start px-6 py-8 mx-auto md:h-screen lg:py-0 bg-white dark:bg-gray-800 dark:border-gray-700">
 
     <div class="mb-6 p-4">
-      <div class="mt-1 ml-2 mb-2">
-        <label class="text-lg font-medium">{{"user_view_user_information" | translate}}</label>
+      <div class="mt-1 ml-2 mb-4">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <label class="text-2xl font-bold">{{"user_view_user_information" | translate}}</label>
+          <button style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; background-color: #f9f9f9; cursor: pointer;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M15.854.146a.5.5 0 0 1 0 .708l-1.5 1.5-2-2 1.5-1.5a.5.5 0 0 1 .707 0l1.293 1.293a.5.5 0 0 1 .293.5z"/>
+              <path d="M1 13.5V16h2.5l9.854-9.854-2.5-2.5L1 13.5zM0 15.5a1 1 0 0 0 1 1h2a1 1 0 0 0 .707-.293l10-10a1 1 0 0 0 0-1.414l-2-2a1 1 0 0 0-1.414 0l-10 10A1 1 0 0 0 0 13v2z"/>
+            </svg>
+            {{"user_view_user_information_edit" | translate}}
+          </button>
+        </div>
       </div>
       <div class="p-4 bg-gray-200 dark:bg-gray-700 border border-gray-400 dark:border-gray-600 rounded-lg">
         <div class="mb-6 flex items-center">
@@ -25,7 +34,7 @@
       </div>
     </div>
 
-    <div class="ml-8 mb-2 p-8 bg-gray-200 dark:bg-gray-700 border border-gray-400 dark:border-gray-600 rounded-lg w-full max-w-sm">
+    <div class="ml-8 p-8 mt-3 bg-gray-200 dark:bg-gray-700 border border-gray-400 dark:border-gray-600 rounded-lg w-full max-w-sm">
       <div>
         <div class="mb-4">
           <label class="text-lg font-medium">{{"user_view_my_courses" | translate}}</label>

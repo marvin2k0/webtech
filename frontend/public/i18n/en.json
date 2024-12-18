@@ -12,5 +12,6 @@
   "user_view_my_courses": "My Courses",
   "user_view_required_fields": "Required Fields",
   "user_view_my_files": "My Uploaded Files",
-  "user_view_user_information": "User Information"
+  "user_view_user_information": "User Information",
+  "user_view_user_information_edit": "Edit"
 }
