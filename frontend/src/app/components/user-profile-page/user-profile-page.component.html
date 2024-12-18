@@ -2,30 +2,48 @@
 
   <div class="flex items-center justify-start px-6 py-8 mx-auto md:h-screen lg:py-0 bg-white dark:bg-gray-800 dark:border-gray-700">
 
-    <div class="mb-6 p-4 bg-gray-200 dark:bg-gray-700 border border-gray-400 dark:border-gray-600 rounded-lg">
-      <div class="mb-6 flex items-center">
-        <label for="focus point" class="block text-lg font-medium text-gray-900 dark:text-white w-48">{{"user_view_focus_point" | translate}}</label>
-        <input type="text" id="focus point" class="ml-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+    <div class="mb-6 p-4">
+      <div class="mt-1 ml-2 mb-2">
+        <label class="text-lg font-medium">{{"user_view_user_information" | translate}}</label>
       </div>
-      <div class="mb-6 flex items-center">
-        <label for="institute" class="block text-lg font-medium text-gray-900 dark:text-white w-48">{{"user_view_institute" | translate}}</label>
-        <input type="text" id="institute" class="ml-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+      <div class="p-4 bg-gray-200 dark:bg-gray-700 border border-gray-400 dark:border-gray-600 rounded-lg">
+        <div class="mb-6 flex items-center">
+          <label for="focus point" class="block text-lg font-medium text-gray-900 dark:text-white w-48">{{"user_view_focus_point" | translate}}*</label>
+          <input type="text" id="focus point" class="ml-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        </div>
+        <div class="mb-6 flex items-center">
+          <label for="institute" class="block text-lg font-medium text-gray-900 dark:text-white w-48">{{"user_view_institute" | translate}}</label>
+          <input type="text" id="institute" class="ml-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        </div>
+        <div class="mb-6 flex items-center">
+          <label for="dob" class="block text-lg font-medium text-gray-900 dark:text-white w-48">{{"user_view_dob" | translate}}</label>
+          <input type="text" id="dob" class="ml-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        </div>
       </div>
-      <div class="mb-6 flex items-center">
-        <label for="dob" class="block text-lg font-medium text-gray-900 dark:text-white w-48">{{"user_view_dob" | translate}}</label>
-        <input type="text" id="dob" class="ml-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+      <div class="mt-1 ml-2">
+        <label>*{{"user_view_required_fields" | translate}}</label>
       </div>
-      <label>{{"user_view_required_fields" | translate}}</label>
     </div>
 
-    <div class="ml-6 mb-32 p-8 bg-gray-200 dark:bg-gray-700 border border-gray-400 dark:border-gray-600 rounded-lg w-full max-w-sm">
-      <div class="flex flex-col items-start">
-        <label for="my courses" id="my courses" class="block text-lg font-medium text-gray-900 dark:text-white mb-4">{{"user_view_my_courses" | translate}}</label>
-        <button type="button" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-15 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 mx-auto">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
+    <div class="ml-8 mb-2 p-8 bg-gray-200 dark:bg-gray-700 border border-gray-400 dark:border-gray-600 rounded-lg w-full max-w-sm">
+      <div>
+        <div class="mb-4">
+          <label class="text-lg font-medium">{{"user_view_my_courses" | translate}}</label>
+          <button type="button" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-15 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 mx-auto">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="mb-4">
+          <label class="text-lg font-medium">{{"user_view_my_files" | translate}}</label>
+          <button type="button" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-15 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 mx-auto">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   </div>
