@@ -3,6 +3,8 @@ import {Schema, model} from "mongoose";
 interface UserDetails {
     username: string,
     email: string,
+    passwordHash: string,
+    salt: string,
     dateOfBirth?: number,
     fieldOfInterests?: [],
     enrolledCourses?: [],
@@ -15,6 +17,7 @@ interface UserDetails {
 
 enum UserRole {
     DEFAULT,
+    MODERATOR,
     ADMIN
 }
 
@@ -28,6 +31,14 @@ const userSchema = new Schema<UserDetails>({
         type: String,
         required: true,
         unique: true
+    },
+    passwordHash: {
+        type: String,
+        required: true
+    },
+    salt: {
+        type: String,
+        required: true
     },
     dateOfBirth: {
         type: Number,
@@ -56,8 +67,6 @@ const userSchema = new Schema<UserDetails>({
         required: false,
         default: 0
     },
-    // TODO: Brauchen wir überhaupt profilbilder? Sollen wir nicht einfach den Anfangsbuchstaben des Usernames nehmen,
-    // TODO: wie bei Google Diensten?
     profilePicture: {
         type: String,
         required: false,

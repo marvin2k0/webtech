@@ -2,6 +2,7 @@ import express, {json} from "express"
 import {logger} from "./utils/Logger";
 import userRoutes from "./routes/user.routes"
 import {connect} from "mongoose";
+import {errorHandler} from "./middleware/error.handler.middleware";
 
 const app = express()
 const port = process.env.PORT || 8080
@@ -30,3 +31,4 @@ connect(mongoUri)
 
 app.use(json())
 app.use("/users", userRoutes)
+app.use(errorHandler)
