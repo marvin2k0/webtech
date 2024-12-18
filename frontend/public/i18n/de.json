@@ -4,5 +4,8 @@
   "nav_link_home": "Startseite",
   "nav_link_course": "Kurse",
   "nav_link_services": "Services",
-  "nav_link_contact": "Kontakt"
+  "nav_link_contact": "Kontakt",
+
+  "landing_page_jumbotron_headline": "Erobere deine Prüfungen!",
+  "landing_page_jumbotron_paragraph": "Mit EducationEmpire wirst du großers erreichen!"
 }

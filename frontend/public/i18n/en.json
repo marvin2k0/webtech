@@ -4,5 +4,8 @@
   "nav_link_home": "Home",
   "nav_link_course": "Courses",
   "nav_link_services": "Services",
-  "nav_link_contact": "Contact"
+  "nav_link_contact": "Contact",
+
+  "landing_page_jumbotron_headline": "Conquer your exams",
+  "landing_page_jumbotron_paragraph": "With EducationEmpire you will achieve great things!"
 }
