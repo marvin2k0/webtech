@@ -13,5 +13,7 @@
   "user_view_required_fields": "Erforderliche Felder",
   "user_view_my_files": "Meine hochgeladenen Dateien",
   "user_view_user_information": "Benutzerinformationen",
-  "user_view_user_information_edit": "Bearbeiten"
+  "user_view_user_information_edit": "Bearbeiten",
+  "user_view_username_label": "Benutzername",
+  "user_view_courses_files_label": "Meine Kurse und Dateien"
 }
