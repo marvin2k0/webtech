@@ -1,10 +1,9 @@
 import {Schema, model} from "mongoose";
 
-interface UserDetails {
+export interface UserDetails {
     username: string,
     email: string,
     passwordHash: string,
-    salt: string,
     dateOfBirth?: number,
     fieldOfInterests?: [],
     enrolledCourses?: [],
@@ -33,10 +32,6 @@ const userSchema = new Schema<UserDetails>({
         unique: true
     },
     passwordHash: {
-        type: String,
-        required: true
-    },
-    salt: {
         type: String,
         required: true
     },
