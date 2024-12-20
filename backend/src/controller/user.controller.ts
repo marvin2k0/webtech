@@ -52,7 +52,7 @@ export const getAllUsers = async (req: Request, res: Response, next: NextFunctio
  */
 export const getPersonalInformation = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const username = req.user;
+        const username = req.username;
         const userData = await User.findOne({ username });
         res.status(200).json(userData);
     } catch (err) {
@@ -75,6 +75,38 @@ export const getUserDetails = async (req: Request, res: Response, next: NextFunc
 
     } catch (err) {
         next(err)
+    }
+}
+
+/**
+ * Function to delete specified user. Only executable by moderators.
+ * @param req - HTTP-Request
+ * @param res - HTTP-Response
+ * @param next - Error handling functipon
+ */
+export const deleteUser = async (req: Request, res: Response, next: NextFunction) => {
+
+    // @ToDo:   Only Moderators should be allowed to delete a user.
+
+    const username = req.params.username;
+
+    try {
+
+        // Replace with User.findOneAndDeleteOne if we want to return the user we just deleted!
+        const isUserDeleted = await User.deleteOne({ username });
+
+        logger.error(JSON.stringify(isUserDeleted))
+
+        if (isUserDeleted.deletedCount !== 1) {
+            throw (new Error(`User ${username} could not be deleted (deletedCount: ${isUserDeleted.deletedCount})`));
+        }
+
+        logger.info(`User ${username} deleted successfully!`);
+        res.status(200).json(success<{ isUserDeleted: boolean }>({ isUserDeleted: true}));
+
+
+    } catch (err) {
+        next(err);
     }
 }
 
