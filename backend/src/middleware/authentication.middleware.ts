@@ -1,7 +1,7 @@
 import { Response, NextFunction } from "express";
 import { error } from "../model/http/rest-response";
 import { logger } from "../utils/Logger";
-import jwt from 'jsonwebtoken';
+import jwt, {TokenExpiredError} from 'jsonwebtoken';
 import User, {UserDetails} from "../model/user.model";
 
 
@@ -41,9 +41,13 @@ export async function authenticate(req: any, res: Response, next: NextFunction) 
         req.username = username;
         req.role = role;
         next();
-    } catch (error) {
-        logger.error("An error occurred while processing token: " + error);
-        res.status(403).json({ message: 'Forbidden' });
+    } catch (err) {
+        if (err instanceof TokenExpiredError)
+            logger.warn("Token has expired")
+        else
+            logger.error("An error occurred while processing token: " + err);
+
+        res.status(403).json(error("Forbidden"));
     }
 
 }

@@ -17,7 +17,7 @@ export const getToken = async (req: Request, res: Response) => {
     const validPassword = await bcrypt.compare(password, passwordHash)
 
     if (validPassword) {
-        const token = jwt.sign({username, role}, process.env.AUTH_TOKEN_SECRET!)
+        const token = jwt.sign({username, role}, process.env.AUTH_TOKEN_SECRET!, {expiresIn: "15m"})
         logger.debug(`User ${username} successfully authenticated`)
 
         res.status(200)
@@ -73,7 +73,6 @@ export const getUserDetails = async (req: Request, res: Response, next: NextFunc
     try {
         const userData = await User.findOne({ username });
         res.status(200).json(userData);
-
     } catch (err) {
         next(err)
     }
@@ -86,9 +85,6 @@ export const getUserDetails = async (req: Request, res: Response, next: NextFunc
  * @param next - Error handling functipon
  */
 export const deleteUser = async (req: any, res: Response, next: NextFunction) => {
-
-    // @ToDo:   Only Moderators should be allowed to delete a user.
-
     const username = req.params.username;
     const role = req.role;
 
