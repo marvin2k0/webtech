@@ -1,5 +1,5 @@
 import {Request, Response, NextFunction} from "express";
-import User, {UserDetails} from "../model/user.model";
+import User, {EMPTY_USER, UserDetails, UserRole} from "../model/user.model";
 import {logger} from "../utils/Logger";
 import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
@@ -13,17 +13,18 @@ import {error, success} from "../model/http/rest-response";
  */
 export const getToken = async (req: Request, res: Response) => {
     const { username, password } = req.body
-    const passwordHash = await getUserPasswordHash(username)
+    const {role, passwordHash} = await getUserObjectFromDatabase(username)
     const validPassword = await bcrypt.compare(password, passwordHash)
 
     if (validPassword) {
-        const token = jwt.sign(username, process.env.AUTH_TOKEN_SECRET!)
-
+        const token = jwt.sign({username, role}, process.env.AUTH_TOKEN_SECRET!)
         logger.debug(`User ${username} successfully authenticated`)
+
         res.status(200)
             .json(success<{ accessToken: string }>({accessToken: token}))
     } else {
         logger.warn(`There was a problem authenticating user ${username}`)
+
         res.status(401)
             .json(error("Wrong credentials"))
     }
@@ -50,7 +51,7 @@ export const getAllUsers = async (req: Request, res: Response, next: NextFunctio
  * @param res - The HTTP-Response
  * @param next - Error-Handling function
  */
-export const getPersonalInformation = async (req: Request, res: Response, next: NextFunction) => {
+export const getPersonalInformation = async (req: any, res: Response, next: NextFunction) => {
     try {
         const username = req.username;
         const userData = await User.findOne({ username });
@@ -84,11 +85,17 @@ export const getUserDetails = async (req: Request, res: Response, next: NextFunc
  * @param res - HTTP-Response
  * @param next - Error handling functipon
  */
-export const deleteUser = async (req: Request, res: Response, next: NextFunction) => {
+export const deleteUser = async (req: any, res: Response, next: NextFunction) => {
 
     // @ToDo:   Only Moderators should be allowed to delete a user.
 
     const username = req.params.username;
+    const role = req.role;
+
+    if (role < UserRole.MODERATOR) {
+        res.status(403).json(error("Forbidden"));
+        return;
+    }
 
     try {
 
@@ -103,8 +110,6 @@ export const deleteUser = async (req: Request, res: Response, next: NextFunction
 
         logger.info(`User ${username} deleted successfully!`);
         res.status(200).json(success<{ isUserDeleted: boolean }>({ isUserDeleted: true}));
-
-
     } catch (err) {
         next(err);
     }
@@ -130,11 +135,11 @@ export const createUser = async (req: Request, res: Response, next: NextFunction
     }
 }
 
-export async function getUserPasswordHash(findUsername: string): Promise<string> {
+export async function getUserObjectFromDatabase(findUsername: string): Promise<UserDetails> {
     const userFound = await User.findOne({username: findUsername}).exec()
 
     if (!userFound)
-        return ""
+        return EMPTY_USER
 
-    return userFound.passwordHash
+    return userFound
 }

@@ -1,5 +1,11 @@
 import {Schema, model} from "mongoose";
 
+export const EMPTY_USER: UserDetails = {
+    username: "",
+    email: "",
+    passwordHash: ""
+}
+
 export interface UserDetails {
     username: string,
     email: string,
@@ -14,7 +20,7 @@ export interface UserDetails {
     active?: boolean
 }
 
-enum UserRole {
+export enum UserRole {
     DEFAULT,
     MODERATOR,
     ADMIN
