@@ -45,6 +45,40 @@ export const getAllUsers = async (req: Request, res: Response, next: NextFunctio
 }
 
 /**
+ * Function to retrieve the own user information
+ * @param req - The Request
+ * @param res - The HTTP-Response
+ * @param next - Error-Handling function
+ */
+export const getPersonalInformation = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const username = req.user;
+        const userData = await User.findOne({ username });
+        res.status(200).json(userData);
+    } catch (err) {
+        next(err)
+    }
+}
+
+/**
+ * Get the Data of the requestet User (param username)
+ * @param req - The Request
+ * @param res - The HTTP-Response
+ * @param next - Error-Handling function
+ */
+export const getUserDetails = async (req: Request, res: Response, next: NextFunction) => {
+    const username = req.params.username;
+
+    try {
+        const userData = await User.findOne({ username });
+        res.status(200).json(userData);
+
+    } catch (err) {
+        next(err)
+    }
+}
+
+/**
  * Endpoint for creating a user
  * @param req - the HTTP-Request. Must contain at least username, email and password as json body
  * @param res - HTTP-Response with a status message. Either success or Internal Server Error
