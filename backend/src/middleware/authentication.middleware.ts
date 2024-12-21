@@ -14,7 +14,7 @@ import User, {UserDetails} from "../model/user.model";
 export async function authenticate(req: any, res: Response, next: NextFunction) {
     const authHeader = req.headers.authorization;
 
-    if (!authHeader) {
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
         res.status(401).json(error("Unauthorized"));
         return ;
     }
