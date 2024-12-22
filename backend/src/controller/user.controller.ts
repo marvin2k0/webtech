@@ -1,39 +1,50 @@
-import {Request, Response} from "express";
+import {Request, Response, NextFunction} from "express";
+import User from "../model/user.model";
+import {logger} from "../utils/Logger";
 
-const users: UserDetails[] = []
-const userMap: Map<string, UserDetails> = new Map<string, UserDetails>()
-
+// TODO Abfrage aus db
+/*
 export const getUserDetails = (req: Request, res: Response) => {
     res.status(200).json(users.find(user => user.username === req.params.username))
 }
+ */
 
-export const createUser = (req: Request, res: Response) => {
-    users.push({
-        username: "marvinmustermann",
-        email: "test@test.com",
-        role: UserRole.DEFAULT,
-        created: new Date().getTime(),
-        lastLogin: new Date().getTime() - 1000 * 60,
-        active: true
-    })
+export const getToken = (req: Request, res: Response) => {
 
-    res.status(200).json({"message": "Success"})
 }
 
-interface UserDetails {
-    username: string,
-    email: string,
-    dateOfBirth?: number,
-    fieldOfInterest?: string,
-    enrolledCourses?: [],
-    role: UserRole,
-    created: number,
-    lastLogin: number,
-    profilePicture?: string,
-    active: boolean
+/**
+ * Get a list of all users
+ * @param req - Http-Request
+ * @param res - Http-Response
+ * @param next - Error handling function
+ */
+export const getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const data = await User.find({})
+        res.status(200).json({message: data})
+    } catch (error) {
+        next("error nachricht")
+    }
 }
 
-enum UserRole {
-    DEFAULT,
-    ADMIN
+/**
+ * Endpoint for creating a user
+ * @param req - the HTTP-Request. Must contain at least username, email and password as json body
+ * @param res - HTTP-Response with a status message. Either success or Internal Server Error
+ * @param next - ErrorHanding function
+ */
+export const createUser = async (req: Request, res: Response, next: NextFunction) => {
+    const { username, email, password } = req.body;
+    // @ToDo:   Generate a password hash + salt
+    const passwordHash = password
+    const salt = "sdfsf";
+
+    try {
+        const user = new User({ username, email, passwordHash, salt });
+        await user.save();
+        res.status(200).json({ message: "Success" });
+    } catch (error) {
+        next(error)
+    }
 }

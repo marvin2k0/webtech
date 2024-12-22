@@ -1,10 +1,12 @@
 import express, { Router } from "express";
-import {createUser, getUserDetails} from "../controller/user.controller";
-import { logger } from "../utils/Logger";
+import {createUser, getToken, getAllUsers} from "../controller/user.controller";
 
 const router: Router = express.Router();
 
-router.get("/:username", getUserDetails);
-router.post("/create", createUser);
+// TODO router.get("/:username", getUserDetails);
+router.post("/", createUser);
+router.get("/", getAllUsers);
+
+router.get("/auth", getToken);
 
 export default router;
