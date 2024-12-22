@@ -2,6 +2,7 @@ import {Component, inject} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {UserService} from '../../services/user.service';
+import jwt from "jsonwebtoken"
 
 @Component({
   selector: 'app-login-page',
@@ -24,6 +25,8 @@ export class LoginPageComponent {
         console.error("Error occurred while trying to log in", response.message)
       } else if ("data" in response) {
         console.log(response.data.accessToken)
+        const accessToken = response.data.accessToken
+        localStorage.setItem("accessToken", accessToken)
 
         // TODO jwt speicher. mit httpOnly cookie Header aus be?
         // - weiterleiten auf dashboard
