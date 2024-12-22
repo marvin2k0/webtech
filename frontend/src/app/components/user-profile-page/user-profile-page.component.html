@@ -16,7 +16,7 @@
             <div style="display: flex; align-items: center; gap: 16px;">
               <label class="text-2xl font-bold">username_placeholder</label>
 
-              <button style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; background-color: #f9f9f9; cursor: pointer;">
+              <button (click)="onUsernameButtonClick()" style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; background-color: #f9f9f9; cursor: pointer;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                   <path d="M15.854.146a.5.5 0 0 1 0 .708l-1.5 1.5-2-2 1.5-1.5a.5.5 0 0 1 .707 0l1.293 1.293a.5.5 0 0 1 .293.5z"/>
                   <path d="M1 13.5V16h2.5l9.854-9.854-2.5-2.5L1 13.5zM0 15.5a1 1 0 0 0 1 1h2a1 1 0 0 0 .707-.293l10-10a1 1 0 0 0 0-1.414l-2-2a1 1 0 0 0-1.414 0l-10 10A1 1 0 0 0 0 13v2z"/>
@@ -36,7 +36,7 @@
             </div>
 
             <div class="mb-4">
-              <button style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; background-color: #f9f9f9; cursor: pointer;">
+              <button (click)="onUserInformationEditButtonClick()" id= "user_information_edit_button" style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; background-color: #f9f9f9; cursor: pointer;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                   <path d="M15.854.146a.5.5 0 0 1 0 .708l-1.5 1.5-2-2 1.5-1.5a.5.5 0 0 1 .707 0l1.293 1.293a.5.5 0 0 1 .293.5z"/>
                   <path d="M1 13.5V16h2.5l9.854-9.854-2.5-2.5L1 13.5zM0 15.5a1 1 0 0 0 1 1h2a1 1 0 0 0 .707-.293l10-10a1 1 0 0 0 0-1.414l-2-2a1 1 0 0 0-1.414 0l-10 10A1 1 0 0 0 0 13v2z"/>
@@ -47,16 +47,16 @@
           </div>
           <div class="p-4 bg-gray-200 dark:bg-gray-700 border border-gray-400 dark:border-gray-600 rounded-lg">
             <div class="mb-6 flex items-center">
-              <label for="focus point" class="block text-lg font-medium text-gray-900 dark:text-white w-48">{{"user_view_focus_point" | translate}}*</label>
-              <input type="text" id="focus point" class="ml-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled readonly>
+              <label for="focus_point_input_field" class="block text-lg font-medium text-gray-900 dark:text-white w-48">{{"user_view_focus_point" | translate}}*</label>
+              <input type="text" id="focus_point_input_field" class="ml-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" [disabled]="focusPointBool">
             </div>
             <div class="mb-6 flex items-center">
-              <label for="institute" class="block text-lg font-medium text-gray-900 dark:text-white w-48">{{"user_view_institute" | translate}}</label>
-              <input type="text" id="institute" class="ml-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled readonly>
+              <label for="institute_input_field" class="block text-lg font-medium text-gray-900 dark:text-white w-48">{{"user_view_institute" | translate}}</label>
+              <input type="text" id="institute_input_field" class="ml-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" [disabled]="instituteBool">
             </div>
             <div class="mb-6 flex items-center">
-              <label for="dob" class="block text-lg font-medium text-gray-900 dark:text-white w-48">{{"user_view_dob" | translate}}</label>
-              <input type="text" id="dob" class="ml-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled readonly>
+              <label for="dob_input_field" class="block text-lg font-medium text-gray-900 dark:text-white w-48">{{"user_view_dob" | translate}}</label>
+              <input type="text" id="dob_input_field" class="ml-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" [disabled]="dobBool">
             </div>
           </div>
 
