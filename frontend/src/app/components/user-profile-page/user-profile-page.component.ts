@@ -15,6 +15,7 @@ import {FormsModule} from '@angular/forms';
   styleUrl: './user-profile-page.component.css'
 })
 export class UserProfilePageComponent {
+  showSaveButton = false;
   focusPointBool: boolean = true;
   instituteBool: boolean = true;
   dobBool: boolean = true;
@@ -25,5 +26,10 @@ export class UserProfilePageComponent {
     this.focusPointBool = !this.focusPointBool;
     this.instituteBool = !this.instituteBool;
     this.dobBool = !this.dobBool;
+    this.showSaveButton = !this.showSaveButton;
+  }
+
+  ngOnInit() {
+
   }
 }
