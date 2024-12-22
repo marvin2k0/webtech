@@ -1,15 +1,17 @@
 import {Component, inject} from '@angular/core';
-import {RouterLink} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {UserService} from '../../services/user.service';
 import jwt from "jsonwebtoken"
+import {LoadingSpinnerComponent} from '../loading-spinner/loading-spinner.component';
 
 @Component({
   selector: 'app-login-page',
   standalone: true,
   imports: [
     RouterLink,
-    FormsModule
+    FormsModule,
+    LoadingSpinnerComponent
   ],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.css'
@@ -19,6 +21,10 @@ export class LoginPageComponent {
   username: string = ""
   password: string = ""
 
+  showOverlay: boolean = true;
+
+  constructor(private router: Router) {}
+
   onSubmit(): void {
     this.userService.login(this.username, this.password).subscribe(response => {
       if ("message" in response) {
@@ -26,12 +32,15 @@ export class LoginPageComponent {
       } else if ("data" in response) {
         console.log(response.data.accessToken)
         const accessToken = response.data.accessToken
+
+        // @ToDo:   vielleicht doch lieber in HttpOnly Cookie speichern?
         localStorage.setItem("accessToken", accessToken)
 
-        // TODO jwt speicher. mit httpOnly cookie Header aus be?
         // - weiterleiten auf dashboard
+        this.router.navigate(['/dashboard']);
         // - login / register knöpfe ausblenden
         // - etc.
+
       }
     })
   }
