@@ -17,6 +17,7 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} fr
 })
 export class SignupPageComponent {
   registerForm = new FormGroup({
+    username: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.email, Validators.required]),
     password: new FormControl('', Validators.required),
     passwordConfirm: new FormControl('', Validators.required),
