@@ -1,6 +1,15 @@
 {
+  "already_have_account": "Hast du bereits ein Konto?",
   "sign_in_button": "Anmelden",
   "sign_up_button": "Registrieren",
+  "sign_in_here": "Hier anmelden",
+  "signup_create_account":  "Konto erstellen",
+  "signup_i_accept": "Ich akzeptiere die",
+  "signup_terms_and_conditions": "Nutzungsbedingungen",
+  "signup_form_your_email": "Deine email",
+  "signup_form_password": "Passwort",
+  "signup_form_confirm_password": "Passwort bestätigen",
+
   "nav_link_home": "Startseite",
   "nav_link_course": "Kurse",
   "nav_link_services": "Services",
