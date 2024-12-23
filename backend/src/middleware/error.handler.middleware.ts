@@ -1,8 +1,12 @@
 import { Request, Response } from "express";
 import { logger } from "../utils/Logger";
+import {error} from "../model/http/rest-response";
 
-export const errorHandler = (err: Error, req: Request, res: Response, next: any) => {
-    logger.error(err)
-    res.status(500)
-        .json({ message: "Internal Server Error", debug: process.env.IS_DEVELOPMENT_MODE! === "true" ? err.message : undefined })
+export const errorHandler = (err: any, req: Request, res: Response, next: any) => {
+    logger.error(err);
+
+    const errorMessage = process.env.IS_DEVELOPMENT_MODE! === "true" ? err : "";
+
+    res.status(200)
+        .json(error(errorMessage))
 }

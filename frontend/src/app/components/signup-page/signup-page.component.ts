@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import {RouterLink} from '@angular/router';
+import {Component, inject} from '@angular/core';
+import {Router, RouterLink} from '@angular/router';
 import {TranslatePipe} from '@ngx-translate/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-signup-page',
@@ -16,6 +17,9 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} fr
   styleUrl: './signup-page.component.css'
 })
 export class SignupPageComponent {
+  private userService: UserService = inject(UserService)
+  private router: Router = inject(Router)
+
   registerForm = new FormGroup({
     username: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.email, Validators.required]),
@@ -25,6 +29,25 @@ export class SignupPageComponent {
   })
 
   onSubmit() {
-    console.log(this.registerForm.value)
+    const {username, email, password, passwordConfirm} = this.registerForm.value
+
+    // TODO replace alert with better error message
+    if (password !== passwordConfirm) {
+      alert("Passwords must match!")
+      return
+    }
+
+    this.userService.register(username!, email!, password!).subscribe(response => {
+      console.log(this.registerForm.value, response)
+
+      if (response.successful) {
+        this.router.navigateByUrl("/signin")
+          .then(() => console.log("Successfully registered"))
+      } else {
+        alert(response.message)
+      }
+
+      // TODO @Deans coole ladeanimation einfügen, wenn sie fertig ist
+    })
   }
 }

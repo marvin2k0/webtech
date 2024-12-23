@@ -117,6 +117,7 @@ export const deleteUser = async (req: any, res: Response, next: NextFunction) =>
  * @param res - HTTP-Response with a status message. Either success or Internal Server Error
  * @param next - ErrorHanding function
  */
+// TODO Solideres error handling (existiert nutzername bereits?, etc.)
 export const createUser = async (req: Request, res: Response, next: NextFunction) => {
     const { username, email, password } = req.body;
 
@@ -125,9 +126,9 @@ export const createUser = async (req: Request, res: Response, next: NextFunction
         logger.debug(passwordHash)
         const user = new User({ username, email, passwordHash });
         await user.save();
-        res.status(200).json({ message: "Success" });
-    } catch (error) {
-        next(error)
+        res.status(200).json(success("Success"));
+    } catch (error: any) {
+        next("Could not create user")
     }
 }
 
