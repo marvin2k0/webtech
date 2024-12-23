@@ -7,6 +7,7 @@
   --primary-color: #151923;
   --secondary-color: #202833;
   --accent-color: #4F46E5;
+  --accent-color-dimmed: #736de8;
   --complementary-color: #3f39b6;
   --shadow-color: rgba(0, 0, 0, .2);
   --text-primary-color: white;
@@ -40,6 +41,11 @@ html, body {
 
 .call-to-action:hover {
   background-color: var(--complementary-color);
+}
+
+.call-to-action:disabled {
+  background-color: var(--accent-color-dimmed);
+  cursor: not-allowed;
 }
 
 .button {
