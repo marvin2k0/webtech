@@ -7,7 +7,6 @@ import { IRestResponse } from '../model/http/rest-response';
   providedIn: 'root'
 })
 export class UserService {
-  // TODO use environments? (glaube ng g environments)
   private baseUrl: string = "http://localhost:8080/users"
   private http: HttpClient = inject(HttpClient)
 
