@@ -3,6 +3,7 @@ import {Router, RouterLink} from '@angular/router';
 import {TranslatePipe} from '@ngx-translate/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {UserService} from '../../services/user.service';
+import {AlertBoxComponent} from '../alert-box/alert-box.component';
 
 @Component({
   selector: 'app-signup-page',
@@ -12,6 +13,7 @@ import {UserService} from '../../services/user.service';
     TranslatePipe,
     FormsModule,
     ReactiveFormsModule,
+    AlertBoxComponent,
   ],
   templateUrl: './signup-page.component.html',
   styleUrl: './signup-page.component.css'
@@ -46,7 +48,6 @@ export class SignupPageComponent {
       } else {
         this.successful = false
         this.errorMessage = response.message
-        alert(response.message)
       }
 
       // TODO @Deans coole ladeanimation einfügen, wenn sie fertig ist

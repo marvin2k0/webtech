@@ -16,7 +16,10 @@
           {{ "signup_create_account" | translate }}
         </h1>
         @if (!successful) {
-          {{ errorMessage }}
+          <!-- TODO Fix design. Sieht noch net gut aus -->
+          <div class="alert-container">
+            <alert-box type="error">{{ errorMessage }}</alert-box>
+          </div>
         }
         <form class="space-y-4 md:space-y-6" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
           <div>
