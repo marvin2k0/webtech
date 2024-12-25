@@ -4,6 +4,7 @@ import {logger} from "../utils/Logger";
 import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
 import {error, success} from "../model/http/rest-response";
+import {MongoServerError} from "mongodb";
 
 /**
  * Used to obtain a fresh jwt token for the received user. Token is only provided when password matches
@@ -117,7 +118,6 @@ export const deleteUser = async (req: any, res: Response, next: NextFunction) =>
  * @param res - HTTP-Response with a status message. Either success or Internal Server Error
  * @param next - ErrorHanding function
  */
-// TODO Solideres error handling (existiert nutzername bereits?, etc.)
 export const createUser = async (req: Request, res: Response, next: NextFunction) => {
     const { username, email, password } = req.body;
 
@@ -127,8 +127,20 @@ export const createUser = async (req: Request, res: Response, next: NextFunction
         const user = new User({ username, email, passwordHash });
         await user.save();
         res.status(200).json(success("Success"));
-    } catch (error: any) {
-        next("Could not create user")
+    } catch (error: unknown) {
+        if (!(error instanceof MongoServerError)) {
+            next("Unknown error: Could not create user")
+            return
+        }
+
+        if (error.code === 11000) {
+            const duplicateField = Object.keys(error.keyValue)[0];
+            const duplicateValue = error.keyValue[duplicateField]
+
+            next(`${duplicateField} ${duplicateValue} already exists!`)
+        } else {
+            next(error.message)
+        }
     }
 }
 
