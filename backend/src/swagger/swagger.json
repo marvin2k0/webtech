@@ -108,6 +108,32 @@
       "post": {
         "description": "Used to create a new user.",
         "tags": ["User"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "required": true,
+                    "example": "johndoe"
+                  },
+                  "email": {
+                    "type": "string",
+                    "required": true,
+                    "example": "johndoe@example.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "required": true,
+                    "example": "password"
+                  }
+                }
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "A new user has successfully been created and saved to the database."
