@@ -5,6 +5,9 @@ import testRoutes from "./routes/test.routes"
 import {connect} from "mongoose";
 import {errorHandler} from "./middleware/error.handler.middleware";
 import {logRequests} from "./middleware/access.logger.middleware";
+import cors from "cors"
+import swaggerUi from "swagger-ui-express"
+import swaggerFile from "./swagger/swagger.json";
 
 const app = express()
 const port = process.env.PORT || 8080
@@ -31,8 +34,10 @@ connect(mongoUri)
         process.exit(1)
     })
 
+app.use(cors())
 app.use(json())
 app.use(logRequests)
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile))
 app.use("/users", userRoutes)
 app.use("/test", testRoutes)
 app.use(errorHandler)
