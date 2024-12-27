@@ -96,6 +96,12 @@ html, body {
   padding-inline: 10rem;
 }
 
+.fancy-parent-container {
+  position: relative;
+  max-width: 80%;
+  max-height: 80%;
+}
+
 .fancy-background-pattern-part {
   position: absolute;
   z-index: -1;
