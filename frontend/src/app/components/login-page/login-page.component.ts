@@ -4,6 +4,7 @@ import {FormsModule} from '@angular/forms';
 import {UserService} from '../../services/user.service';
 import jwt from "jsonwebtoken"
 import {LoadingSpinnerComponent} from '../loading-spinner/loading-spinner.component';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-login-page',
@@ -11,7 +12,8 @@ import {LoadingSpinnerComponent} from '../loading-spinner/loading-spinner.compon
   imports: [
     RouterLink,
     FormsModule,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    NgIf
   ],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.css'
@@ -21,27 +23,34 @@ export class LoginPageComponent {
   username: string = ""
   password: string = ""
 
-  showOverlay: boolean = true;
+  isLoading: boolean = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   onSubmit(): void {
-    this.userService.login(this.username, this.password).subscribe(response => {
-      if ("message" in response) {
-        console.error("Error occurred while trying to log in", response.message)
-      } else if ("data" in response) {
-        console.log(response.data.accessToken)
-        const accessToken = response.data.accessToken
+    this.isLoading = true;
 
-        // @ToDo:   vielleicht doch lieber in HttpOnly Cookie speichern?
-        localStorage.setItem("accessToken", accessToken)
+    this.userService.login(this.username, this.password).subscribe({
+      next: (response) => {
+        if ("message" in response) {
+          console.error("Error occurred while trying to log in", response.message);
+        } else if ("data" in response) {
+          console.log(response.data.accessToken);
+          const accessToken = response.data.accessToken;
 
-        // - weiterleiten auf dashboard
-        this.router.navigate(['/dashboard']);
-        // - login / register knöpfe ausblenden
-        // - etc.
+          // @ToDo:   We might want to use HttpOnly cookies instead of localStorage
+          localStorage.setItem("accessToken", accessToken);
+          this.router.navigate(['/dashboard']);
 
-      }
-    })
+          // Buttons ausblenden etc....
+        }
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.error("Login request failed", err);
+        this.isLoading = false;
+      },
+    });
   }
+
 }
