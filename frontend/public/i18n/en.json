@@ -1,6 +1,16 @@
 {
+  "already_have_account": "Already have an account?",
   "sign_in_button": "Sign In",
   "sign_up_button": "Sign Up",
+  "sign_in_here": "Sign in here",
+  "signup_create_account":  "Create an account",
+  "signup_i_accept": "I accept the",
+  "signup_terms_and_conditions": "Terms and Conditions",
+  "signup_form_username": "Username",
+  "signup_form_your_email": "Your email",
+  "signup_form_password": "Password",
+  "signup_form_confirm_password": "Confirm password",
+
   "nav_link_home": "Home",
   "nav_link_course": "Courses",
   "nav_link_services": "Services",

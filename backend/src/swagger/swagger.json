@@ -9,6 +9,10 @@
     {
       "name": "User",
       "description": "Operations related to users"
+    },
+    {
+      "name": "Test",
+      "description": "Test routes. Usually not needed in production"
     }
   ],
   "components": {
@@ -307,6 +311,33 @@
           },
           "403": {
             "$ref": "#/components/responses/403"
+          }
+        }
+      }
+    },
+    "/test": {
+      "get": {
+        "tags": ["Test"],
+        "description": "Get a successful response",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "successful": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "string",
+                      "example": "Successful"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }

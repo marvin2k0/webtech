@@ -13,33 +13,43 @@
     <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md pr-5 dark:bg-gray-800 dark:border-gray-700">
       <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
         <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-          Create an account
+          {{ "signup_create_account" | translate }}
         </h1>
-        <form class="space-y-4 md:space-y-6" action="#">
+        @if (!successful) {
+          <!-- TODO Fix design. Sieht noch net gut aus -->
+          <div class="alert-container">
+            <alert-box type="error">{{ errorMessage }}</alert-box>
+          </div>
+        }
+        <form class="space-y-4 md:space-y-6" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
           <div>
-            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-            <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="john@doe.com" required="">
+            <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ "signup_form_username" | translate}}</label>
+            <input autocomplete="username" type="text" name="username" id="username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="johndoe" required formControlName="username">
           </div>
           <div>
-            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-            <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ "signup_form_your_email" | translate}}</label>
+            <input autocomplete="email" type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="john@doe.com" required formControlName="email">
           </div>
           <div>
-            <label for="confirm-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm password</label>
-            <input type="password" name="confirm-password" id="confirm-password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ "signup_form_password" | translate }}</label>
+            <input autocomplete="new-password" type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required formControlName="password">
+          </div>
+          <div>
+            <label for="confirm-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ "signup_form_confirm_password" | translate }}</label>
+            <input autocomplete="new-password" type="password" name="confirm-password" id="confirm-password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required formControlName="passwordConfirm">
           </div>
           <div class="flex items-start">
             <div class="flex items-center h-5">
-              <input id="terms" aria-describedby="terms" type="checkbox" class="custom-checkbox" required="">
+              <input id="terms" aria-describedby="terms" type="checkbox" class="custom-checkbox" required formControlName="acceptTos">
               <span class="check"></span>
             </div>
             <div class="ml-3 text-sm">
-              <label for="terms" class="font-light text-gray-500 dark:text-gray-300">I accept the <a class="font-medium text-primary-600 hover:underline dark:text-primary-500" href="#">Terms and Conditions</a></label>
+              <label for="terms" class="font-light text-gray-500 dark:text-gray-300">{{ "signup_i_accept" | translate }} <a class="font-medium text-primary-600 hover:underline dark:text-primary-500" href="#">{{ "signup_terms_and_conditions" | translate}}</a></label>
             </div>
           </div>
-          <button type="submit" class="call-to-action submit-button">Create an Account</button>
+          <button type="submit" class="call-to-action submit-button" [disabled]="!registerForm.valid">{{ "signup_create_account" | translate }}</button>
           <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-            Already have an account? <a routerLink="/signin" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign in here</a>
+            {{ "already_have_account" | translate}} <a routerLink="/signin" class="font-medium text-primary-600 hover:underline dark:text-primary-500">{{ "sign_in_here" | translate }}</a>
           </p>
         </form>
       </div>

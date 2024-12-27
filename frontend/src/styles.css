@@ -7,10 +7,23 @@
   --primary-color: #151923;
   --secondary-color: #202833;
   --accent-color: #4F46E5;
+  --accent-color-dimmed: #736de8;
   --complementary-color: #3f39b6;
   --shadow-color: rgba(0, 0, 0, .2);
   --text-primary-color: white;
   --hover-color-checkbox: rgba(0, 0, 0, .1);
+
+  --dark-red: #8E2121;
+  --red: #D85050;
+  --light-red: #F19494;
+
+  --dark-green: #218E54;
+  --green: #50D890;
+  --light-green: #94F1C0;
+
+  --dark-orange: #8E6221;
+  --orange: #D8A850;
+  --light-orange: #F1D794;
 }
 
 * {
@@ -40,6 +53,11 @@ html, body {
 
 .call-to-action:hover {
   background-color: var(--complementary-color);
+}
+
+.call-to-action:disabled {
+  background-color: var(--accent-color-dimmed);
+  cursor: not-allowed;
 }
 
 .button {

@@ -1,10 +1,15 @@
 import {Schema, model} from "mongoose";
 
-interface UserDetails {
+export const EMPTY_USER: UserDetails = {
+    username: "",
+    email: "",
+    passwordHash: ""
+}
+
+export interface UserDetails {
     username: string,
     email: string,
     passwordHash: string,
-    salt: string,
     dateOfBirth?: number,
     fieldOfInterests?: [],
     enrolledCourses?: [],
@@ -15,7 +20,7 @@ interface UserDetails {
     active?: boolean
 }
 
-enum UserRole {
+export enum UserRole {
     DEFAULT,
     MODERATOR,
     ADMIN
@@ -33,10 +38,6 @@ const userSchema = new Schema<UserDetails>({
         unique: true
     },
     passwordHash: {
-        type: String,
-        required: true
-    },
-    salt: {
         type: String,
         required: true
     },
