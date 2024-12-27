@@ -3,6 +3,7 @@ import {Router, RouterLink} from '@angular/router';
 import {TranslatePipe} from '@ngx-translate/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {UserService} from '../../services/user.service';
+import {AlertBoxComponent} from '../alert-box/alert-box.component';
 
 @Component({
   selector: 'app-signup-page',
@@ -11,7 +12,8 @@ import {UserService} from '../../services/user.service';
     RouterLink,
     TranslatePipe,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AlertBoxComponent,
   ],
   templateUrl: './signup-page.component.html',
   styleUrl: './signup-page.component.css'
@@ -19,6 +21,8 @@ import {UserService} from '../../services/user.service';
 export class SignupPageComponent {
   private userService: UserService = inject(UserService)
   private router: Router = inject(Router)
+  successful = true
+  errorMessage = ""
 
   registerForm = new FormGroup({
     username: new FormControl('', Validators.required),
@@ -38,13 +42,12 @@ export class SignupPageComponent {
     }
 
     this.userService.register(username!, email!, password!).subscribe(response => {
-      console.log(this.registerForm.value, response)
-
       if (response.successful) {
         this.router.navigateByUrl("/signin")
           .then(() => console.log("Successfully registered"))
       } else {
-        alert(response.message)
+        this.successful = false
+        this.errorMessage = response.message
       }
 
       // TODO @Deans coole ladeanimation einfügen, wenn sie fertig ist
