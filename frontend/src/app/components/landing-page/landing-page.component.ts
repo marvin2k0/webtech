@@ -2,17 +2,35 @@ import { Component } from '@angular/core';
 import {NavbarComponent} from '../navbar/navbar.component';
 import {RouterLink} from '@angular/router';
 import {TranslatePipe} from '@ngx-translate/core';
+import {AlertBoxComponent} from '../alert-box/alert-box.component';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
   imports: [
     RouterLink,
-    TranslatePipe
+    TranslatePipe,
+    AlertBoxComponent,
+    NgIf
   ],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.css'
 })
 export class LandingPageComponent {
+
+  modalShown: boolean = true;
+
+  toggleModal () {
+    this.modalShown = !this.modalShown;
+  }
+
+  handleConfirm = () => {
+    this.toggleModal();
+  }
+
+  handleDeny = () => {
+    this.toggleModal();
+  }
 
 }

@@ -18,3 +18,15 @@
     </div>
   </div>
 </div>
+
+
+<!-- example implementation of modal -->
+<alert-box
+  *ngIf="modalShown"
+  [modalHeader]="'Welcome'"
+  [modalText]="'Hi! Is this your first time?'"
+  [confirmButtonText]="'Yes'"
+  [denyButtonText]="'No'"
+  [onConfirmCallback]="handleConfirm"
+  [onCancelCallback]="handleDeny">
+</alert-box>
