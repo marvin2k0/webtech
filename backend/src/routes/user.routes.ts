@@ -1,17 +1,19 @@
 import express, { Router } from "express";
 import { createUser, getToken, getAllUsers, getUserDetails, getPersonalInformation, deleteUser } from "../controller/user.controller";
 import { authenticate } from "../middleware/authentication.middleware";
+import {requireRole} from "../middleware/role.auth.middleware";
+import {UserRole} from "../model/user.model";
 
 const router: Router = express.Router();
 
 router.get("/me", authenticate, getPersonalInformation); // Retrieve personal information
-router.get("/:username", authenticate, getUserDetails); // Retrieve specified users information.
+router.get("/:username", authenticate, requireRole(UserRole.MODERATOR), getUserDetails); // Retrieve specified users information.
 
 router.post("/", createUser);
-router.get("/", authenticate, getAllUsers);
+router.get("/", authenticate, requireRole(UserRole.MODERATOR), getAllUsers);
 
 router.post("/login", getToken);
 
-router.delete("/delete/:username", authenticate, deleteUser)
+router.delete("/delete/:username", authenticate, requireRole(UserRole.MODERATOR), deleteUser)
 
 export default router;

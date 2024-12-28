@@ -2,7 +2,7 @@ import { Response, NextFunction } from "express";
 import { error } from "../model/http/rest-response";
 import { logger } from "../utils/Logger";
 import jwt, {TokenExpiredError} from 'jsonwebtoken';
-import User, {UserDetails} from "../model/user.model";
+import User from "../model/user.model";
 
 
 /**

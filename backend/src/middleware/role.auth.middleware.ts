@@ -1,8 +1,8 @@
 import {UserRole} from "../model/user.model";
-import {NextFunction, Request, Response} from "express";
+import {NextFunction, Response} from "express";
 import {InsufficientRoleError} from "../error/insufficient.role.error";
 
-export const handleRole = (neededRole: UserRole) => {
+export const requireRole = (neededRole: UserRole) => {
     return (req: any, res: Response, next: NextFunction) => {
         try {
             if (req.role < neededRole)
