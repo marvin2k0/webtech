@@ -2,7 +2,7 @@ import {NextFunction, Request, Response} from "express";
 import {error} from "../model/http/rest-response";
 import {Error} from "mongoose";
 import {MongoServerError} from "mongodb";
-import {EntityNotFoundError} from "../error/entityNotFoundError";
+import {WebtechError} from "../error/webtech.error";
 
 export const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
     if (err instanceof MongoServerError) {
@@ -17,8 +17,8 @@ export const errorHandler = (err: Error, req: Request, res: Response, next: Next
                 .json(error(err.message))
         }
         return
-    } else if (err instanceof EntityNotFoundError) {
-        res.status(400)
+    } else if (err instanceof WebtechError) {
+        res.status(err.code)
             .json(error(err.message))
         return;
     }

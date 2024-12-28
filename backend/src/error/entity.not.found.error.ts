@@ -1,6 +1,8 @@
-export class EntityNotFoundError extends Error {
+import {WebtechError} from "./webtech.error";
+
+export class EntityNotFoundError extends WebtechError {
     constructor(entity: string) {
-        super(`${entity} was not found`);
+        super(404, `${entity} was not found`);
         this.name = "EntityNotFoundError"
         Object.setPrototypeOf(this, EntityNotFoundError.prototype);
     }

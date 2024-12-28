@@ -1,7 +1,7 @@
 import {NextFunction, Request, Response} from "express";
 import {success} from "../model/http/rest-response";
 import Course, {CourseDetails} from "../model/course.model";
-import {EntityNotFoundError} from "../error/entityNotFoundError";
+import {EntityNotFoundError} from "../error/entity.not.found.error";
 
 export const getAllCourses = async (req: Request, res: Response, next: NextFunction) => {
     const courses = await Course.find({})
