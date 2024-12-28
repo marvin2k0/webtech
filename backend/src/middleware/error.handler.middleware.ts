@@ -3,6 +3,7 @@ import {error} from "../model/http/rest-response";
 import {Error} from "mongoose";
 import {MongoServerError} from "mongodb";
 import {WebtechError} from "../error/webtech.error";
+import {TokenExpiredError} from "jsonwebtoken";
 
 export const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
     if (err instanceof MongoServerError) {
@@ -20,6 +21,10 @@ export const errorHandler = (err: Error, req: Request, res: Response, next: Next
     } else if (err instanceof WebtechError) {
         res.status(err.code)
             .json(error(err.message))
+        return;
+    } else if (err instanceof TokenExpiredError) {
+        res.status(401)
+            .json(error("Token has expired"))
         return;
     }
 
