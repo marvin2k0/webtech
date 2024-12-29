@@ -1,6 +1,6 @@
 button {
   background-color: var(--accent-color);
-  color: var(--white);
+  color: var(--light);
   min-width: fit-content;
   width: 100%;
   border: none;

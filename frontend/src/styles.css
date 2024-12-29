@@ -1,174 +1,82 @@
-/* You can add global styles to this file, and also import other style files */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
-  --primary-color: #151923;
-  --secondary-color: #202833;
-  --accent-color: #4F46E5;
-  --accent-color-dimmed: #736de8;
-  --complementary-color: #3f39b6;
-  --shadow-color: rgba(0, 0, 0, .2);
-  --text-primary-color: white;
-  --hover-color-checkbox: rgba(0, 0, 0, .1);
+  /* MEASUREMENTS */
+  --border-radius: 1rem;
+  --padding: 1.5rem;
 
-  --white: #ffffff;
+  /* COLORS */
+  --purple: #4F46E5;
+  --yellow: #E5C846;
+  --light: #ffffff;
+  --dark: #101010;
+  --pure-black: #000000;
+  --shadow-color: #00000033;
+  --dark-gray: #111111;
+  --gray: #151515;
+  --middle-gray: #2d2d2d;
+  --light-gray: #EEEEEE;
+  --light-light-gray: #F2F2F2;
+  --light-light-light-gray: #FBF9F9;
 
-  --dark-red: #8E2121;
-  --red: #D85050;
-  --light-red: #F19494;
+  /* STYLES */
+  --primary: var(--purple);
+  --dark-accent: var(--dark-gray);
+  --card-bg: var(--light-gray);
+  --foreground: var(--dark);
+  --background: var(--light);
+  --input-bg: var(--light);
 
-  --dark-green: #218E54;
-  --green: #50D890;
-  --light-green: #94F1C0;
+  /* GRADIENTS */
+  --card-gradient: linear-gradient(to bottom right, var(--light-light-light-gray) 0%, var(--light-light-gray) 100%);
+}
 
-  --dark-orange: #8E6221;
-  --orange: #D8A850;
-  --light-orange: #F1D794;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --shadow-color: var(--pure-black);
+    --card-bg: var(--dark-accent);
+    --foreground: var(--light);
+    --background: var(--dark);
+    --card-gradient: linear-gradient(to bottom right, var(--gray) 0%, var(--dark-gray) 100%);
+    --input-bg: var(--middle-gray);
+  }
+}
+
+html, body {
+  height: 100%;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Montserrat', Verdana, sans-serif;
 }
 
 * {
   padding: 0;
   margin: 0;
-  box-sizing: content-box;
+  box-sizing: border-box;
 }
 
-html, body {
-  overflow-x: hidden;
+input, button, textarea, select {
+  font: inherit;
+  color: inherit;
 }
 
-.call-to-action {
-  background-color: var(--accent-color);
-  box-shadow: var(--shadow-color) 0px 4px 12px;
-  width: fit-content;
-  padding-block: calc(.5rem - 1px);
-  padding-inline: 1rem;
-  border: 1px solid var(--accent-color);
-  border-radius: .5rem;
-  color: var(--text-primary-color);
+a {
+  text-decoration: none;
+  color: var(--foreground);
+}
+
+button {
   cursor: pointer;
-  transition-duration: .2s;
-  font-weight: 600;
-  font-size: .875rem;
 }
 
-.call-to-action:hover {
-  background-color: var(--complementary-color);
+app-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.call-to-action:disabled {
-  background-color: var(--accent-color-dimmed);
-  cursor: not-allowed;
-}
-
-.button {
-  background-color: transparent;
-  /*box-shadow: var(--shadow-color) 0px 4px 12px;*/
-  width: fit-content;
-  padding-block: calc(.5rem - 1px);
-  padding-inline: 1rem;
-  color: var(--primary-color);
-  cursor: pointer;
-  transition-duration: .2s;
-}
-
-.check-box {
-  appearance: none;
-  -webkit-appearance: none;
-  width: 10px;
-  height: 10px;
-  border: 1px solid black;
-  cursor: pointer;
-  transition-duration: .2s;
-}
-
-.check-box:checked {
-  background-color: pink;
-  background-position: center;
-}
-
-.submit-button {
-  width: 100%;
-  display: block;
-  padding: 0.625rem;
-}
-
-.form-container-padding {
-  padding-inline: 10rem;
-}
-
-.fancy-parent-container {
-  position: relative;
-  max-width: 80%;
-  max-height: 80%;
-}
-
-.fancy-background-pattern-part {
-  position: absolute;
-  z-index: -1;
-  -webkit-filter: blur(64px);
-  filter: blur(64px);
-  animation: rotateBackground 30s infinite ease-in-out;
-}
-
-.fancy-background-pattern-part:nth-child(1) {
-  left: -15%;
-}
-
-.fancy-background-pattern-part:nth-child(2) {
-  right: -80%;
-  top: 5%;
-}
-
-@keyframes rotateBackground {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-
-.custom-checkbox {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  width: 1rem;
-  height: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 0.25rem;
-  outline: none;
-  cursor: pointer;
-  transition: 0.2s;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-
-.custom-checkbox:hover {
-  background-color: var(--hover-color-checkbox);
-}
-
-.custom-checkbox:checked {
-  background-color: var(--accent-color);
-  border-color: var(--accent-color);
-}
-
-.custom-checkbox:checked::after {
-  content: '✔';
-  color: white;
-  font-size: 0.75rem;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  line-height: 1;
-}
-
-.text-accent-600 {
-  font-weight: 600;
-  color: var(--accent-color);
+.main-content {
+  flex-grow: 1;
+  margin-inline: 10vw;
+  margin-top: 2rem;
 }

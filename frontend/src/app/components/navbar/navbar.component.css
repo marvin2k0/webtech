@@ -1,4 +1,13 @@
-.nav-register-login-buttons {
+nav {
   display: flex;
-  gap: 8px;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--background);
+  padding: var(--padding);
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 1rem;
 }
