@@ -1,6 +1,8 @@
 .jumbotron-container {
   width: fit-content;
+  position: relative;
   margin: 0 auto;
+  z-index: 1;
 }
 
 .jumbotron-container h1 {
