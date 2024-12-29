@@ -1,10 +1,12 @@
 nav {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: var(--background);
   padding: 1.5rem 12vw;
   box-shadow: 0 0 2px var(--shadow-color);
+  z-index: 10;
 }
 
 nav ul {

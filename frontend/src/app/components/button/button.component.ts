@@ -13,7 +13,9 @@ import {NgClass} from '@angular/common';
 })
 export class ButtonComponent {
   private router: Router = inject(Router)
+
   @Input() link: string | null = null
+  @Input() type: "square" | "normal" = "normal"
   @Input({transform: booleanAttribute}) raised: boolean = true
 
   navigate() {

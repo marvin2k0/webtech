@@ -4,6 +4,8 @@ import {RouterLink} from '@angular/router';
 import {TranslatePipe} from '@ngx-translate/core';
 import {AlertBoxComponent} from '../alert-box/alert-box.component';
 import {NgIf} from '@angular/common';
+import {BackgroundArtComponent} from '../background-art/background-art.component';
+import {ButtonComponent} from '../button/button.component';
 
 @Component({
   selector: 'app-landing-page',
@@ -12,13 +14,14 @@ import {NgIf} from '@angular/common';
     RouterLink,
     TranslatePipe,
     AlertBoxComponent,
-    NgIf
+    NgIf,
+    BackgroundArtComponent,
+    ButtonComponent
   ],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.css'
 })
 export class LandingPageComponent {
-
   modalShown: boolean = true;
 
   toggleModal () {
