@@ -1,22 +1,11 @@
 button {
-  background-color: var(--accent-color);
+  background-color: var(--primary);
   color: var(--light);
-  min-width: fit-content;
-  width: 100%;
   border: none;
-  border-radius: 0.5rem;
-  padding-block: calc(.5rem - 1px);
-  padding-inline: 1rem;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: 600;
-  user-select: none;
+  border-radius: var(--border-radius-sm);
+  padding: calc(0.5rem - 1px) 1rem;
 }
 
-button:hover {
-  background-color: var(--complementary-color);
-}
-
-.raised {
-  box-shadow: var(--shadow-color) 0 4px 12px;
+button.raised {
+  box-shadow: 0 0 5px var(--shadow-color);
 }
