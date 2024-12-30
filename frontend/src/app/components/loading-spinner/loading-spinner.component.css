@@ -8,6 +8,7 @@
   height: 100%;
   background-color: rgba(40, 40, 40, .1);
   margin: 0;
+  z-index: 10000;
 }
 
 .lds-ellipsis,
