@@ -13,7 +13,7 @@
     @if (!loggedIn) {
       <div class="user-actions">
         <a routerLink="/signin" (click)="setLinkActive(-1)">{{ "sign_in_button" | translate }}</a>
-        <cta-button (click)="setLinkActive(-1)">{{ "sign_up_button" | translate }}</cta-button>
+        <cta-button routerLink="/signup" (click)="setLinkActive(-1)">{{ "sign_up_button" | translate }}</cta-button>
       </div>
     } @else {
       <p>Hallo, User</p>

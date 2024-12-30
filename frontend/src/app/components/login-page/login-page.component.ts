@@ -5,6 +5,7 @@ import {UserService} from '../../services/user.service';
 import jwt from "jsonwebtoken"
 import {LoadingSpinnerComponent} from '../loading-spinner/loading-spinner.component';
 import {NgIf} from '@angular/common';
+import {BackgroundArtComponent} from '../background-art/background-art.component';
 
 @Component({
   selector: 'app-login-page',
@@ -13,7 +14,8 @@ import {NgIf} from '@angular/common';
     RouterLink,
     FormsModule,
     LoadingSpinnerComponent,
-    NgIf
+    NgIf,
+    BackgroundArtComponent
   ],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.css'
