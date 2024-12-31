@@ -29,7 +29,7 @@
   width: 13.33333px;
   height: 13.33333px;
   border-radius: 50%;
-  background: var(--accent-color);
+  background: var(--primary);
   animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
 

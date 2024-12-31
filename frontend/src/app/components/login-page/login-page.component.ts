@@ -2,10 +2,11 @@ import {Component, inject} from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {UserService} from '../../services/user.service';
-import jwt from "jsonwebtoken"
 import {LoadingSpinnerComponent} from '../loading-spinner/loading-spinner.component';
 import {NgIf} from '@angular/common';
 import {BackgroundArtComponent} from '../background-art/background-art.component';
+import {CardComponent} from '../card/card.component';
+import {ButtonComponent} from '../button/button.component';
 
 @Component({
   selector: 'app-login-page',
@@ -15,7 +16,9 @@ import {BackgroundArtComponent} from '../background-art/background-art.component
     FormsModule,
     LoadingSpinnerComponent,
     NgIf,
-    BackgroundArtComponent
+    BackgroundArtComponent,
+    CardComponent,
+    ButtonComponent
   ],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.css'

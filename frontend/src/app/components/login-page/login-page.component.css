@@ -1,0 +1,52 @@
+.section-wrapper {
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-container {
+  width: 26rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+h1 {
+  font-size: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.inputs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+
+}
+
+.remember-me-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.secondary-actions-container {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  margin-block: 1.5rem;
+}
+
+.remember-me-container label {
+  color: var(--foreground-accent);
+}
+
+p {
+  font-size: 0.75rem;
+  color: var(--foreground-accent);
+  margin-block: 1rem;
+}

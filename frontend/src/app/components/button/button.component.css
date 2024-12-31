@@ -4,6 +4,7 @@ button {
   border: none;
   border-radius: var(--border-radius-sm);
   padding: calc(0.5rem) 1rem;
+  width: fit-content;
 }
 
 button.square {
@@ -12,4 +13,9 @@ button.square {
 
 button.raised {
   box-shadow: 0 0 5px var(--shadow-color);
+}
+
+button.wide {
+  width: 100%;
+  border-radius: var(--border-radius-xs);
 }
