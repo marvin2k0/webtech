@@ -9,6 +9,7 @@
 
   /* COLORS */
   --purple: #4F46E5;
+  --faded-purple: #736de8;
   --yellow: #E5C846;
   --light: #ffffff;
   --dark: #101010;
@@ -27,6 +28,7 @@
 
   /* STYLES */
   --primary: var(--purple);
+  --light-primary: var(--faded-purple);
   --dark-accent: var(--dark-gray);
   --light-accent: var(--accent-gray);
   --card-bg: var(--light-gray);
@@ -105,6 +107,24 @@ app-root {
   width: fit-content;
 }
 
+.cta-button:disabled {
+  background: var(--light-primary);
+  cursor: not-allowed;
+}
+
+.cta-button.square {
+  padding: 0.75rem 1rem;
+}
+
+.cta-button.raised {
+  box-shadow: 0 0 5px var(--shadow-color);
+}
+
+.cta-button.wide {
+  width: 100%;
+  border-radius: var(--border-radius-xs);
+}
+
 .inputs-container {
   display: flex;
   flex-direction: column;
@@ -149,20 +169,6 @@ p {
   font-size: 0.75rem;
   color: var(--foreground-accent);
   margin-block: 1rem;
-}
-
-
-.cta-button.square {
-  padding: 0.75rem 1rem;
-}
-
-.cta-button.raised {
-  box-shadow: 0 0 5px var(--shadow-color);
-}
-
-.cta-button.wide {
-  width: 100%;
-  border-radius: var(--border-radius-xs);
 }
 
 label {
