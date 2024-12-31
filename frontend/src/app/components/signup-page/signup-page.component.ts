@@ -7,6 +7,8 @@ import {AlertBoxComponent} from '../alert-box/alert-box.component';
 import {NgIf} from '@angular/common';
 import {LoadingSpinnerComponent} from '../loading-spinner/loading-spinner.component';
 import {BackgroundArtComponent} from '../background-art/background-art.component';
+import {CardComponent} from '../card/card.component';
+import {ButtonComponent} from '../button/button.component';
 
 @Component({
   selector: 'app-signup-page',
@@ -20,6 +22,8 @@ import {BackgroundArtComponent} from '../background-art/background-art.component
     NgIf,
     LoadingSpinnerComponent,
     BackgroundArtComponent,
+    CardComponent,
+    ButtonComponent,
   ],
   templateUrl: './signup-page.component.html',
   styleUrl: './signup-page.component.css'

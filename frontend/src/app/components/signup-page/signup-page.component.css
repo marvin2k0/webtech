@@ -5,6 +5,16 @@
   align-items: center;
 }
 
+.form-card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-checkbox {
+  margin-block: 1.5rem;
+}
+
 .hint-txt {
   font-size: small;
   color: red;
