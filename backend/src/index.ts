@@ -2,6 +2,7 @@ import express, {json} from "express"
 import {logger} from "./utils/Logger";
 import userRoutes from "./routes/user.routes"
 import testRoutes from "./routes/test.routes"
+import fileRoutes from "./routes/file.routes"
 import {connect} from "mongoose";
 import {errorHandler} from "./middleware/error.handler.middleware";
 import {logRequests} from "./middleware/access.logger.middleware";
@@ -40,4 +41,5 @@ app.use(logRequests)
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile))
 app.use("/users", userRoutes)
 app.use("/test", testRoutes)
+app.use("/files", fileRoutes)
 app.use(errorHandler)

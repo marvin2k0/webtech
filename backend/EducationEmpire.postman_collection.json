@@ -13,214 +13,240 @@
 					"name": "Working Tests",
 					"item": [
 						{
-							"name": "Sign Up",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"username\": \"johndoe\",\r\n    \"email\": \"johndoe@example.com\",\r\n    \"password\": \"password\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8080/users/",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"users",
-										""
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Sign In",
-							"event": [
+							"name": "Users",
+							"item": [
 								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Save access token to environment variable\", function () {\r",
-											"    var jsonData = pm.response.json();\r",
-											"\r",
-											"    if (jsonData.successful) {\r",
-											"        console.log(\"Retrieved Bearer Token: \" + jsonData.data.accessToken)\r",
-											"        pm.globals.set(\"accesstoken\", jsonData.data.accessToken);\r",
-											"    }\r",
-											"});"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"username\": \"johndoe\",\r\n    \"password\": \"password\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
+									"name": "Delete User",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{accesstoken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/users/delete/johndoe",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"users",
+												"delete",
+												"johndoe"
+											]
 										}
-									}
+									},
+									"response": []
 								},
-								"url": {
-									"raw": "http://localhost:8080/users/login",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"users",
-										"login"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get All Users",
-							"event": [
 								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{accesstoken}}",
-											"type": "string"
+									"name": "Get User By Username",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{accesstoken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/users/johndoe",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"users",
+												"johndoe"
+											]
 										}
-									]
+									},
+									"response": []
 								},
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/users/",
-									"protocol": "http",
-									"host": [
-										"localhost"
+								{
+									"name": "Get Personal Information",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{accesstoken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/users/me",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"users",
+												"me"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Sign Up",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"johndoe\",\r\n    \"email\": \"johndoe@example.com\",\r\n    \"password\": \"password\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/users/",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"users",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get All Users",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
 									],
-									"port": "8080",
-									"path": [
-										"users",
-										""
-									]
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{accesstoken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/users/",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"users",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Sign In",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Save access token to environment variable\", function () {\r",
+													"    var jsonData = pm.response.json();\r",
+													"\r",
+													"    if (jsonData.successful) {\r",
+													"        console.log(\"Retrieved Bearer Token: \" + jsonData.data.accessToken)\r",
+													"        pm.globals.set(\"accesstoken\", jsonData.data.accessToken);\r",
+													"    }\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"johndoe\",\r\n    \"password\": \"password\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/users/login",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"users",
+												"login"
+											]
+										}
+									},
+									"response": []
 								}
-							},
-							"response": []
+							]
 						},
 						{
-							"name": "Get User By Username",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{accesstoken}}",
-											"type": "string"
-										}
-									]
+							"name": "Files",
+							"item": [
+								{
+									"name": "Add File",
+									"request": {
+										"method": "GET",
+										"header": []
+									},
+									"response": []
 								},
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/users/johndoe",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"users",
-										"johndoe"
-									]
+								{
+									"name": "Delete File",
+									"request": {
+										"method": "GET",
+										"header": []
+									},
+									"response": []
 								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get Personal Information",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{accesstoken}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/users/me",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"users",
-										"me"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Delete User",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{accesstoken}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/users/delete/johndoe",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"users",
-										"delete",
-										"johndoe"
-									]
-								}
-							},
-							"response": []
+							]
 						}
 					]
 				},
