@@ -4,7 +4,6 @@ import {logger} from "../utils/Logger";
 import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
 import {error, success} from "../model/http/rest-response";
-import {MongoServerError} from "mongodb";
 
 /**
  * Used to obtain a fresh jwt token for the received user. Token is only provided when password matches
@@ -41,8 +40,8 @@ export const getAllUsers = async (req: Request, res: Response, next: NextFunctio
     try {
         const data = await User.find({})
         res.status(200).json({message: data})
-    } catch (error) {
-        next("error nachricht")
+    } catch (error: unknown) {
+        next(error)
     }
 }
 
@@ -57,7 +56,7 @@ export const getPersonalInformation = async (req: any, res: Response, next: Next
         const username = req.username;
         const userData = await User.findOne({ username });
         res.status(200).json(userData);
-    } catch (err) {
+    } catch (err: unknown) {
         next(err)
     }
 }
@@ -74,7 +73,7 @@ export const getUserDetails = async (req: Request, res: Response, next: NextFunc
     try {
         const userData = await User.findOne({ username });
         res.status(200).json(userData);
-    } catch (err) {
+    } catch (err: unknown) {
         next(err)
     }
 }
@@ -95,11 +94,8 @@ export const deleteUser = async (req: any, res: Response, next: NextFunction) =>
     }
 
     try {
-
         // Replace with User.findOneAndDeleteOne if we want to return the user we just deleted!
         const isUserDeleted = await User.deleteOne({ username });
-
-        logger.error(JSON.stringify(isUserDeleted))
 
         if (isUserDeleted.deletedCount !== 1) {
             throw (new Error(`User ${username} could not be deleted (deletedCount: ${isUserDeleted.deletedCount})`));
@@ -107,7 +103,7 @@ export const deleteUser = async (req: any, res: Response, next: NextFunction) =>
 
         logger.info(`User ${username} deleted successfully!`);
         res.status(200).json(success<{ isUserDeleted: boolean }>({ isUserDeleted: true}));
-    } catch (err) {
+    } catch (err: unknown) {
         next(err);
     }
 }
@@ -128,19 +124,7 @@ export const createUser = async (req: Request, res: Response, next: NextFunction
         await user.save();
         res.status(200).json(success("Success"));
     } catch (error: unknown) {
-        if (!(error instanceof MongoServerError)) {
-            next("Unknown error: Could not create user")
-            return
-        }
-
-        if (error.code === 11000) {
-            const duplicateField = Object.keys(error.keyValue)[0];
-            const duplicateValue = error.keyValue[duplicateField]
-
-            next(`${duplicateField} ${duplicateValue} already exists!`)
-        } else {
-            next(error.message)
-        }
+        next(error)
     }
 }
 
