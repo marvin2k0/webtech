@@ -3,6 +3,7 @@ import {logger} from "./utils/Logger";
 import userRoutes from "./routes/user.routes"
 import testRoutes from "./routes/test.routes"
 import courseRoutes from "./routes/course.routes";
+import fileRoutes from "./routes/file.routes"
 import {connect} from "mongoose";
 import {errorHandler} from "./middleware/error.handler.middleware";
 import {logRequests} from "./middleware/access.logger.middleware";
@@ -42,4 +43,5 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile))
 app.use("/users", userRoutes)
 app.use("/course", courseRoutes)
 app.use("/test", testRoutes)
+app.use("/files", fileRoutes)
 app.use(errorHandler)
