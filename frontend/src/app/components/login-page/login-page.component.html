@@ -9,6 +9,14 @@
           Sign in to your account
         </h1>
         <form (ngSubmit)="onSubmit()">
+          <alert-box
+            *ngIf="modalShown"
+            [modalHeader]="'Error'"
+            [modalText]="errorMessage"
+            [confirmButtonText]="'Got it!'"
+            [onConfirmCallback]="handleConfirm">
+          </alert-box>
+
           <div class="inputs-container">
             <div class="form-element">
               <label for="username">Your username</label>
