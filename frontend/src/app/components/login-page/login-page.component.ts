@@ -2,7 +2,6 @@ import {Component, inject} from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {UserService} from '../../services/user.service';
-import jwt from "jsonwebtoken"
 import {LoadingSpinnerComponent} from '../loading-spinner/loading-spinner.component';
 import {NgIf} from '@angular/common';
 import {AlertBoxComponent} from '../alert-box/alert-box.component';
