@@ -8,7 +8,6 @@ import * as fs from 'fs';
 import {logger} from "../utils/Logger";
 import { v4 as uuidv4 } from "uuid";
 import {EntityNotFoundError} from "../error/entity.not.found.error";
-import {InsufficientRoleError} from "../error/insufficient.role.error";
 import {InternalServerError} from "../error/internal.server.error";
 import path from "node:path";
 import mime from "mime";
@@ -38,7 +37,7 @@ export async function findFile(req: express.Request, res: express.Response, next
         res.status(200).send(success({ files }));
     } catch (error) {
         console.error("Error fetching files:", error);
-        next(new InternalServerError());
+        next(error);
     }
 }
 
@@ -47,12 +46,12 @@ export async function getFile(req: any, res: any, next: NextFunction) {
         const { rndFilename } = req.params;
 
         if (!rndFilename) {
-            return res.status(400).json({ message: 'File name is required' });
+            throw new InvalidFormatError();
         }
 
         const fileDb = await File.findOne({ rndFilename });
         if (!fileDb) {
-            next(new EntityNotFoundError("File not found"));
+            throw new EntityNotFoundError("File not found");
         }
 
         const username = req.username;
@@ -73,14 +72,12 @@ export async function getFile(req: any, res: any, next: NextFunction) {
         res.status(200).sendFile(filePath, (err: any) => {
             if (err) {
                 console.error('Error sending file:', err);
-                next(new InternalServerError());
-            } else {
-                console.log("success")
+                throw new InternalServerError();
             }
         });
     } catch (err) {
-        console.error('Error handling request:', err);
-        next(new InternalServerError());
+        logger.error('Error handling request:', err);
+        next(err);
     }
 }
 
@@ -96,7 +93,7 @@ export async function uploadFile(req: any, res: express.Response, next: express.
     // Course and visibility are not mandatory.
     // If course flag -> Only visible for a certain course
     // visible flag can either be private (uploaded only for yourself) or public (means searchable and viewable by everyone)
-    const {filename, fileContent, course, visibility} = req.body;
+    const { filename, fileContent, course, visibility } = req.body;
 
     try {
 
@@ -112,6 +109,7 @@ export async function uploadFile(req: any, res: express.Response, next: express.
         fs.writeFile("./uploaded_files/" + rndFilename, decode, (err) => {
             if (err) {
                 logger.error('Error writing file:', err);
+                throw new InternalServerError();
             }
         });
 
@@ -132,7 +130,7 @@ export async function uploadFile(req: any, res: express.Response, next: express.
         next(err);
     }
 
-    return;
+    return ;
 }
 
 /**
@@ -147,15 +145,14 @@ export async function deleteFile(req: any, res: express.Response, next: NextFunc
     const file = await File.findOne({rndFilename: id}).exec();
 
     if (!file) {
-        next(new EntityNotFoundError(id));
-        return;
+        throw new EntityNotFoundError(id);
     }
 
     const username = req.username;
     const role = req.role;
 
     if (username !== file.uploadedBy && role < UserRole.MODERATOR) {
-        next(new InsufficientRoleError());
+        throw new InvalidFormatError();
     }
 
     try {
