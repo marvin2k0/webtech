@@ -20,8 +20,8 @@ import mime from "mime";
  * @param next
  */
 export async function findFile(req: express.Request, res: express.Response, next: express.NextFunction) {
-    const { course, rndFilename, uploadedAt, uploadedBy, visibility } = req.body;
-    const attr = { course, rndFilename, uploadedAt, uploadedBy, visibility };
+    const { course, rndFilename, uploadedAt, uploadedBy, visibility, filename } = req.body;
+    const attr = { course, rndFilename, uploadedAt, uploadedBy, visibility, filename };
 
     let searchParams: { [key: string]: any } = { };
     for (let key in attr) {
