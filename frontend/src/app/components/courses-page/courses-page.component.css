@@ -3,3 +3,41 @@
   flex-direction: column;
   gap: 2rem;
 }
+
+.card-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-block: 1rem;
+}
+
+.course-cta {
+  flex: 1;
+}
+
+.course-headline {
+  margin-bottom: 2rem;
+}
+
+h3 {
+  font-size: 3rem;
+}
+
+.members-info {
+  color: var(--faded-gray);
+  font-size: 0.75rem;
+}
+
+.course-description {
+  flex: 2;
+}
+
+.course-description h4 {
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.course-description p {
+  font-size: 1rem;
+  line-height: 1.45;
+}
