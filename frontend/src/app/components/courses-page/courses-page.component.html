@@ -1,1 +1,12 @@
-<app-post-card />
+<div class="courses-wrapper">
+  @for (course of courses; track course._id) {
+    <card>
+      <div class="card-content">
+        <h3>{{ course.name }}</h3>
+        <p>{{ course.description }}</p>
+      </div>
+
+      <cta-button raised="false">{{ "course_join" | translate }}</cta-button>
+    </card>
+  }
+</div>
