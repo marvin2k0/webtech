@@ -4,8 +4,12 @@ import Course, {CourseDetails} from "../model/course.model";
 import {EntityNotFoundError} from "../error/entity.not.found.error";
 
 export const getAllCourses = async (req: Request, res: Response, next: NextFunction) => {
-    const courses = await Course.find({})
-    res.status(200).json(success(courses))
+    try {
+        const courses = await Course.find({})
+        res.status(200).json(success(courses))
+    } catch (err: unknown) {
+        next(err)
+    }
 }
 
 export const createCourse = async (req: Request, res: Response, next: NextFunction) => {
@@ -16,7 +20,7 @@ export const createCourse = async (req: Request, res: Response, next: NextFuncti
         await course.save()
         res.status(200)
             .json(success(`Course ${name} has been created`))
-    } catch (error: any) {
+    } catch (error: unknown) {
         next(error)
     }
 }
