@@ -1,0 +1,28 @@
+.jumbotron-container {
+  width: fit-content;
+  position: relative;
+  margin: 0 auto;
+  z-index: 1;
+}
+
+.jumbotron-container h1 {
+  font-size: 4.25rem;
+  width: 30vw;
+  text-align: center;
+  margin: 3.5rem auto;
+}
+
+.jumbotron-container p {
+  text-align: center;
+  font-size: 1.25rem;
+  color: var(--faded-gray);
+  margin: 3.5rem;
+}
+
+.jumbotron-buttons {
+  width: fit-content;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}

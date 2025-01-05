@@ -1,137 +1,208 @@
-/* You can add global styles to this file, and also import other style files */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
-  --primary-color: #151923;
-  --secondary-color: #202833;
-  --accent-color: #4F46E5;
-  --accent-color-dimmed: #736de8;
-  --complementary-color: #3f39b6;
-  --shadow-color: rgba(0, 0, 0, .2);
-  --text-primary-color: white;
-  --hover-color-checkbox: rgba(0, 0, 0, .1);
+  /* MEASUREMENTS */
+  --border-radius-sm: 0.625rem;
+  --border-radius-xs: 0.5rem;
+  --border-radius: 1rem;
+  --padding: 1.5rem;
 
-  --white: #ffffff;
+  /* COLORS */
+  --purple: #4F46E5;
+  --faded-purple: #736de8;
+  --yellow: #E5C846;
+  --light: #ffffff;
+  --dark: #101010;
+  --pure-black: #000000;
+  --shadow-color: #00000033;
+  /* TODO better gray colors */
+  --dark-gray: #111111;
+  --accent-gray: #F9FAFB;
+  --gray: #151515;
+  --middle-gray: #2d2d2d;
+  --faded-gray: #5d5d5d;
+  --middle-light-gray: #E0E0E0;
+  --light-gray: #EEEEEE;
+  --light-light-gray: #F2F2F2;
+  --light-light-light-gray: #FBF9F9;
 
-  --dark-red: #8E2121;
-  --red: #D85050;
-  --light-red: #F19494;
+  /* STYLES */
+  --primary: var(--purple);
+  --light-primary: var(--faded-purple);
+  --dark-accent: var(--dark-gray);
+  --light-accent: var(--accent-gray);
+  --card-bg: var(--light-gray);
+  --foreground: var(--dark);
+  --foreground-accent: var(--faded-gray);
+  --background: var(--light);
+  --input-bg: var(--light-accent);
+  --input-border: var(--middle-light-gray);
 
-  --dark-green: #218E54;
-  --green: #50D890;
-  --light-green: #94F1C0;
+  /* GRADIENTS */
+  --card-gradient: linear-gradient(to bottom right, var(--light-light-light-gray) 0%, var(--light-light-gray) 100%);
+  --background-art-gradient: linear-gradient(to top right, #ff80b5 0%, #9089fc 100%);
+}
 
-  --dark-orange: #8E6221;
-  --orange: #D8A850;
-  --light-orange: #F1D794;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --shadow-color: var(--pure-black);
+    --card-bg: var(--dark-accent);
+    --foreground: var(--light);
+    --foreground-accent: var(--light-accent);
+    --background: var(--dark);
+    --card-gradient: linear-gradient(to bottom right, var(--gray) 0%, var(--dark-gray) 100%);
+    --input-bg: var(--middle-gray);
+    --input-border: var(--gray);
+  }
+}
+
+html, body {
+  height: 100%;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Montserrat', Verdana, sans-serif;
+  font-weight: 500;
 }
 
 * {
   padding: 0;
   margin: 0;
-  box-sizing: content-box;
+  box-sizing: border-box;
 }
 
-html, body {
-  overflow-x: hidden;
+input, button, textarea, select {
+  font: inherit;
+  color: inherit;
 }
 
-.call-to-action {
-  background-color: var(--accent-color);
-  box-shadow: var(--shadow-color) 0px 4px 12px;
-  width: fit-content;
-  padding-block: calc(.5rem - 1px);
-  padding-inline: 1rem;
-  border: 1px solid var(--accent-color);
-  border-radius: .5rem;
-  color: var(--text-primary-color);
+a {
+  text-decoration: none;
+  color: var(--foreground);
+}
+
+button {
   cursor: pointer;
-  transition-duration: .2s;
-  font-weight: 600;
-  font-size: .875rem;
 }
 
-.call-to-action:hover {
-  background-color: var(--complementary-color);
+app-root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.call-to-action:disabled {
-  background-color: var(--accent-color-dimmed);
+.main-content {
+  flex-grow: 1;
+  margin-inline: 10vw;
+  margin-top: 2rem;
+  background: transparent;
+}
+
+/* SHARED CLASSES */
+.cta-button {
+  background-color: var(--primary);
+  color: var(--light);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  padding: calc(0.5rem) 1rem;
+  width: fit-content;
+}
+
+.cta-button:disabled {
+  background: var(--light-primary);
   cursor: not-allowed;
 }
 
-.button {
-  background-color: transparent;
-  /*box-shadow: var(--shadow-color) 0px 4px 12px;*/
-  width: fit-content;
-  padding-block: calc(.5rem - 1px);
-  padding-inline: 1rem;
-  color: var(--primary-color);
-  cursor: pointer;
-  transition-duration: .2s;
+.cta-button.square {
+  padding: 0.75rem 1rem;
 }
 
-.check-box {
-  appearance: none;
-  -webkit-appearance: none;
-  width: 10px;
-  height: 10px;
-  border: 1px solid black;
-  cursor: pointer;
-  transition-duration: .2s;
+.cta-button.raised {
+  box-shadow: 0 0 5px var(--shadow-color);
 }
 
-.check-box:checked {
-  background-color: pink;
-  background-position: center;
-}
-
-.submit-button {
+.cta-button.wide {
   width: 100%;
-  display: block;
-  padding: 0.625rem;
+  border-radius: var(--border-radius-xs);
 }
 
-.form-container-padding {
-  padding-inline: 10rem;
+.inputs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
 }
 
-.fancy-parent-container {
-  position: relative;
-  max-width: 80%;
-  max-height: 80%;
+.card-container {
+  width: 26rem;
 }
 
-.fancy-background-pattern-part {
-  position: absolute;
-  z-index: -1;
-  -webkit-filter: blur(64px);
-  filter: blur(64px);
-  animation: rotateBackground 30s infinite ease-in-out;
+.form-container h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
-.fancy-background-pattern-part:nth-child(1) {
-  left: -15%;
+.form-container h1 {
+  font-size: 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
-.fancy-background-pattern-part:nth-child(2) {
-  right: -80%;
-  top: 5%;
+.form-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.85rem;
 }
 
-@keyframes rotateBackground {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.secondary-actions-container {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  margin-block: 1.5rem;
 }
 
+.form-checkbox label {
+  color: var(--foreground-accent);
+}
 
-.custom-checkbox {
+p {
+  font-size: 0.75rem;
+  color: var(--foreground-accent);
+  margin-block: 1rem;
+}
+
+label {
+  cursor: pointer;
+}
+
+.form-element {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.form-element label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-block: 0.5rem;
+}
+
+.form-element input {
+  width: 100%;
+  height: 2.7rem;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: var(--border-radius-xs);
+  font-size: .85rem;
+  padding: 0.5rem 1rem;
+  outline: none;
+}
+
+.form-element input:focus  {
+  outline: 1px solid var(--primary);
+}
+
+input[type="checkbox"] {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -148,16 +219,12 @@ html, body {
   position: relative;
 }
 
-.custom-checkbox:hover {
-  background-color: var(--hover-color-checkbox);
+input[type="checkbox"]:checked {
+  background-color: var(--primary);
+  border-color: var(--primary);
 }
 
-.custom-checkbox:checked {
-  background-color: var(--accent-color);
-  border-color: var(--accent-color);
-}
-
-.custom-checkbox:checked::after {
+input[type="checkbox"]:checked::after {
   content: '✔';
   color: white;
   font-size: 0.75rem;
@@ -166,9 +233,4 @@ html, body {
   left: 50%;
   transform: translate(-50%, -50%);
   line-height: 1;
-}
-
-.text-accent-600 {
-  font-weight: 600;
-  color: var(--accent-color);
 }
