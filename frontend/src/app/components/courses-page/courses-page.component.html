@@ -9,9 +9,9 @@
             <h3>{{ course.name }}</h3>
             <span class="members-info">{{course.members.length}} {{ "course_members" | translate }}</span>
           </div>
-          
+
           <!-- TODO check if user already in course -->
-          <cta-button raised="false">{{ "course_join" | translate }}</cta-button>
+          <cta-button raised="false" routerLink="/course/{{ course._id }}">{{ "course_join" | translate }}</cta-button>
         </div>
         <div class="course-description">
           <h4>Description</h4>

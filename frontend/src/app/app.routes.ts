@@ -7,12 +7,14 @@ import {UserProfilePageComponent} from './components/user-profile-page/user-prof
 import {DashboardPageComponent} from './components/dashboard-page/dashboard-page.component';
 import {AuthGuard} from './guards/auth.guard'
 import {CoursesPageComponent} from './components/courses-page/courses-page.component';
+import {CoursePageComponent} from './components/course-page/course-page.component';
 
 export const routes: Routes = [
   {path: '', component: LandingPageComponent},
   {path: 'signin', component: LoginPageComponent},
   {path: 'signup', component: SignupPageComponent},
   {path: 'courses', component: CoursesPageComponent},
+  {path: 'course/:id', component: CoursePageComponent},
   {path: 'userprofile', component: UserProfilePageComponent, canActivate: [AuthGuard]},
   { path: 'dashboard', component: DashboardPageComponent, canActivate: [AuthGuard] },
   {path: '**', component: NotFoundComponent}
