@@ -1,0 +1,126 @@
+.upload-area {
+  height: 5rem;
+  width: calc(100% - 24px);
+  border: 2px dashed #ddd;
+  border-radius: 8px;
+  margin-bottom: .75rem;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  gap: 10px;
+  transition-duration: .3s;
+}
+
+.upload-area.dragover {
+  border-color: var(--accent-color-dimmed);
+}
+
+.upload-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--accent-color-dimmed);
+}
+
+.upload-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.upload-area p {
+  color: gray;
+  margin: 0;
+}
+
+.upload-area label {
+  color: var(--accent-color-dimmed);
+  border-radius: 5px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.upload-area input[type=file] {
+  display: none;
+}
+
+.file-details {
+  color: gray;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.stepper-timeline {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+  margin-block: 1rem;
+  color: gray;
+}
+
+.active {
+  color: var(--accent-color-dimmed);
+}
+
+.step {
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #ccc;
+  margin-bottom: 10px;
+  transition: background-color 0.3s;
+}
+
+.circle .number {
+  position: absolute;
+  transform: translateY(2px);
+  left: 42%;
+  font-weight: bold;
+  color: white;
+}
+
+
+.current {
+  background-color: var(--accent-color-dimmed);
+}
+
+/* this is just awkward */
+.step:after {
+  content: '';
+  position: relative;
+  top: 50%;
+  left: 100%;
+  width: 100%;
+  max-width: 50px;
+  height: 2px;
+  background-color: #ccc;
+  transform: translateY(-4000%);
+  z-index: 1;
+}
+
+.step:nth-child(2):after {
+  content: '';
+  position: relative;
+  top: 50%;
+  left: calc(100% - 20px);
+  width: 100%;
+  max-width: 50px;
+  height: 2px;
+  background-color: #ccc;
+  transform: translateY(-4000%);
+  z-index: 1;
+}
+
+.step:last-child:after {
+  display: none;
+}
+

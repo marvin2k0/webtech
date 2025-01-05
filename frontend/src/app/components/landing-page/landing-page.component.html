@@ -23,10 +23,12 @@
 <!-- example implementation of modal -->
 <alert-box
   *ngIf="modalShown"
-  [modalHeader]="'Welcome'"
-  [modalText]="'Hi! Is this your first time?'"
-  [confirmButtonText]="'Yes'"
-  [denyButtonText]="'No'"
+  [modalHeader]="'Upload'"
+  [modalText]="'Add a file to share knowledge!'"
+  [confirmButtonText]="'Next'"
+  [denyButtonText]="'Cancel'"
   [onConfirmCallback]="handleConfirm"
-  [onCancelCallback]="handleDeny">
+  [onCancelCallback]="handleDeny"
+  [uploadAreaShown]="true"
+  [currentUploadSite]="currentSite">
 </alert-box>

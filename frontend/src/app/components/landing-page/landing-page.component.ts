@@ -20,13 +20,15 @@ import {NgIf} from '@angular/common';
 export class LandingPageComponent {
 
   modalShown: boolean = true;
+  currentSite = 1;
 
   toggleModal () {
     this.modalShown = !this.modalShown;
   }
 
   handleConfirm = () => {
-    this.toggleModal();
+    this.currentSite += 1;
+
   }
 
   handleDeny = () => {

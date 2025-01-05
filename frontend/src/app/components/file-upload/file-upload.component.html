@@ -1,0 +1,48 @@
+
+<!-- Stepper-Timeline -->
+<div class="stepper-timeline">
+    <div class="step">
+        <div class="circle" [class.current]="currentSite==1"><div class="number">1</div></div>
+        <p [class.active]="currentSite==1">Add File</p>
+    </div>
+    <div class="step">
+        <div class="circle" [class.current]="currentSite==2"><div class="number">2</div></div>
+        <p [class.active]="currentSite==2">Add Details</p>
+    </div>
+    <div class="step">
+        <div class="circle" [class.current]="currentSite==3"><div class="number">3</div></div>
+        <p [class.active]="currentSite==3">Confirm</p>
+    </div>
+</div>
+
+
+<!-- Upload-Area -->
+<div #dragDropField
+     (dragover)="onDragOver($event)"
+     (dragleave)="onDragLeave($event)"
+     (drop)="onDrop($event)"
+     [class.dragging]="isDragging"
+     class="upload-area"
+     [class.dragover]="isDragging"
+     *ngIf="currentSite==1">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="upload-icon">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"></path>
+    </svg>
+    <div class="upload-text">
+        <p>Drag and Drop a file to upload or</p>
+        <label for="file-input">Browse Files</label>
+    </div>
+    <input type="file" id="file-input">
+</div>
+
+<div class="file-details">
+    <p *ngIf="hasFile" class="filename">{{ filename }}</p>
+    <p *ngIf="hasFile" class="filesize">{{ filesize }}</p>
+</div>
+
+
+<!-- Details -->
+<!-- @ToDo -->
+
+<!-- Confirmation -->
+<!-- @ToDo -->

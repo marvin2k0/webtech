@@ -1,11 +1,13 @@
 import { Component, Input } from '@angular/core';
 import { NgIf } from '@angular/common';
+import {FileUploadComponent} from '../file-upload/file-upload.component';
 
 @Component({
   selector: 'alert-box',
   standalone: true,
   imports: [
-    NgIf
+    NgIf,
+    FileUploadComponent
   ],
   templateUrl: './alert-box.component.html',
   styleUrls: ['./alert-box.component.css']
@@ -18,6 +20,9 @@ export class AlertBoxComponent {
 
   @Input() onConfirmCallback: () => void = () => {};
   @Input() onCancelCallback: () => void = () => {};
+
+  @Input() uploadAreaShown: boolean = false
+  @Input() currentUploadSite: number = 1;
 
 
   /**

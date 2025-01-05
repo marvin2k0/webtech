@@ -2,6 +2,9 @@
   <div class="modal">
     <div class="modal-hd">{{ modalHeader }}</div>
     <div class="modal-txt">{{ modalText }}</div>
+
+    <app-file-upload *ngIf="uploadAreaShown" [currentSite]="currentUploadSite"></app-file-upload>
+
     <div class="modal-btns">
       <div *ngIf="canDeny()" class="modal-deny-btn" (click)="onDeny()">{{ denyButtonText }}</div>
       <div class="modal-confirm-btn" (click)="onConfirm()">{{ confirmButtonText }}</div>
