@@ -69,6 +69,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 }
 
 .circle {
@@ -124,3 +125,78 @@
   display: none;
 }
 
+.delete-file {
+  margin-inline-start: 10px;
+}
+
+.delete-file-icon {
+  fill: gray;
+  transition-duration: .3s;
+}
+
+.delete-file-icon:hover {
+  fill: red;
+}
+
+.details-container {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  width: 100%;
+}
+
+.details-container label {
+  color: #333;
+  margin-block-end: -.5rem;
+}
+
+.details-container textarea {
+  width: calc(100% - 1rem);
+  height: 80px;
+  resize: none;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s;
+}
+
+.details-container textarea:focus {
+  border-color: var(--accent-color-dimmed);
+  outline: none;
+}
+
+.details-container select {
+  width: calc(100% - 1rem);
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: border-color 0.3s;
+  appearance: none;
+}
+
+.details-container select:focus {
+  border-color: var(--accent-color-dimmed);
+  outline: none;
+}
+
+.details-container select option {
+  padding: 0.5rem;
+}
+
+.details-container select:last-child {
+  margin-block-end: 1rem;
+}
+
+.file-success-hd {
+  font-size: 1.3rem;
+}
+
+.file-link {
+  color: var(--accent-color-dimmed);
+  cursor: pointer;
+  margin-block-end: 1rem;
+}

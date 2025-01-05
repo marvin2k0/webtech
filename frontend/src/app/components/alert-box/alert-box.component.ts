@@ -23,12 +23,14 @@ export class AlertBoxComponent {
 
   @Input() uploadAreaShown: boolean = false
   @Input() currentUploadSite: number = 1;
+  @Input() canConfirm: boolean = true; // Default is true
 
 
   /**
    * Executes the provided callback function and returns true.
    */
   onConfirm(): boolean {
+    if (!this.canConfirm) return false;
     if (this.onConfirmCallback) {
       this.onConfirmCallback();
     }

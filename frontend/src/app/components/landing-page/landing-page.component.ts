@@ -35,4 +35,22 @@ export class LandingPageComponent {
     this.toggleModal();
   }
 
+  protected readonly document = document;
+
+  canConfirm(): boolean {
+
+    // @ts-ignore
+    const hasFiles = document.getElementById('file-details')?.children.length > 0;
+
+    console.log("hasFiles", hasFiles);
+
+    switch (this.currentSite) {
+      case 1:
+        return hasFiles;
+      case 2:
+      case 3:
+      default:
+        return true;
+    }
+  }
 }

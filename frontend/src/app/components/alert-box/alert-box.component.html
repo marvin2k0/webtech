@@ -7,7 +7,7 @@
 
     <div class="modal-btns">
       <div *ngIf="canDeny()" class="modal-deny-btn" (click)="onDeny()">{{ denyButtonText }}</div>
-      <div class="modal-confirm-btn" (click)="onConfirm()">{{ confirmButtonText }}</div>
+      <div class="modal-confirm-btn" (click)="onConfirm()" [class.inactive]="!canConfirm">{{ confirmButtonText }}</div>
     </div>
   </div>
 </div>

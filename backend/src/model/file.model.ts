@@ -10,6 +10,7 @@ export interface FileDetails {
     fileUrl: string,
     fileSize: number,
     lastModified?: number,
+    description?: string,
     uploadedBy: string, // author (usernmae)
     uploadedAt?: number,
     course?: string, // Either a course or visibility is needed.
@@ -47,6 +48,11 @@ const fileSchema = new Schema<FileDetails>({
     fileSize: {
         type: Number,
         required: true,
+    },
+    description: {
+        type: String,
+        required: false,
+        default: '',
     },
     lastModified: {
         type: Number,
