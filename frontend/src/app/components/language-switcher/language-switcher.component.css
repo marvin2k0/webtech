@@ -2,17 +2,19 @@
   position: fixed;
   bottom: 10px;
   left: 10px;
-  background: var(--accent-color);
-  padding: 10px 20px;
+  background: var(--primary);
   display: flex;
   gap: 5px;
+  z-index: 10;
 }
 
 .language-switcher button {
-  padding: 4px 10px;
+  padding: 0.5rem 1rem;
+  border: none;
+  background: var(--primary);
 }
 
 .language-switcher button:hover {
-  background: var(--complementary-color);
-  color: var(--text-primary-color);
+  background: var(--dark-primary);
+  color: var(--light);
 }
