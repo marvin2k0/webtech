@@ -3,12 +3,25 @@ import {success} from "../model/http/rest-response";
 import Course, {CourseDetails} from "../model/course.model";
 import {EntityNotFoundError} from "../error/entity.not.found.error";
 
-export const getAllCourses = async (req: Request, res: Response, next: NextFunction) => {
+export async function findCourse(req: Request, res: Response, next: NextFunction) {
+    const { name, description } = req.body;
+    const attr = { name, description };
+
+    let searchParams: { [key: string]: any } = { };
+    for (let key in attr) {
+        // @ts-ignore
+        if (typeof attr[key] !== "undefined" && attr[key] !== null) {
+            // @ts-ignore
+            searchParams[key] = attr[key];
+        }
+    }
+
     try {
-        const courses = await Course.find({})
-        res.status(200).json(success(courses))
-    } catch (err: unknown) {
-        next(err)
+        const courses = await Course.find(searchParams);
+        res.status(200).send(success({ courses }));
+    } catch (error) {
+        console.error("Error fetching files:", error);
+        next(error);
     }
 }
 
