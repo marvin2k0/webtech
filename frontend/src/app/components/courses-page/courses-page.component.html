@@ -15,7 +15,7 @@
         </div>
         <div class="course-description">
           <h4>Description</h4>
-          <p>{{ course.description.length >= 500 ? (course.description | slice:0:500) + "..." : course.description }}</p>
+          <p>{{ course.description.length >= 250 ? (course.description | slice:0:250) + "..." : course.description }}</p>
         </div>
       </div>
     </card>
