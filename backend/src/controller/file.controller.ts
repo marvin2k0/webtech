@@ -93,7 +93,7 @@ export async function uploadFile(req: any, res: express.Response, next: express.
     // Course and visibility are not mandatory.
     // If course flag -> Only visible for a certain course
     // visible flag can either be private (uploaded only for yourself) or public (means searchable and viewable by everyone)
-    const { filename, fileContent, course, visibility } = req.body;
+    const { filename, fileContent, course, visibility, description } = req.body;
 
     try {
 
@@ -117,6 +117,7 @@ export async function uploadFile(req: any, res: express.Response, next: express.
             rndFilename,
             filename,
             fileType,
+            description,
             fileUrl: "http://localhost:8080/files/" + rndFilename,
             fileSize,
             uploadedBy: req.username,

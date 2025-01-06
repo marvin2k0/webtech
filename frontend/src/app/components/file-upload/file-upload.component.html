@@ -65,16 +65,18 @@
       <textarea maxlength="300" placeholder="Type something..." id="file-description"></textarea>
 
       <label for="file-visibility">Visibility</label>
-      <select id="file-visibility">
+      <select id="file-visibility" [(ngModel)]="selectedOption" (change)="onSelectionChange($event)">
         <option value="0">Public</option>
         <option value="1">Private</option>
         <option value="2">Course</option>
       </select>
 
-      <label for="file-course">Course</label>
-      <select id="file-course">
-        <option>&#64;ToDo: implement</option>
-      </select>
+      <span *ngIf="isCourseSelectionVisible">
+        <label for="file-course">Course</label>
+        <select id="file-course">
+          <option>&#64;ToDo: implement</option>
+        </select>
+      </span>
     </div>
     <!-- End Details -->
 

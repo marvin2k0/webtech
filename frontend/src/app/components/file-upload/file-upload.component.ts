@@ -1,7 +1,10 @@
-import {Component, ElementRef, Input, ViewChild} from '@angular/core';
+import {Component, ElementRef, inject, Input, ViewChild} from '@angular/core';
 import {AsyncPipe, NgIf} from '@angular/common';
 import {RouterLink} from '@angular/router';
 import {UploadModalService} from '../../services/uplaod-modal.service';
+import {UserService} from '../../services/user.service';
+import {FileUploadService} from '../../services/file-upload.service';
+import {FormsModule} from '@angular/forms';
 
 
 @Component({
@@ -10,7 +13,8 @@ import {UploadModalService} from '../../services/uplaod-modal.service';
   imports: [
     NgIf,
     RouterLink,
-    AsyncPipe
+    AsyncPipe,
+    FormsModule
   ],
   templateUrl: './file-upload.component.html',
   styleUrl: './file-upload.component.css'
@@ -24,10 +28,14 @@ export class FileUploadComponent {
   fileData: string = "";
 
   @ViewChild('dragDropField') dragDropField: ElementRef | undefined;
-  @Input() currentSite!: number;
+  @Input() currentSite: number = 1;
   uploaded: boolean = false;
   file: File | undefined;
-  denyButtonText: string = "Cancel";
+
+  private fileUploadService: FileUploadService = inject(FileUploadService);
+  selectedOption: string = "0";
+  isCourseSelectionVisible: boolean = false;
+
 
   constructor(protected modalService: UploadModalService) {}
 
@@ -82,16 +90,39 @@ export class FileUploadComponent {
   }
 
   uploadFile(): void {
+
+    // Ugly nested code. @ToDo: Refactor
+
+    console.log("Enter Uplaod File...")
     const reader = new FileReader();
 
     reader.onload = (e: ProgressEvent<FileReader>) => {
-      if (e.target?.result) {
-        let base64FileData = e.target.result as string;
-        this.fileData = base64FileData.split(",")[1];
+      if (!e.target?.result) return ;
 
-        // Datei muss noch hochgeladen werden.
-        this.uploaded = true;
-      }
+      let base64FileData = e.target.result as string;
+      this.fileData = base64FileData.split(",")[1];
+
+      const courseField = document.getElementById("file-course") as HTMLSelectElement;
+      const course = courseField?.value;
+
+      const visibilityField = document.getElementById("file-visibility") as HTMLSelectElement;
+      const visibility = visibilityField?.value;
+
+      const descriptionField = document.getElementById("file-description") as HTMLTextAreaElement;
+      const description = descriptionField?.value;
+
+      this.fileUploadService.upload({ filename: this.filename, course, visibility, fileContent: this.fileData, description })?.subscribe(response => {
+
+        if (response.successful) {
+          this.uploaded = true;
+          console.log("response", response)
+          console.log("Success!")
+          this.currentSite++;
+        } else {
+          console.error("Fehler bei verarbeitung")
+        }
+      })
+
     };
 
     reader.onerror = (e: ProgressEvent<FileReader>) => {
@@ -153,10 +184,10 @@ export class FileUploadComponent {
         this.currentSite++
         break;
       case 2:
-        this.currentSite++;
         this.uploadFile();
         break;
       case 3:
+        this.deleteFile()
         this.modalService.closeModal();
     }
   }
@@ -178,10 +209,19 @@ export class FileUploadComponent {
       case 1:
       case 2:
       case 3:
-        console.log("this.hasFile", this.hasFile);
         return this.hasFile;
       default:
         return false;
+    }
+  }
+
+  onSelectionChange(event: Event) {
+    const selectedValue = (event.target as HTMLSelectElement).value;
+
+    if (selectedValue === '2') {
+      this.isCourseSelectionVisible = true;
+    } else {
+      this.isCourseSelectionVisible = false;
     }
   }
 }
