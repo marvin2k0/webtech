@@ -17,5 +17,15 @@
   "nav_link_contact": "Kontakt",
 
   "landing_page_jumbotron_headline": "Erobere deine Prüfungen!",
-  "landing_page_jumbotron_paragraph": "Mit EducationEmpire wirst du großers erreichen!"
+  "landing_page_jumbotron_paragraph": "Mit EducationEmpire wirst du großers erreichen!",
+
+  "login_page_headline": "Anmelden",
+  "login_page_username_label": "Nutzername",
+  "login_page_username_placeholder": "max.mustermann",
+  "login_page_password_label": "Passwort",
+  "login_page_remember_me": "Angemeldet bleiben",
+  "login_page_forgot_password": "Passwort vergessen?",
+  "login_page_sign_in_cta": "Anmelden",
+  "login_page_no_account": "Noch keinen Account?",
+  "login_page_sign_up": "Jetzt erstellen"
 }

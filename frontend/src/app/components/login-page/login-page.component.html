@@ -6,7 +6,7 @@
     <card>
       <div class="form-container">
         <h1>
-          Sign in to your account
+          {{ "login_page_headline" | translate }}
         </h1>
         <form (ngSubmit)="onSubmit()">
           <alert-box
@@ -19,12 +19,12 @@
 
           <div class="inputs-container">
             <div class="form-element">
-              <label for="username">Your username</label>
-              <input autocomplete="username" type="text" name="username" id="username" placeholder="johndoe"
+              <label for="username">{{ "login_page_username_label" | translate }}</label>
+              <input autocomplete="username" type="text" name="username" id="username" placeholder="{{ 'login_page_username_placeholder' | translate }}"
                      [(ngModel)]="username" required>
             </div>
             <div class="form-element">
-              <label for="password">Password</label>
+              <label for="password">{{ 'login_page_password_label' | translate }}</label>
               <input autocomplete="current-password" type="password" name="password" id="password" placeholder="••••••••"
                      [(ngModel)]="password" required>
             </div>
@@ -33,14 +33,14 @@
           <div class="secondary-actions-container">
             <div class="form-checkbox">
               <input id="remember" aria-describedby="remember" type="checkbox" required="">
-              <label for="remember">Remember me</label>
+              <label for="remember">{{ 'login_page_remember_me' | translate }}</label>
             </div>
-            <a href="#">Forgot password?</a>
+            <a href="#">{{ 'login_page_forgot_password' | translate }}</a>
           </div>
 
-          <cta-button type="wide">Sign In</cta-button>
+          <cta-button type="wide">{{ 'login_page_sign_in_cta' | translate }}</cta-button>
           <p>
-            Don’t have an account yet? <a routerLink="/signup">Sign up</a>
+            {{ 'login_page_no_account' | translate }} <a routerLink="/signup">{{ 'login_page_sign_up' | translate }}</a>
           </p>
         </form>
       </div>
