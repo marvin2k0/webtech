@@ -5,6 +5,8 @@ import {TranslatePipe} from '@ngx-translate/core';
 import {AlertBoxComponent} from '../alert-box/alert-box.component';
 import {NgIf} from '@angular/common';
 import {ModalService} from '../../services/modal.service';
+import {FileUploadComponent} from '../file-upload/file-upload.component';
+import {UploadModalService} from '../../services/uplaod-modal.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -13,14 +15,15 @@ import {ModalService} from '../../services/modal.service';
     RouterLink,
     TranslatePipe,
     AlertBoxComponent,
-    NgIf
+    NgIf,
+    FileUploadComponent
   ],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.css'
 })
 export class LandingPageComponent {
 
-  constructor(private modalService: ModalService) {}
+  constructor(private modalService: ModalService, private uploadModalService: UploadModalService) {}
 
   openModal() {
     this.modalService.openModal();
@@ -32,6 +35,10 @@ export class LandingPageComponent {
 
   toggleModal() {
     this.modalService.toggleModal();
+  }
+
+  toggleUploadModal() {
+    this.uploadModalService.toggleModal();
   }
 
   protected readonly close = close;

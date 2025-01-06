@@ -21,6 +21,7 @@
 
 
 <!-- example implementation of modal -->
+<!--
 <alert-box
   [modalHeader]="'Welcome'"
   [modalText]="'This is just a test'"
@@ -31,3 +32,9 @@
 <button (click)="closeModal()" style="width: 20vw; height: 5vh; position: absolute; transform: translateY(200px); z-index: 9999; background: red;" >Close Modal Test</button>
 <button (click)="openModal()" style="width: 20vw; height: 5vh; position: absolute; transform: translateY(calc(200px + 5vh)); z-index: 9999; background: green;" >Open Modal Test</button>
 <button (click)="toggleModal()" style="width: 20vw; height: 5vh; position: absolute; transform: translateY(calc(200px + 10vh)); z-index: 9999; background: yellow;" >Toggle Modal Test</button>
+-->
+
+<app-file-upload
+[currentSite]="1"
+></app-file-upload>
+<button (click)="toggleUploadModal()" style="width: 20vw; height: 5vh; position: absolute; transform: translateY(calc(200px + 10vh)); z-index: 9999; background: yellow;" >Toggle Modal Test</button>

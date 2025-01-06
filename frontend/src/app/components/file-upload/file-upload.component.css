@@ -200,3 +200,103 @@
   cursor: pointer;
   margin-block-end: 1rem;
 }
+
+/* Modal design for file upload */
+.modal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 300px;
+}
+
+.modal-hd {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.modal-txt {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.modal-btns {
+  display: flex;
+  justify-content: end;
+  gap: .75rem;
+  align-items: center;
+  width: 100%;
+}
+
+.modal-deny-btn {
+  background-color: transparent;
+  width: fit-content;
+  padding-block: calc(.5rem - 1px);
+  padding-inline: 1rem;
+  color: var(--primary-color);
+  cursor: pointer;
+  transition-duration: .2s;
+}
+
+.modal-confirm-btn {
+  background-color: var(--accent-color);
+  box-shadow: var(--shadow-color) 0px 4px 12px;
+  width: fit-content;
+  padding-block: calc(.5rem - 1px);
+  padding-inline: 1rem;
+  border: 1px solid var(--accent-color);
+  border-radius: .5rem;
+  color: var(--text-primary-color);
+  cursor: pointer;
+  transition-duration: .2s;
+  font-weight: 600;
+  font-size: .875rem;
+}
+
+.modal-confirm-btn:hover {
+  background-color: var(--complementary-color);
+}
+
+.spacer {
+  flex-grow: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+  .modal-container {
+    background: rgba(175, 175, 175, .1);
+  }
+
+  .modal {
+    background: var(--primary-color);
+    color: white;
+  }
+
+  .modal-deny-btn {
+    color: white;
+  }
+}
+
+.inactive {
+  background-color: #c3c3c3;
+  border: 1px solid #c3c3c3;
+  color: #303030;
+  cursor: default;
+  box-shadow: none;
+}
+
+.inactive:hover {
+  background-color: #c3c3c3;
+}

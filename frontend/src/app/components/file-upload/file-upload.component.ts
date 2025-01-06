@@ -1,13 +1,16 @@
 import {Component, ElementRef, Input, ViewChild} from '@angular/core';
-import {NgIf} from '@angular/common';
+import {AsyncPipe, NgIf} from '@angular/common';
 import {RouterLink} from '@angular/router';
+import {UploadModalService} from '../../services/uplaod-modal.service';
+
 
 @Component({
   selector: 'app-file-upload',
   standalone: true,
   imports: [
     NgIf,
-    RouterLink
+    RouterLink,
+    AsyncPipe
   ],
   templateUrl: './file-upload.component.html',
   styleUrl: './file-upload.component.css'
@@ -24,6 +27,10 @@ export class FileUploadComponent {
   @Input() currentSite!: number;
   uploaded: boolean = false;
   file: File | undefined;
+  denyButtonText: string = "Cancel";
+
+  constructor(protected modalService: UploadModalService) {}
+
 
   onDragOver(event: DragEvent): void {
     event.preventDefault();
@@ -109,4 +116,61 @@ export class FileUploadComponent {
     await navigator.clipboard.writeText("@ToDo…");
   }
 
+  canDeny() {
+    return this.currentSite < 3;
+  }
+
+  onDeny(): void {
+    this.modalService.closeModal();
+  }
+
+  getDenyButtonText(): string {
+    switch (this.currentSite) {
+      case 1:
+        return "Cancel"
+      case 2:
+        return "Go Back"
+      case 3:
+      default:
+        return "";
+    }
+
+  }
+
+  onConfirm() {
+    switch (this.currentSite) {
+      case 1:
+        this.currentSite++
+        break;
+      case 2:
+        this.currentSite++;
+        this.uploadFile();
+        break;
+      case 3:
+        this.modalService.closeModal();
+    }
+  }
+
+  getConfirmButtonText() {
+    switch (this.currentSite) {
+      case 1:
+        return "Next"
+      case 2:
+        return "Upload"
+      case 3:
+      default:
+        return "Ok";
+    }
+  }
+
+  canConfirm(): boolean {
+    switch (this.currentSite) {
+      case 1:
+      case 2:
+      case 3:
+        return this.hasFile;
+      default:
+        return false;
+    }
+  }
 }
