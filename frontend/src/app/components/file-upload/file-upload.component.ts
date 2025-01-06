@@ -121,7 +121,17 @@ export class FileUploadComponent {
   }
 
   onDeny(): void {
-    this.modalService.closeModal();
+    switch (this.currentSite) {
+      case 1:
+        this.modalService.closeModal();
+        break;
+      case 2:
+        this.currentSite--;
+        break;
+      case 3:
+      default:
+        this.modalService.closeModal();
+    }
   }
 
   getDenyButtonText(): string {
@@ -134,10 +144,10 @@ export class FileUploadComponent {
       default:
         return "";
     }
-
   }
 
   onConfirm() {
+    if (!this.hasFile) return ;
     switch (this.currentSite) {
       case 1:
         this.currentSite++
@@ -168,6 +178,7 @@ export class FileUploadComponent {
       case 1:
       case 2:
       case 3:
+        console.log("this.hasFile", this.hasFile);
         return this.hasFile;
       default:
         return false;
