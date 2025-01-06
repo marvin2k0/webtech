@@ -1,10 +1,13 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
+import {NgForOf} from '@angular/common';
 
 @Component({
   selector: 'app-language-switcher',
   standalone: true,
-  imports: [],
+  imports: [
+    NgForOf
+  ],
   templateUrl: './language-switcher.component.html',
   styleUrl: './language-switcher.component.css'
 })
@@ -28,5 +31,10 @@ export class LanguageSwitcherComponent implements OnInit{
   changeLanguage(language: string): void {
     this.translateService.use(language)
     localStorage.setItem("lang", language)
+  }
+
+  onLanguageChange(event: Event): void {
+    const selectedLanguage = (event.target as HTMLSelectElement).value;
+    this.changeLanguage(selectedLanguage);
   }
 }

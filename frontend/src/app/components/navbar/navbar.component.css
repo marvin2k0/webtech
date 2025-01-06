@@ -1,4 +1,31 @@
-.nav-register-login-buttons {
+nav {
+  position: relative;
   display: flex;
-  gap: 8px;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--background);
+  padding: 1.5rem 12vw;
+  box-shadow: 0 0 2px var(--shadow-color);
+  z-index: 10;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 1rem;
+}
+
+h1 {
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+li a.active {
+  color: var(--primary);
 }

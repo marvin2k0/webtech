@@ -5,6 +5,10 @@ import {UserService} from '../../services/user.service';
 import {LoadingSpinnerComponent} from '../loading-spinner/loading-spinner.component';
 import {NgIf} from '@angular/common';
 import {AlertBoxComponent} from '../alert-box/alert-box.component';
+import {ButtonComponent} from '../button/button.component';
+import {CardComponent} from '../card/card.component';
+import {BackgroundArtComponent} from '../background-art/background-art.component';
+import {TranslatePipe} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login-page',
@@ -14,7 +18,11 @@ import {AlertBoxComponent} from '../alert-box/alert-box.component';
     FormsModule,
     LoadingSpinnerComponent,
     NgIf,
-    AlertBoxComponent
+    ButtonComponent,
+    CardComponent,
+    BackgroundArtComponent,
+    AlertBoxComponent,
+    TranslatePipe
   ],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.css'
