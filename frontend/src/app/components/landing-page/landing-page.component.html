@@ -22,14 +22,12 @@
 
 <!-- example implementation of modal -->
 <alert-box
-  *ngIf="modalShown"
   [modalHeader]="'Upload'"
   [modalText]="'Add a file to share knowledge!'"
-  [confirmButtonText]="currentSite==1 ? 'Next' : currentSite==2 ? 'Upload' : 'Ok'"
-  [canConfirm]="canConfirm()"
-  [denyButtonText]="currentSite != 3 ? 'Cancel' : undefined"
-  [onConfirmCallback]="handleConfirm"
-  [onCancelCallback]="handleDeny"
-  [uploadAreaShown]="true"
-  [currentUploadSite]="currentSite">
+  [confirmButtonText]="'Ok'"
+  [denyButtonText]="'Cancel'">
 </alert-box>
+
+<button (click)="closeModal()" style="width: 20vw; height: 5vh; position: absolute; transform: translateY(200px); z-index: 9999; background: red;" >Close Modal Test</button>
+<button (click)="openModal()" style="width: 20vw; height: 5vh; position: absolute; transform: translateY(calc(200px + 5vh)); z-index: 9999; background: green;" >Open Modal Test</button>
+<button (click)="toggleModal()" style="width: 20vw; height: 5vh; position: absolute; transform: translateY(calc(200px + 10vh)); z-index: 9999; background: yellow;" >Toggle Modal Test</button>

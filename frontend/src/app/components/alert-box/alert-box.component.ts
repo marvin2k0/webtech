@@ -1,55 +1,56 @@
 import { Component, Input } from '@angular/core';
-import { NgIf } from '@angular/common';
-import {FileUploadComponent} from '../file-upload/file-upload.component';
+import {AsyncPipe, NgIf} from '@angular/common';
+import { FileUploadComponent } from '../file-upload/file-upload.component';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'alert-box',
   standalone: true,
-  imports: [
-    NgIf,
-    FileUploadComponent
-  ],
+  imports: [NgIf, FileUploadComponent, AsyncPipe],
   templateUrl: './alert-box.component.html',
-  styleUrls: ['./alert-box.component.css']
+  styleUrls: ['./alert-box.component.css'],
 })
 export class AlertBoxComponent {
-  @Input() modalHeader: string = "Headline";
-  @Input() modalText: string | undefined;
-  @Input() confirmButtonText: string = "Got it!";
-  @Input() denyButtonText: string | undefined;
+  @Input() modalHeader: string = 'Headline';
+  @Input() modalText?: string;
+  @Input() confirmButtonText: string = 'Got it!';
+  @Input() denyButtonText?: string;
 
   @Input() onConfirmCallback: () => void = () => {};
   @Input() onCancelCallback: () => void = () => {};
 
-  @Input() uploadAreaShown: boolean = false
-  @Input() currentUploadSite: number = 1;
   @Input() canConfirm: boolean = true; // Default is true
 
+  constructor(protected modalService: ModalService) {}
 
   /**
-   * Executes the provided callback function and returns true.
+   * Executes the provided confirm callback and closes the modal.
    */
-  onConfirm(): boolean {
-    if (!this.canConfirm) return false;
-    if (this.onConfirmCallback) {
-      this.onConfirmCallback();
-    }
-    return true;
+  onConfirm(): void {
+    if (!this.canConfirm) return;
+    this.onConfirmCallback?.();
+    this.modalService.closeModal();
   }
 
   /**
-   * Always returns false. Executes the provided callback fn.
+   * Executes the provided cancel callback and closes the modal.
    */
-  onDeny(): boolean {
-
-    if (this.onCancelCallback) {
-      this.onCancelCallback();
-    }
-
-    return false;
+  onDeny(): void {
+    this.onCancelCallback?.();
+    this.modalService.closeModal();
   }
 
+  /**
+   * Determines if the deny button should be shown.
+   */
   canDeny(): boolean {
-    return typeof this.denyButtonText !== "undefined" && this.denyButtonText.length > 0;
+    return !!this.denyButtonText?.length;
+  }
+
+  /**
+   * Closes the modal.
+   */
+  closeModal(): void {
+    this.modalService.closeModal();
   }
 }

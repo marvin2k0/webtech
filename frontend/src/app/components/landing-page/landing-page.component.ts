@@ -4,6 +4,7 @@ import {RouterLink} from '@angular/router';
 import {TranslatePipe} from '@ngx-translate/core';
 import {AlertBoxComponent} from '../alert-box/alert-box.component';
 import {NgIf} from '@angular/common';
+import {ModalService} from '../../services/modal.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -19,38 +20,19 @@ import {NgIf} from '@angular/common';
 })
 export class LandingPageComponent {
 
-  modalShown: boolean = true;
-  currentSite = 1;
+  constructor(private modalService: ModalService) {}
 
-  toggleModal () {
-    this.modalShown = !this.modalShown;
+  openModal() {
+    this.modalService.openModal();
   }
 
-  handleConfirm = () => {
-    this.currentSite += 1;
-
+  closeModal() {
+    this.modalService.closeModal();
   }
 
-  handleDeny = () => {
-    this.toggleModal();
+  toggleModal() {
+    this.modalService.toggleModal();
   }
 
-  protected readonly document = document;
-
-  canConfirm(): boolean {
-
-    // @ts-ignore
-    const hasFiles = document.getElementById('file-details')?.children.length > 0;
-
-    console.log("hasFiles", hasFiles);
-
-    switch (this.currentSite) {
-      case 1:
-        return hasFiles;
-      case 2:
-      case 3:
-      default:
-        return true;
-    }
-  }
+  protected readonly close = close;
 }
