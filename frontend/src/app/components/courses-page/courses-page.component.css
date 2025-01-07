@@ -13,6 +13,7 @@
   margin-block: 1rem;
   width: 25vw;
   height: 25rem;
+  min-width: 340px;
 }
 
 .course-cta {
