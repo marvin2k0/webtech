@@ -1,5 +1,6 @@
 .post {
-  background: var(--card-gradient);
+  background: var(--card-bg);
+  box-shadow: 0 0 2px var(--shadow-color);
   border-radius: var(--border-radius);
   padding-inline: var(--padding);
   padding-block: var(--padding);

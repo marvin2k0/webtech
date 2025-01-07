@@ -1,14 +1,8 @@
 .card {
-  background: var(--light);
+  background: var(--card-bg);
   box-shadow: 0 0 2px var(--shadow-color);
   padding: var(--padding);
   border-radius: var(--border-radius-sm);
   width: 100%;
   position: relative;
-}
-
-@media (prefers-color-scheme: dark) {
-  .card {
-    background: var(--card-gradient);
-  }
 }
