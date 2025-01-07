@@ -20,7 +20,7 @@ export async function findCourse(req: Request, res: Response, next: NextFunction
         const courses = await Course.find(searchParams);
         res.status(200).send(success({ courses }));
     } catch (error) {
-        console.error("Error fetching files:", error);
+        console.error("Error fetching courses:", error);
         next(error);
     }
 }

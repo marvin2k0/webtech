@@ -10,5 +10,4 @@ router.get("/", findCourse)
 router.post("/", createCourse)
 router.delete("/:courseName", authenticate, requireRole(UserRole.ADMIN), deleteCourse)
 
-
 export default router
