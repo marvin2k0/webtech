@@ -1,0 +1,497 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "EduEmpire",
+    "description": "REST API associated with EduEmpire",
+    "version": "1.0"
+  },
+  "tags": [
+    {
+      "name": "User",
+      "description": "Operations related to users"
+    },
+    {
+      "name": "Course",
+      "description": "Operations related to courses"
+    },
+    {
+      "name": "Test",
+      "description": "Test routes. Usually not needed in production"
+    }
+  ],
+  "components": {
+    "parameters": {
+      "username": {
+        "name": "username",
+        "description": "The name of a user",
+        "in": "path",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "string"
+            },
+            "example": "johndoe"
+          }
+        }
+      }
+    },
+    "responses": {
+      "403": {
+        "description": "Required authorization is missing",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "successful": {
+                  "type": "boolean",
+                  "example": false,
+                  "description": "Whether the operation was successful or not."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "A message describing a problem in case of an error.",
+                  "example": "Forbidden"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "Course": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the course"
+          },
+          "description": {
+            "type": "string",
+            "description": "Text describing the course"
+          },
+          "members": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "Id of the member"
+            }
+          }
+        }
+      },
+      "User": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "string"
+            },
+            "username": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "passwordHash": {
+              "type": "string"
+            },
+            "fieldOfInterests": {
+              "type": "array"
+            },
+            "enrolledCourses": {
+              "type": "array"
+            },
+            "role": {
+              "type": "number"
+            },
+            "created": {
+              "type": "number"
+            },
+            "lastLogin": {
+              "type": "number"
+            },
+            "profilePicture": {
+              "type": "string"
+            },
+            "active": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "paths": {
+    "/users": {
+      "post": {
+        "description": "Used to create a new user.",
+        "tags": ["User"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "required": true,
+                    "example": "johndoe"
+                  },
+                  "email": {
+                    "type": "string",
+                    "required": true,
+                    "example": "johndoe@example.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "required": true,
+                    "example": "password"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A new user has successfully been created and saved to the database."
+          }
+        }
+      },
+      "get": {
+        "description": "Used to get a list of all users saved in the database.",
+        "tags": ["User"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully fetched all user objects from the database",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          }
+        }
+      }
+    },
+    "/users/me": {
+      "get": {
+        "description": "Used to get information about the currently logged in user.",
+        "tags": ["User"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully fetched user data from database.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          }
+        }
+      }
+    },
+    "/users/{username}": {
+      "get": {
+        "description": "Used to get information about the specified user",
+        "tags": ["User"],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/username"
+          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns information about the specified user.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          }
+        }
+      }
+    },
+    "/users/login": {
+      "post": {
+        "description": "Used to obtain a fresh JWT token",
+        "tags": ["User"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "example": "johndoe",
+                    "required": true
+                  },
+                  "password": {
+                    "type": "string",
+                    "required": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully authenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "successful": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "accessToken": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/delete/{username}": {
+      "delete": {
+        "description": "Used to delete a user",
+        "tags": ["User"],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/username"
+          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Used to delete the specified user.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "successful": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          }
+        }
+      }
+    },
+    "/test": {
+      "get": {
+        "tags": ["Test"],
+        "description": "Get a successful response",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "successful": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "string",
+                      "example": "Successful"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/course": {
+      "get": {
+        "description": "Used to get all available courses",
+        "tags": ["Course"],
+        "responses": {
+          "200": {
+            "description": "Contains all the courses",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Course"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Course"
+        ],
+        "description": "Used to create a new course",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the course to be created",
+                    "required": true
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Text describing the course to be created",
+                    "required": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A course has successfully been created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "successful": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "string",
+                      "example": "Course has been created"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          }
+        }
+      }
+    },
+    "/course/{courseName}": {
+      "delete": {
+        "description": "Used to delete a course",
+        "tags": ["Course"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "courseName",
+            "description": "Name of the course to delete",
+            "in": "path",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "REM"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The course has successfully been deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "successful": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "string",
+                      "example": "The course has been successfully deleted"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          }
+        }
+      }
+    }
+  }
+}

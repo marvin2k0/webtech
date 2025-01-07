@@ -1,0 +1,57 @@
+.jumbotron-container {
+  height: 50vh;
+  width: fit-content;
+  position: relative;
+  margin: 0 auto;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.jumbotron-container h1 {
+  font-size: 4.25rem;
+  width: 30vw;
+  text-align: center;
+  margin-block-start: 3.5rem;
+}
+
+/* Alternative hd */
+/*
+.jumbotron-container h1 {
+  font-size: 4.25rem;
+  width: 30vw;
+  text-align: center;
+  margin-block-start: 3.5rem;
+  paint-order: stroke fill;
+  display: inline-block;
+  letter-spacing: -.22ch;
+  word-spacing: .3ch;
+  -webkit-text-stroke: 7px white;
+  -webkit-text-fill-color: black;
+}
+
+@media (prefers-color-scheme: light) {
+  .jumbotron-container h1 {
+    -webkit-text-stroke: 7px black;
+    -webkit-text-fill-color: white;
+  }
+}
+*/
+
+
+.jumbotron-container p {
+  text-align: center;
+  font-size: 1.25rem;
+  color: var(--faded-gray);
+  margin-block-end: 3.5rem;
+}
+
+.jumbotron-buttons {
+  width: fit-content;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
