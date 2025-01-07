@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {TranslatePipe} from '@ngx-translate/core';
-import {AlertBoxComponent} from '../alert-box/alert-box.component';
-import {NgIf} from '@angular/common';
 import {BackgroundArtComponent} from '../background-art/background-art.component';
 import {ButtonComponent} from '../button/button.component';
 import {ModalService} from '../../services/modal.service';
@@ -15,8 +13,6 @@ import {UploadModalService} from '../../services/uplaod-modal.service';
   imports: [
     RouterLink,
     TranslatePipe,
-    AlertBoxComponent,
-    NgIf,
     FileUploadComponent,
     BackgroundArtComponent,
     ButtonComponent
