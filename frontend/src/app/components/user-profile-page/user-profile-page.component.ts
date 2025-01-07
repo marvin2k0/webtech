@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {RouterLink} from "@angular/router";
 import {TranslatePipe} from '@ngx-translate/core';
 import {FormsModule} from '@angular/forms';
 import {ButtonComponent} from '../button/button.component';
@@ -10,7 +9,6 @@ import {BackgroundArtComponent} from '../background-art/background-art.component
   selector: 'app-user-profile-page',
   standalone: true,
   imports: [
-    RouterLink,
     TranslatePipe,
     FormsModule,
     ButtonComponent,
