@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {RouterLink} from "@angular/router";
 import {TranslatePipe} from '@ngx-translate/core';
 import {FormsModule} from '@angular/forms';
+import {ButtonComponent} from '../button/button.component';
 
 @Component({
   selector: 'app-user-profile-page',
@@ -9,7 +10,8 @@ import {FormsModule} from '@angular/forms';
   imports: [
     RouterLink,
     TranslatePipe,
-    FormsModule
+    FormsModule,
+    ButtonComponent
   ],
   templateUrl: './user-profile-page.component.html',
   styleUrl: './user-profile-page.component.css'

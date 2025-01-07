@@ -1,20 +1,18 @@
-<section class="dark:bg-gray-900">
-
-  <div class="flex items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0 bg-white dark:bg-gray-800 dark:border-gray-700">
-
-    <div class="mb-6 p-8">
-      <div class="mt-1 ml-2 mb-4">
+<section>
+  <div>
+    <div>
+      <div>
 
         <!--Username Box-->
 
-        <div class="mt-24">
-          <div class="mb-4">
-            <label class="text-2xl font-bold">{{"user_view_username_label" | translate}}</label>
+        <div>
+          <div>
+            <label>{{"user_view_username_label" | translate}}</label>
           </div>
 
-          <div class="p-6 mb-16 bg-gray-200 dark:bg-gray-700 border border-gray-400 dark:border-gray-600 rounded-lg">
+          <div>
             <div style="display: flex; align-items: center; gap: 16px;">
-              <label class="text-2xl font-bold">username_placeholder</label>
+              <label>username_placeholder</label>
 
               <button (click)="onUsernameButtonClick()" style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; background-color: #f9f9f9; cursor: pointer;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
@@ -29,13 +27,13 @@
 
         <!--User Information Box-->
 
-        <div class="-mt-6">
+        <div>
           <div style="display: flex; align-items: center; gap: 16px;">
-            <div class="mb-4">
-              <label class="text-2xl font-bold">{{"user_view_user_information" | translate}}</label>
+            <div>
+              <label>{{"user_view_user_information" | translate}}</label>
             </div>
 
-            <div class="mb-4">
+            <div>
               @if (showSaveButton) {
                 <button (click)="onUserInformationEditButtonClick()" id= "user_information_edit_save_button" style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; background-color: #f9f9f9; cursor: pointer;">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
@@ -57,22 +55,22 @@
 
             </div>
           </div>
-          <div class="p-4 bg-gray-200 dark:bg-gray-700 border border-gray-400 dark:border-gray-600 rounded-lg">
-            <div class="mb-6 flex items-center">
-              <label for="focus_point_input_field" class="block text-lg font-medium text-gray-900 dark:text-white w-48">{{"user_view_focus_point" | translate}}*</label>
-              <input type="text" id="focus_point_input_field" class="ml-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" [disabled]="focusPointBool">
+          <div>
+            <div>
+              <label for="focus_point_input_field">{{"user_view_focus_point" | translate}}*</label>
+              <input type="text" id="focus_point_input_field" [disabled]="focusPointBool">
             </div>
-            <div class="mb-6 flex items-center">
-              <label for="institute_input_field" class="block text-lg font-medium text-gray-900 dark:text-white w-48">{{"user_view_institute" | translate}}</label>
-              <input type="text" id="institute_input_field" class="ml-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" [disabled]="instituteBool">
+            <div>
+              <label for="institute_input_field">{{"user_view_institute" | translate}}</label>
+              <input type="text" id="institute_input_field" [disabled]="instituteBool">
             </div>
-            <div class="mb-6 flex items-center">
-              <label for="dob_input_field" class="block text-lg font-medium text-gray-900 dark:text-white w-48">{{"user_view_dob" | translate}}</label>
-              <input type="text" id="dob_input_field" class="ml-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" [disabled]="dobBool">
+            <div>
+              <label for="dob_input_field">{{"user_view_dob" | translate}}</label>
+              <input type="text" id="dob_input_field" [disabled]="dobBool">
             </div>
           </div>
 
-          <div class="mt-1 ml-2">
+          <div>
             <label>*{{"user_view_required_fields" | translate}}</label>
           </div>
         </div>
@@ -80,30 +78,30 @@
         <!--Courses and Files Box-->
 
         <div>
-          <div class="mt-8">
-            <label class="text-2xl font-bold">{{"user_view_courses_files_label" | translate}}</label>
+          <div>
+            <label>{{"user_view_courses_files_label" | translate}}</label>
           </div>
 
-          <div class="p-8 mt-3 bg-gray-200 dark:bg-gray-700 border border-gray-400 dark:border-gray-600 rounded-lg w-full max-w-sm">
+          <div>
             <div>
-              <div class="mb-4">
-                <label class="text-lg font-medium">{{"user_view_my_courses" | translate}}</label>
+              <div>
+                <label>{{"user_view_my_courses" | translate}}</label>
 
-                <div class="mt-2">
-                  <button type="button" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-15 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 mx-auto">
+                <div>
+                  <button type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                     </svg>
                   </button>
                 </div>
               </div>
 
-              <div class="mb-4">
-                <label class="text-lg font-medium">{{"user_view_my_files" | translate}}</label>
+              <div>
+                <label>{{"user_view_my_files" | translate}}</label>
 
-                <div class="mt-2">
-                  <button type="button" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-15 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 mx-auto">
+                <div>
+                  <button type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                     </svg>
                   </button>
