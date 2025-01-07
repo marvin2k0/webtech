@@ -1,18 +1,16 @@
 <app-background-art/>
 
-<card>
+<div class="card-container">
+  <card>
 
-  <div class="card-content">
-    <!--Username Box-->
+    <div class="card-content">
+      <!--Username Box-->
 
-    <div class="username-content">
-      <div>
-        <label>{{"user_view_username_label" | translate}}</label>
-      </div>
-
-      <div>
-        <div style="display: flex; align-items: center; gap: 16px;">
-          <label>username_placeholder</label>
+      <div class="username-content">
+        <div class="button-aligner">
+          <h3>
+            {{ "user_view_username_label" | translate }}
+          </h3>
 
           <button (click)="onUsernameButtonClick()" style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; background-color: #f9f9f9; cursor: pointer;">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
@@ -22,94 +20,110 @@
             {{"user_view_user_information_edit" | translate}}
           </button>
         </div>
-      </div>
-    </div>
 
-    <!--User Information Box-->
-
-    <div class="user-information-content">
-      <div style="display: flex; align-items: center; gap: 16px;">
-        <div>
-          <label>{{"user_view_user_information" | translate}}</label>
-        </div>
-
-        <div>
-          @if (showSaveButton) {
-            <button (click)="onUserInformationEditButtonClick()" id= "user_information_edit_save_button" style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; background-color: #f9f9f9; cursor: pointer;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M15.854.146a.5.5 0 0 1 0 .708l-1.5 1.5-2-2 1.5-1.5a.5.5 0 0 1 .707 0l1.293 1.293a.5.5 0 0 1 .293.5z"/>
-                <path d="M1 13.5V16h2.5l9.854-9.854-2.5-2.5L1 13.5zM0 15.5a1 1 0 0 0 1 1h2a1 1 0 0 0 .707-.293l10-10a1 1 0 0 0 0-1.414l-2-2a1 1 0 0 0-1.414 0l-10 10A1 1 0 0 0 0 13v2z"/>
-              </svg>
-              <span>{{"user_view_user_information_edit_save" | translate}}</span>
-            </button>
-          } @else {
-            <button (click)="onUserInformationEditButtonClick()" id= "user_information_edit_button" style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; background-color: #f9f9f9; cursor: pointer;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M15.854.146a.5.5 0 0 1 0 .708l-1.5 1.5-2-2 1.5-1.5a.5.5 0 0 1 .707 0l1.293 1.293a.5.5 0 0 1 .293.5z"/>
-                <path d="M1 13.5V16h2.5l9.854-9.854-2.5-2.5L1 13.5zM0 15.5a1 1 0 0 0 1 1h2a1 1 0 0 0 .707-.293l10-10a1 1 0 0 0 0-1.414l-2-2a1 1 0 0 0-1.414 0l-10 10A1 1 0 0 0 0 13v2z"/>
-              </svg>
-              <span>{{"user_view_user_information_edit" | translate}}</span>
-            </button>
-          }
-        </div>
-      </div>
-      <div>
-        <div>
-          <label for="focus_point_input_field">{{"user_view_focus_point" | translate}}*</label>
-          <input type="text" id="focus_point_input_field" [disabled]="focusPointBool">
-        </div>
-        <div>
-          <label for="institute_input_field">{{"user_view_institute" | translate}}</label>
-          <input type="text" id="institute_input_field" [disabled]="instituteBool">
-        </div>
-        <div>
-          <label for="dob_input_field">{{"user_view_dob" | translate}}</label>
-          <input type="text" id="dob_input_field" [disabled]="dobBool">
+        <div class="inner-card">
+          <label>username_placeholder</label>
         </div>
       </div>
 
-      <div>
-        <label>*{{"user_view_required_fields" | translate}}</label>
-      </div>
-    </div>
+      <!--User Information Box-->
 
-    <!--Courses and Files Box-->
-
-    <div class="courses-and-uploaded-files-content">
-      <div>
-        <label>{{"user_view_courses_files_label" | translate}}</label>
-      </div>
-
-      <div>
-        <div>
-          <div>
-            <label>{{"user_view_my_courses" | translate}}</label>
-
-            <div>
-              <button type="button">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
-          </div>
+      <div class="user-information-content">
+        <div class="button-aligner">
+          <h3>
+            {{ "user_view_user_information" | translate }}
+          </h3>
 
           <div>
-            <label>{{"user_view_my_files" | translate}}</label>
+            @if (showSaveButton) {
+              <button (click)="onUserInformationEditButtonClick()" id="user_information_edit_save_button"
+                      style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; background-color: #f9f9f9; cursor: pointer;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                  <path
+                    d="M15.854.146a.5.5 0 0 1 0 .708l-1.5 1.5-2-2 1.5-1.5a.5.5 0 0 1 .707 0l1.293 1.293a.5.5 0 0 1 .293.5z"/>
+                  <path
+                    d="M1 13.5V16h2.5l9.854-9.854-2.5-2.5L1 13.5zM0 15.5a1 1 0 0 0 1 1h2a1 1 0 0 0 .707-.293l10-10a1 1 0 0 0 0-1.414l-2-2a1 1 0 0 0-1.414 0l-10 10A1 1 0 0 0 0 13v2z"/>
+                </svg>
+                <span>{{ "user_view_user_information_edit_save" | translate }}</span>
+              </button>
+            } @else {
+              <button (click)="onUserInformationEditButtonClick()" id="user_information_edit_button"
+                      style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; background-color: #f9f9f9; cursor: pointer;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                  <path
+                    d="M15.854.146a.5.5 0 0 1 0 .708l-1.5 1.5-2-2 1.5-1.5a.5.5 0 0 1 .707 0l1.293 1.293a.5.5 0 0 1 .293.5z"/>
+                  <path
+                    d="M1 13.5V16h2.5l9.854-9.854-2.5-2.5L1 13.5zM0 15.5a1 1 0 0 0 1 1h2a1 1 0 0 0 .707-.293l10-10a1 1 0 0 0 0-1.414l-2-2a1 1 0 0 0-1.414 0l-10 10A1 1 0 0 0 0 13v2z"/>
+                </svg>
+                <span>{{ "user_view_user_information_edit" | translate }}</span>
+              </button>
+            }
+          </div>
+        </div>
+        <div class="inner-card">
+          <div class="form-element">
+            <label for="focus_point_input_field">{{ "user_view_focus_point" | translate }}*</label>
+            <input type="text" id="focus_point_input_field" [disabled]="focusPointBool">
+          </div>
+          <div class="form-element">
+            <label for="institute_input_field">{{ "user_view_institute" | translate }}</label>
+            <input type="text" id="institute_input_field" [disabled]="instituteBool">
+          </div>
+          <div class="form-element">
+            <label for="dob_input_field">{{ "user_view_dob" | translate }}</label>
+            <input type="text" id="dob_input_field" [disabled]="dobBool">
+          </div>
+        </div>
+
+        <div class="secondary-actions-container">
+          *{{ "user_view_required_fields" | translate }}
+        </div>
+      </div>
+
+      <!--Courses and Files Box-->
+
+      <div class="courses-and-uploaded-files-content">
+        <h3>
+          {{ "user_view_courses_files_label" | translate }}
+        </h3>
+
+        <div class="inner-card">
+          <div>
+            <div>
+              {{ "user_view_my_courses" | translate }}
+
+              <div class="wide-button">
+                <cta-button type="wide" raised="false">
+                  <div class="icon-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                         stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                    </svg>
+                  </div>
+                </cta-button>
+              </div>
+            </div>
 
             <div>
-              <button type="button">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
+              {{ "user_view_my_files" | translate }}
+
+              <div class="wide-button">
+                <cta-button type="wide" raised="false">
+                  <div class="icon-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                         stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                    </svg>
+                  </div>
+                </cta-button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-</card>
+  </card>
+</div>
 
 
