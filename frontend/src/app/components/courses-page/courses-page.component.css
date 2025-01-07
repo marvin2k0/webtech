@@ -1,18 +1,24 @@
 .courses-wrapper {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 2rem;
+  justify-content: center;
 }
 
 .card-content {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
   margin-block: 1rem;
+  width: 25vw;
+  height: 25rem;
 }
 
 .course-cta {
   flex: 1;
+  text-align: center;
+  margin-bottom: 3rem;
 }
 
 .course-headline {
@@ -40,15 +46,4 @@ h3 {
 .course-description p {
   font-size: 1rem;
   line-height: 1.5;
-}
-
-@media screen and (max-width: 1000px) {
-  .card-content {
-    flex-direction: column;
-  }
-
-  .course-cta {
-    text-align: center;
-    margin-bottom: 3rem;
-  }
 }
