@@ -36,6 +36,8 @@ export class FileUploadComponent {
   selectedOption: string = "0";
   isCourseSelectionVisible: boolean = false;
 
+  fileLink: string = "";
+
 
   constructor(protected modalService: UploadModalService) {}
 
@@ -114,6 +116,8 @@ export class FileUploadComponent {
       this.fileUploadService.upload({ filename: this.filename, course, visibility, fileContent: this.fileData, description })?.subscribe(response => {
 
         if (response.successful) {
+          this.fileLink = response.data.fileUrl;
+
           this.uploaded = true;
           console.log("response", response)
           console.log("Success!")
@@ -144,7 +148,12 @@ export class FileUploadComponent {
   }
 
   async copyFileUrl() {
-    await navigator.clipboard.writeText("@ToDo…");
+    await navigator.clipboard.writeText(this.fileLink);
+  }
+
+  closeModal(): void {
+    this.deleteFile();
+    this.modalService.closeModal();
   }
 
   canDeny() {

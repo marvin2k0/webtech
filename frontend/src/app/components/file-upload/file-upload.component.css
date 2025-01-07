@@ -222,6 +222,22 @@
   font-size: 1.5em;
   margin-bottom: 10px;
   text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: .8em;
+  cursor: pointer;
+  color: var(--middle-gray);
+  transition: color .3s;
+}
+
+.close-btn:hover {
+  color: var(--middle-light-gray);
 }
 
 .modal-txt {
@@ -244,6 +260,11 @@
   padding-inline: 1rem;
   cursor: pointer;
   transition-duration: .2s;
+  color: gray;
+}
+
+.modal-deny-btn:hover {
+  color: black;
 }
 
 .modal-confirm-btn {
@@ -301,6 +322,14 @@
     background-color: var(--middle-gray);
   }
 
+  p, label {
+    color: gray;
+  }
+
+  .modal-deny-btn:hover {
+    color: var(--middle-light-gray);
+  }
+
   .current {
     background-color: var(--dark-primary);
     color: var(--light);
@@ -316,4 +345,21 @@
     -webkit-backdrop-filter: blur(7px);
   }
 
+  .upload-area {
+    border-color: gray;
+  }
+}
+
+.show-anim {
+  opacity: 1;
+  animation: fade-in-animation .3s;
+}
+
+@keyframes fade-in-animation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

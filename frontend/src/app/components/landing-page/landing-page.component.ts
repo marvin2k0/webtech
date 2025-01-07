@@ -5,7 +5,6 @@ import {BackgroundArtComponent} from '../background-art/background-art.component
 import {ButtonComponent} from '../button/button.component';
 import {ModalService} from '../../services/modal.service';
 import {FileUploadComponent} from '../file-upload/file-upload.component';
-import {UploadModalService} from '../../services/uplaod-modal.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -22,7 +21,7 @@ import {UploadModalService} from '../../services/uplaod-modal.service';
 })
 export class LandingPageComponent {
 
-  constructor(private modalService: ModalService, private uploadModalService: UploadModalService) {}
+  constructor(private modalService: ModalService) { }
 
   openModal() {
     this.modalService.openModal();
@@ -34,10 +33,6 @@ export class LandingPageComponent {
 
   toggleModal() {
     this.modalService.toggleModal();
-  }
-
-  toggleUploadModal() {
-    this.uploadModalService.toggleModal();
   }
 
   protected readonly close = close;

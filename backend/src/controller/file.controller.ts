@@ -105,6 +105,7 @@ export async function uploadFile(req: any, res: express.Response, next: express.
         const fileSize = decode.length;
         const fileType = filename.split(".").pop();
         const rndFilename: string = uuidv4() + "." + fileType;
+        const fileUrl = "http://localhost:8080/files/" + rndFilename
 
         fs.writeFile("./uploaded_files/" + rndFilename, decode, (err) => {
             if (err) {
@@ -118,7 +119,7 @@ export async function uploadFile(req: any, res: express.Response, next: express.
             filename,
             fileType,
             description,
-            fileUrl: "http://localhost:8080/files/" + rndFilename,
+            fileUrl,
             fileSize,
             uploadedBy: req.username,
             course,
@@ -126,7 +127,7 @@ export async function uploadFile(req: any, res: express.Response, next: express.
         });
         await file.save();
 
-        res.status(200).send(success("Success"));
+        res.status(200).send(success({ fileUrl }));
     } catch(err: unknown) {
         next(err);
     }

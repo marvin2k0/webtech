@@ -10,15 +10,21 @@
   </div>
 
   <div>
-    @if (!loggedIn) {
-      <div class="user-actions">
+    <div class="user-actions">
+
+    @if (!isLoggedIn()) {
         <a routerLink="/signin" (click)="setLinkActive(-1)">{{ "sign_in_button" | translate }}</a>
         <cta-button routerLink="/signup" (click)="setLinkActive(-1)">{{ "sign_up_button" | translate }}</cta-button>
-      </div>
     } @else {
       <p>Hallo, User</p>
+      <!-- @ToDo:   redesign ugly ass button -->
+      <cta-button (click)="toggleUploadModal()">ToDo: SVG Dateiupload</cta-button>
     }
+    </div>
   </div>
 </nav>
 
+@if (isLoggedIn()) {
+  <app-file-upload></app-file-upload>
+}
 

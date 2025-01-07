@@ -1,6 +1,9 @@
 <div class="modal-container" *ngIf="modalService.modalVisibility$ | async">
   <div class="modal">
-    <div class="modal-hd">Upload</div>
+    <div class="modal-hd">
+        Upload
+        <button class="close-btn" (click)="closeModal()">&#x2715;</button>
+    </div>
     <div class="modal-txt">It's time to share your knowledge!</div>
 
     <!-- Start Stepper-Timeline -->
@@ -29,6 +32,7 @@
          [class.dragging]="isDragging"
          class="upload-area"
          [class.dragover]="isDragging"
+         [class.show-anim]="currentSite==1"
          *ngIf="currentSite==1">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="upload-icon">
         <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"></path>
@@ -42,7 +46,7 @@
     <!-- End Upload-Area -->
 
     <!-- Start Uploaded File Details -->
-    <div class="file-details" id="file-details" *ngIf="currentSite==1">
+    <div class="file-details" id="file-details" *ngIf="currentSite==1" [class.show-anim]="currentSite==1">
       <p *ngIf="hasFile" class="filename" id="filename">{{ filename }}</p>
       <p *ngIf="hasFile" class="filesize">{{ filesize }}</p>
       <button class="delete-file" *ngIf="hasFile" aria-label="Delete file" (click)="deleteFile()">
@@ -60,7 +64,7 @@
 
 
     <!-- Start Details -->
-    <div class="details-container" *ngIf="currentSite==2">
+    <div class="details-container" *ngIf="currentSite==2" [class.show-anim]="currentSite==2">
       <label for="file-description">Description</label>
       <textarea maxlength="300" placeholder="Type something..." id="file-description"></textarea>
 
@@ -71,7 +75,7 @@
         <option value="2">Course</option>
       </select>
 
-      <span *ngIf="isCourseSelectionVisible">
+      <span *ngIf="isCourseSelectionVisible" [class.show-anim]="isCourseSelectionVisible">
         <label for="file-course">Course</label>
         <select id="file-course">
           <option>&#64;ToDo: implement</option>
@@ -81,7 +85,7 @@
     <!-- End Details -->
 
     <!-- Start Confirmation -->
-    <div *ngIf="currentSite==3">
+    <div *ngIf="currentSite==3" [class.show-anim]="currentSite==3">
       <h2 class="file-success-hd">Your file was uploaded successfully</h2>
       <p (click)="copyFileUrl()" class="file-link" id="file-link">Click here to copy link</p>
     </div>
