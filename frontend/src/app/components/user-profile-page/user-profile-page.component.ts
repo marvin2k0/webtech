@@ -3,6 +3,8 @@ import {RouterLink} from "@angular/router";
 import {TranslatePipe} from '@ngx-translate/core';
 import {FormsModule} from '@angular/forms';
 import {ButtonComponent} from '../button/button.component';
+import {CardComponent} from '../card/card.component';
+import {BackgroundArtComponent} from '../background-art/background-art.component';
 
 @Component({
   selector: 'app-user-profile-page',
@@ -11,7 +13,9 @@ import {ButtonComponent} from '../button/button.component';
     RouterLink,
     TranslatePipe,
     FormsModule,
-    ButtonComponent
+    ButtonComponent,
+    CardComponent,
+    BackgroundArtComponent
   ],
   templateUrl: './user-profile-page.component.html',
   styleUrl: './user-profile-page.component.css'
