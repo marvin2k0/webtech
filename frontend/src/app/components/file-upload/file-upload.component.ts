@@ -154,6 +154,7 @@ export class FileUploadComponent {
   onDeny(): void {
     switch (this.currentSite) {
       case 1:
+        this.deleteFile()
         this.modalService.closeModal();
         break;
       case 2:

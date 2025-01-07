@@ -1,6 +1,6 @@
 .upload-area {
   height: 5rem;
-  width: calc(100% - 24px);
+  width: 100%;
   border: 2px dashed var(--middle-light-gray);
   border-radius: 8px;
   margin-bottom: .75rem;
@@ -48,6 +48,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 1rem;
+  gap: 1rem;
 }
 
 .stepper-timeline {
@@ -94,10 +95,9 @@
 .step:after {
   content: '';
   position: relative;
-  top: 50%;
+  top: 70%;
   left: 100%;
-  width: 100%;
-  max-width: 50px;
+  width: 57px;
   height: 2px;
   background-color: var(--middle-light-gray);
   transform: translateY(-4000%);
@@ -107,10 +107,9 @@
 .step:nth-child(2):after {
   content: '';
   position: relative;
-  top: 50%;
-  left: calc(100% - 20px);
-  width: 100%;
-  max-width: 50px;
+  top: 70%;
+  left: calc(100% - 18px);
+  width: 53px;
   height: 2px;
   background-color: var(--middle-light-gray);
   transform: translateY(-4000%);
@@ -119,6 +118,10 @@
 
 .step:last-child:after {
   display: none;
+}
+
+.step p {
+  margin: 0;
 }
 
 .delete-file {
@@ -143,12 +146,13 @@
 }
 
 .details-container textarea {
-  width: calc(100% - 1rem);
+  width: 100%;
   height: 80px;
   resize: none;
   padding: 0.5rem;
   font-size: 1rem;
-  border: 1px solid var(--middle-light-gray);
+  border: 1px solid var(--middle-gray);
+  background-color: var(--background);
   border-radius: 4px;
   transition: border-color 0.3s;
 }
@@ -159,10 +163,11 @@
 }
 
 .details-container select {
-  width: calc(100% - 1rem);
+  width: 100%;
   padding: 0.5rem;
   font-size: 1rem;
-  border: 1px solid var(--middle-light-gray);
+  border: 1px solid var(--middle-gray);
+  background-color: var(--background);
   border-radius: 4px;
   cursor: pointer;
   transition: border-color 0.3s;
@@ -274,4 +279,41 @@
 
 .inactive:hover {
   background-color: var(--middle-light-gray);
+}
+
+.filename {
+  flex: 2;
+  overflow: hidden;
+}
+
+.filesize {
+  flex: 1;
+}
+
+
+@media (prefers-color-scheme: dark) {
+  .inactive, .circle {
+    background-color: var(--middle-gray);
+    border: 1px solid var(--middle-gray);
+  }
+
+  .inactive:hover {
+    background-color: var(--middle-gray);
+  }
+
+  .current {
+    background-color: var(--dark-primary);
+    color: var(--light);
+  }
+
+  .step:after, .step:nth-child(2):after {
+    background-color: var(--middle-gray);
+  }
+
+  .modal-container {
+    background-color: rgba(120, 120, 120, 0.25);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+  }
+
 }
