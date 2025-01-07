@@ -6,15 +6,15 @@
     <!-- Start Stepper-Timeline -->
     <div class="stepper-timeline">
       <div class="step" (click)="currentSite=1">
-        <div class="circle" [class.current]="currentSite==1"><div class="number">1</div></div>
+        <div class="circle" [class.current]="currentSite==1">1</div>
         <p [class.active]="currentSite==1">Add File</p>
       </div>
       <div class="step" (click)="hasFile ? currentSite=2 : undefined">
-        <div class="circle" [class.current]="currentSite==2"><div class="number">2</div></div>
+        <div class="circle" [class.current]="currentSite==2">2</div>
         <p [class.active]="currentSite==2">Add Details</p>
       </div>
       <div class="step" (click)="hasFile && uploaded ? currentSite=3 : undefined">
-        <div class="circle" [class.current]="currentSite==3"><div class="number">3</div></div>
+        <div class="circle" [class.current]="currentSite==3">3</div>
         <p [class.active]="currentSite==3">Share</p>
       </div>
     </div>

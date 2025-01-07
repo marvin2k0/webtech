@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {NavbarComponent} from '../navbar/navbar.component';
 import {RouterLink} from '@angular/router';
 import {TranslatePipe} from '@ngx-translate/core';
 import {AlertBoxComponent} from '../alert-box/alert-box.component';
