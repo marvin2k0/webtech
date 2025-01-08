@@ -11,13 +11,14 @@
           </div>
 
           <!-- TODO check if user already in course -->
-          <cta-button raised="false" routerLink="/course/{{ course._id }}">{{ "course_join" | translate }}</cta-button>
         </div>
         <div class="course-description">
           <h4>Description</h4>
           <p>{{ course.description.length >= 250 ? (course.description | slice:0:250) + "..." : course.description }}</p>
         </div>
       </div>
+      <cta-button raised="false" type="wide" routerLink="/course/{{ course._id }}">{{ "course_join" | translate }}</cta-button>
+
     </card>
   }
 </div>
