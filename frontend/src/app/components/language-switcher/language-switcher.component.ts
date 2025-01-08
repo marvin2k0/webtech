@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, ElementRef, inject, OnInit, ViewChild} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {NgForOf} from '@angular/common';
 
@@ -12,6 +12,7 @@ import {NgForOf} from '@angular/common';
   styleUrl: './language-switcher.component.css'
 })
 export class LanguageSwitcherComponent implements OnInit{
+  @ViewChild("languageSwitcher") languageSwitcher!: ElementRef;
   localStorageLanguageKey = "lang"
   translateService: TranslateService = inject(TranslateService)
 
@@ -26,6 +27,10 @@ export class LanguageSwitcherComponent implements OnInit{
       this.translateService.use(localStorageLang)
       console.log(`Found language ${localStorageLang} in localStorage`)
     }
+  }
+
+  ngAfterViewInit(): void {
+    this.languageSwitcher.nativeElement.value = this.translateService.currentLang;
   }
 
   changeLanguage(language: string): void {
