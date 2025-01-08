@@ -4,20 +4,21 @@ import Course, {CourseDetails} from "../model/course.model";
 import {EntityNotFoundError} from "../error/entity.not.found.error";
 
 export async function findCourse(req: Request, res: Response, next: NextFunction) {
-    const { name, description } = req.body;
+    const { name, description } = req.query;
     const attr = { name, description };
 
-    let searchParams: { [key: string]: any } = { };
+    let searchParams: { [key: string]: any }[] = [];
+
     for (let key in attr) {
         // @ts-ignore
         if (typeof attr[key] !== "undefined" && attr[key] !== null) {
             // @ts-ignore
-            searchParams[key] = attr[key];
+            searchParams.push({ [key]: {$regex: `${attr[key]}`, $options: "i"} })
         }
     }
 
     try {
-        const courses = await Course.find(searchParams);
+        const courses = await Course.find({ $or: searchParams });
         res.status(200).send(success(courses));
     } catch (error) {
         console.error("Error fetching courses:", error);

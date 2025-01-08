@@ -11,7 +11,7 @@ export class CourseService {
 
   http: HttpClient = inject(HttpClient)
 
-  getAllCourses(): Observable<IRestResponse> {
-    return this.http.get<IRestResponse>(`${this.baseUrl}`)
+  findCourses(query: string): Observable<IRestResponse> {
+    return this.http.get<IRestResponse>(`${this.baseUrl}?name=${query}&description=${query}`);
   }
 }
