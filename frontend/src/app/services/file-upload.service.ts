@@ -6,6 +6,8 @@ import { IRestResponse } from '../model/http/rest-response';
 @Injectable({
   providedIn: 'root'
 })
+
+// @ToDo:   Rename to FileService
 export class FileUploadService {
   private baseUrl: string = "http://localhost:8080/files"
   private http: HttpClient = inject(HttpClient)
@@ -39,5 +41,14 @@ export class FileUploadService {
 
   edit() {
     // @ToDo:   Implement.
+  }
+
+  find(params: Object): Observable<any> | undefined {
+
+    console.log("Enter Find files with params", JSON.stringify(params));
+
+    const options = {}
+
+    return ;
   }
 }

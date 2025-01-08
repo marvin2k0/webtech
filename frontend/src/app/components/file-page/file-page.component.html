@@ -1,0 +1,90 @@
+<!--
+@ToDo:  Implement Sidebar for filters etc. (left-side)
+        Implement Sidebar for comments and marking (right-side)
+        Implement cards for each file
+        Implement default page "nothing to see here" if no file is found
+-->
+
+<div class="files-page">
+
+  <!-- sidebar left -->
+  <div class="side-panel-card-container">
+    <card>
+      <div class="filter-container">
+        <h2>Filters</h2>
+        <label for="filename-search">Filename</label>
+        <input id="filename-search" placeholder="Enter filename" type="text" />
+
+        <label for="file-course-search">Course</label>
+        <input id="file-course-search" placeholder="Enter course name" type="text" />
+
+        <label for="file-author-search">Author</label>
+        <input id="file-author-search" placeholder="Enter username" type="text" />
+
+        <label for="file-desc-search">Description</label>
+        <textarea id="file-desc-search" placeholder="Search in descriptions"></textarea>
+
+        <div class="num-container">
+          <div class="input-group">
+            <label for="file-min-up-votes">Min upvotes</label>
+            <input type="number" id="file-min-up-votes" placeholder="0" min="0" title="Only values greater than 0 are allowed" />
+          </div>
+          <div class="input-group">
+            <label for="file-max-down-votes">Max downvotes</label>
+            <input type="number" id="file-max-down-votes" placeholder="0" min="0" title="Only values greater than 0 are allowed" />
+          </div>
+        </div>
+
+        <br>
+        <cta-button [type]="'wide'">Start searching</cta-button>
+      </div>
+    </card>
+  </div>
+
+  <div class="pdf-container">
+
+  </div>
+
+  <!-- sidebar right (comments etc.) -->
+  <div class="side-panel-card-container">
+    <card>
+      <div class="filter-container">
+        <h2>Comments</h2>
+      </div>
+    </card>
+  </div>
+</div>
+
+<div class="tools">
+  <div class="tool-item" title="Highlight Text">
+    <button>
+      <!-- @ToDo: Add SVGs -->
+      <svg width="40" height="40" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"></svg>
+      <span>Highlight</span>
+    </button>
+  </div>
+  <div class="tool-item" title="Add Comment">
+    <button>
+      <svg width="40" height="40" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"></svg>
+      <span>Comment</span>
+    </button>
+  </div>
+  <div class="tool-item" title="Draw Markings">
+    <button>
+      <svg width="40" height="40" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"></svg>
+      <span>Draw</span>
+    </button>
+  </div>
+  <div class="tool-item" title="Erase Markings">
+    <button>
+      <svg width="40" height="40" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"></svg>
+      <span>Erase</span>
+    </button>
+  </div>
+  <div class="tool-item" title="Reading Mode">
+    <button>
+      <svg width="40" height="40" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"></svg>
+      <span>Read</span>
+    </button>
+  </div>
+</div>
