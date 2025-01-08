@@ -7,7 +7,9 @@
   "signup_i_accept": "I accept the",
   "signup_terms_and_conditions": "Terms and Conditions",
   "signup_form_username": "Username",
+  "signup_form_username_placeholder": "johndoe",
   "signup_form_your_email": "Your email",
+  "signup_form_your_email_placeholder": "john@doe.com",
   "signup_form_password": "Password",
   "signup_form_confirm_password": "Confirm password",
 
@@ -18,6 +20,16 @@
 
   "landing_page_jumbotron_headline": "Conquer your exams",
   "landing_page_jumbotron_paragraph": "With EducationEmpire you will achieve great things!",
+
+  "login_page_headline": "Sign in to your account",
+  "login_page_username_label": "Your username",
+  "login_page_username_placeholder": "johndoe",
+  "login_page_password_label": "Password",
+  "login_page_remember_me": "Remember me",
+  "login_page_forgot_password": "Forgot password?",
+  "login_page_sign_in_cta": "Sign In",
+  "login_page_no_account": "Don’t have an account yet?",
+  "login_page_sign_up": "Sign up",
 
   "course_join": "Join course",
   "course_members": "Members",

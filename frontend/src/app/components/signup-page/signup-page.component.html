@@ -18,12 +18,12 @@
           <div class="inputs-container">
             <div class="form-element">
               <label for="username">{{ "signup_form_username" | translate }}</label>
-              <input autocomplete="username" type="text" name="username" id="username" placeholder="johndoe" required
+              <input autocomplete="username" type="text" name="username" id="username" placeholder="{{ 'signup_form_username_placeholder' | translate }}" required
                      formControlName="username">
             </div>
             <div class="form-element">
               <label for="email">{{ "signup_form_your_email" | translate }}</label>
-              <input autocomplete="email" type="email" name="email" id="email" placeholder="john@doe.com" required
+              <input autocomplete="email" type="email" name="email" id="email" placeholder="{{ 'signup_form_your_email_placeholder' | translate }}" required
                      formControlName="email">
             </div>
             <div class="form-element">

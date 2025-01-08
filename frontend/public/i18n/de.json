@@ -7,7 +7,9 @@
   "signup_i_accept": "Ich akzeptiere die",
   "signup_terms_and_conditions": "Nutzungsbedingungen",
   "signup_form_username": "Nutzername",
+  "signup_form_username_placeholder": "max.mustermann",
   "signup_form_your_email": "Deine email",
+  "signup_form_your_email_placeholder": "max@mustermann.de",
   "signup_form_password": "Passwort",
   "signup_form_confirm_password": "Passwort bestätigen",
 
@@ -22,5 +24,15 @@
   "course_join": "Kurs beitreten",
   "course_members": "Mitglieder",
   "course_results": "Ergebnisse",
-  "course_search_header": "Suchen"
+  "course_search_header": "Suchen",
+
+  "login_page_headline": "Anmelden",
+  "login_page_username_label": "Nutzername",
+  "login_page_username_placeholder": "max.mustermann",
+  "login_page_password_label": "Passwort",
+  "login_page_remember_me": "Angemeldet bleiben",
+  "login_page_forgot_password": "Passwort vergessen?",
+  "login_page_sign_in_cta": "Anmelden",
+  "login_page_no_account": "Noch keinen Account?",
+  "login_page_sign_up": "Jetzt erstellen"
 }

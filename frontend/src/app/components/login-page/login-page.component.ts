@@ -8,6 +8,7 @@ import {AlertBoxComponent} from '../alert-box/alert-box.component';
 import {ButtonComponent} from '../button/button.component';
 import {CardComponent} from '../card/card.component';
 import {BackgroundArtComponent} from '../background-art/background-art.component';
+import {TranslatePipe} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login-page',
@@ -20,7 +21,8 @@ import {BackgroundArtComponent} from '../background-art/background-art.component
     ButtonComponent,
     CardComponent,
     BackgroundArtComponent,
-    AlertBoxComponent
+    AlertBoxComponent,
+    TranslatePipe
   ],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.css'

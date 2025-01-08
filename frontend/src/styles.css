@@ -8,6 +8,7 @@
   --padding: 1.5rem;
 
   /* COLORS */
+  --dark-purple: #3932a6;
   --purple: #4F46E5;
   --faded-purple: #736de8;
   --yellow: #E5C846;
@@ -32,6 +33,7 @@
   --background-art-gradient: linear-gradient(to top right, #ff80b5 0%, #9089fc 100%);
 
   /* STYLES */
+  --dark-primary: var(--dark-purple);
   --primary: var(--purple);
   --light-primary: var(--faded-purple);
   --dark-accent: var(--dark-gray);
