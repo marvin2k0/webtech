@@ -3,12 +3,14 @@ import {PostCardComponent} from "../post-card/post-card.component";
 import {ActivatedRoute} from '@angular/router';
 import {CourseDetails, EMPTY_COURSE} from '../../model/course.model';
 import {CourseService} from '../../services/course.service';
+import {TranslatePipe} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-course-page',
   standalone: true,
   imports: [
     PostCardComponent,
+    TranslatePipe,
   ],
   templateUrl: './course-page.component.html',
   styleUrl: './course-page.component.css'

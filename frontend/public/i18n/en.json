@@ -34,5 +34,6 @@
   "course_join": "Join course",
   "course_members": "Members",
   "course_results": "Results",
-  "course_search_header": "Search"
+  "course_search_header": "Search",
+  "course_description": "Description"
 }

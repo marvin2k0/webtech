@@ -9,7 +9,7 @@
     <app-post-card />
   </div>
   <div class="course-members-container">
-    <h2>Members</h2>
+    <h2>{{ "course_members" | translate }}</h2>
     <ul>
       @for (member of course.members; track member) {
         <li>{{ member }}</li>

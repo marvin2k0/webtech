@@ -21,7 +21,7 @@
           <!-- TODO check if user already in course -->
         </div>
         <div class="course-description">
-          <h4>Description</h4>
+          <h4>{{ "course_description" | translate }}</h4>
           <p>{{ course.description.length >= 250 ? (course.description | slice:0:250) + "..." : course.description }}</p>
         </div>
       </div>
