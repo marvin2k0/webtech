@@ -11,7 +11,9 @@
   <div class="course-members-container">
     <h2>Members</h2>
     <ul>
-      <li>Marvin</li>
+      @for (member of course.members; track member) {
+        <li>{{ member }}</li>
+      }
     </ul>
   </div>
 </div>
