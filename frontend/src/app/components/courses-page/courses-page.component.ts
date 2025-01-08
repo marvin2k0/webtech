@@ -7,6 +7,7 @@ import {TranslatePipe} from '@ngx-translate/core';
 import {BackgroundArtComponent} from '../background-art/background-art.component';
 import {SlicePipe} from '@angular/common';
 import {RouterLink} from '@angular/router';
+import {InputWithIconComponent} from '../input-with-icon/input-with-icon.component';
 
 @Component({
   selector: 'app-courses-page',
@@ -17,7 +18,8 @@ import {RouterLink} from '@angular/router';
     TranslatePipe,
     BackgroundArtComponent,
     SlicePipe,
-    RouterLink
+    RouterLink,
+    InputWithIconComponent
   ],
   templateUrl: './courses-page.component.html',
   styleUrl: './courses-page.component.css'
@@ -27,7 +29,13 @@ export class CoursesPageComponent {
   courses: CourseDetails[] = []
 
   ngOnInit() {
-    this.courseService.getAllCourses().subscribe(response => {
+    this.courseService.findCourses("").subscribe(response => {
+      this.courses = response.data
+    })
+  }
+
+  searchAndLoadCourses(query: string) {
+    this.courseService.findCourses(query).subscribe(response => {
       this.courses = response.data
     })
   }
