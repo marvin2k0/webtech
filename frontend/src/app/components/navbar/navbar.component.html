@@ -16,9 +16,24 @@
         <a routerLink="/signin" (click)="setLinkActive(-1)">{{ "sign_in_button" | translate }}</a>
         <cta-button routerLink="/signup" (click)="setLinkActive(-1)">{{ "sign_up_button" | translate }}</cta-button>
     } @else {
-      <p>Hallo, User</p>
-      <!-- @ToDo:   redesign ugly ass button -->
-      <cta-button (click)="toggleUploadModal()">ToDo: SVG Dateiupload</cta-button>
+
+      <span (click)="toggleUploadModal()" class="pointer">
+        <svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 15 15 35 21 35" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M25 35 31 35" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M28 38 28 32" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M15 15 25 15" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M25 15 28 17" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M28 17 28 28" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+
+      <span routerLink="userpofile" class="pointer">
+        <svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="25" cy="20" r="5" fill="none" stroke-width="2" stroke-linecap="round"/>
+          <path d="M15 35 Q25 25 35 35" fill="none" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </span>
     }
     </div>
   </div>
