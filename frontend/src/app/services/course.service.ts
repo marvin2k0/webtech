@@ -14,4 +14,8 @@ export class CourseService {
   findCourses(query: string): Observable<IRestResponse> {
     return this.http.get<IRestResponse>(`${this.baseUrl}?name=${query}&description=${query}`);
   }
+
+  findCourseById(id: string): Observable<IRestResponse> {
+    return this.http.get<IRestResponse>(`${this.baseUrl}/${id}`)
+  }
 }

@@ -26,6 +26,22 @@ export async function findCourse(req: Request, res: Response, next: NextFunction
     }
 }
 
+export async function findCourseById(req: Request, res: Response, next: NextFunction) {
+    try {
+        const id = req.params.courseId
+        const courseFound = await Course.findById(id);
+
+        if (!courseFound) {
+            throw new EntityNotFoundError("Course")
+        }
+
+        res.status(200)
+            .json(success(courseFound))
+    } catch (err: unknown) {
+        next(err)
+    }
+}
+
 export const createCourse = async (req: Request, res: Response, next: NextFunction) => {
     const {name, description} = req.body
 
