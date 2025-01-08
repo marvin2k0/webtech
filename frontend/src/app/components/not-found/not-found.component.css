@@ -1,0 +1,45 @@
+
+.error-section {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 16px;
+  color: black;
+}
+
+.error-container {
+  padding: 32px 24px;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.error-content {
+  margin: 0 auto;
+  max-width: 600px;
+  text-align: center;
+}
+
+.error-code {
+  margin-bottom: 16px;
+  font-size: 12rem;
+  font-weight: 800;
+  paint-order: stroke fill;
+  display: inline-block;
+  letter-spacing: -.22ch;
+  word-spacing: .3ch;
+  -webkit-text-stroke: 25px var(--primary);
+  -webkit-text-fill-color: white;
+}
+
+.error-title {
+  margin-bottom: 16px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #4a5568;
+}
+
+.error-description {
+  margin-bottom: 16px;
+}
