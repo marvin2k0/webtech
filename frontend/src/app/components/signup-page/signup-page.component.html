@@ -1,11 +1,9 @@
 <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
 <app-background-art/>
 <alert-box
-  *ngIf="!successful && modalShown"
   [modalHeader]="'Error'"
   [modalText]="errorMessage"
-  [confirmButtonText]="'Got it!'"
-  [onConfirmCallback]="handleConfirm">
+  [confirmButtonText]="'Got it!'">
 </alert-box>
 
 <div class="form-card-container">
