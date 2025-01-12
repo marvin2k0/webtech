@@ -1,1 +1,31 @@
-<app-post-card />
+<app-background-art />
+
+<div class="search-box-wrapper">
+  <h1>{{ "course_search_header" | translate }}</h1>
+  <div class="search-bar">
+    <input-with-icon (clickFunction)="searchAndLoadCourses($event)"/>
+  </div>
+  <div class="results">{{ courses.length }} {{ "course_results" | translate }}</div>
+</div>
+
+<div class="courses-wrapper">
+  @for (course of courses; track course._id) {
+    <card>
+      <div class="card-content">
+        <div class="course-cta">
+          <div class="course-headline">
+            <h3>{{ course.name }}</h3>
+            <span class="members-info">{{course.members.length}} {{ "course_members" | translate }}</span>
+          </div>
+
+          <!-- TODO check if user already in course -->
+        </div>
+        <div class="course-description">
+          <h4>{{ "course_description" | translate }}</h4>
+          <p>{{ course.description.length >= 250 ? (course.description | slice:0:250) + "..." : course.description }}</p>
+        </div>
+      </div>
+      <cta-button raised="false" type="wide" routerLink="/course/{{ course._id }}">{{ "course_join" | translate }}</cta-button>
+    </card>
+  }
+</div>
