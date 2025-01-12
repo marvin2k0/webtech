@@ -10,5 +10,6 @@ router.get("/", findCourse)
 router.post("/", createCourse)
 router.delete("/:courseName", authenticate, requireRole(UserRole.ADMIN), deleteCourse)
 router.get("/:courseId", findCourseById)
+router.post("/join/:courseId", authenticate, )
 
 export default router

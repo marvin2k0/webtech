@@ -3,6 +3,12 @@ import {success} from "../model/http/rest-response";
 import Course, {CourseDetails} from "../model/course.model";
 import {EntityNotFoundError} from "../error/entity.not.found.error";
 
+
+export async function joinCourse(req: Request, res: Response, next: NextFunction) {
+    const { } = req.body
+    // TODO
+}
+
 export async function findCourse(req: Request, res: Response, next: NextFunction) {
     const { name, description } = req.query;
     const attr = { name, description };

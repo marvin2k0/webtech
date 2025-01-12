@@ -88,11 +88,6 @@ export const deleteUser = async (req: any, res: Response, next: NextFunction) =>
     const username = req.params.username;
     const role = req.role;
 
-    if (role < UserRole.MODERATOR) {
-        res.status(403).json(error("Forbidden"));
-        return;
-    }
-
     try {
         // Replace with User.findOneAndDeleteOne if we want to return the user we just deleted!
         const isUserDeleted = await User.deleteOne({ username });
