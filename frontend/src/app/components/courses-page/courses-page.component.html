@@ -22,8 +22,11 @@
         </div>
         <div class="course-description">
           <h4>{{ "course_description" | translate }}</h4>
-          <p>{{ course.description.length >= 250 ? (course.description | slice:0:250) + "..." : course.description }}</p>
+          <p>{{ course.description.length >= 250 ? (course.description | slice:0:250).trim() + "..." : course.description }}</p>
         </div>
+      </div>
+      <div class="action-buttons">
+        <a routerLink="/course/{{ course._id }}" id="view-course">{{ "view_course" | translate }}</a>
       </div>
       <cta-button raised="false" type="wide" routerLink="/course/{{ course._id }}">{{ "course_join" | translate }}</cta-button>
     </card>

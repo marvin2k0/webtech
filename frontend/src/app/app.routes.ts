@@ -16,6 +16,7 @@ export const routes: Routes = [
   {path: 'courses', component: CoursesPageComponent},
   {path: 'course/:id', component: CoursePageComponent},
   {path: 'userprofile', component: UserProfilePageComponent, canActivate: [AuthGuard]},
-  { path: 'dashboard', component: DashboardPageComponent, canActivate: [AuthGuard] },
+  // { path: 'dashboard', component: DashboardPageComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard', component: CoursesPageComponent, canActivate: [AuthGuard] },
   {path: '**', component: NotFoundComponent}
 ];
