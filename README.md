@@ -124,9 +124,7 @@ Get the latest npm version
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Once you started the project you can open up a web browser and go to the domain you specified (default is http://localhost:4200/).
-You will be greeted by the landing page. Firstly you will have to create an account. Do that by pressing on the top right button "Sign up".
-The rest will be clear from there on
+After starting the project, open a web browser and navigate to the specified domain (by default, it's http://localhost:4200/). You'll be greeted by the landing page. To get started, create an account by clicking the "Sign Up" button in the top-right corner. The process from there is straightforward!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
