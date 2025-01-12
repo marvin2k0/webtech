@@ -166,9 +166,7 @@ Project Link: [https://github.com/marvin2k0/webtech](https://github.com/marvin2k
 [issues-url]: https://github.com/marvin2k0/webtech/issues
 [license-shield]: https://img.shields.io/github/license/marvin2k0/webtech.svg?style=for-the-badge
 [license-url]: https://github.com/marvin2k0/webtech/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: images/landing-page.png
+[product-screenshot]: ./screenshot.png
 [MongoDB]: https://img.shields.io/badge/-MongoDB-13aa52?style=for-the-badge&logo=mongodb&logoColor=white
 [MongoDB-url]: https://mongodb.com/
 [Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
