@@ -243,3 +243,9 @@ input[type="checkbox"]:checked::after {
   transform: translate(-50%, -50%);
   line-height: 1;
 }
+
+@media only screen and (max-width: 500px) {
+  .main-content {
+    margin-inline: 1rem;
+  }
+}
