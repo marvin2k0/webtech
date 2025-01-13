@@ -188,9 +188,9 @@ textarea:focus {
 
 
 .search-box-wrapper {
-  width: fit-content;
   margin-bottom: 5rem;
   margin-inline: auto;
+  max-width: 45rem;
 }
 
 h1 {
