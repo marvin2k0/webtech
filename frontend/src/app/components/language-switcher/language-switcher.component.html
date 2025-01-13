@@ -1,13 +1,3 @@
-<!-- Ja ich weiß, sieht hässlich aus. Ist aber nur fürs testen... :) -->
-<!--
-<div class="language-switcher">
-  @for (language of languages; track language.code) {
-    <button (click)="changeLanguage(language.code)">{{ language.name }}</button>
-  }
-</div>
--->
-
-<!-- Might use a div instead to have full control over design, but this was the fastest way to go, so... -->
 <div class="language-switcher-2">
   <select (change)="onLanguageChange($event)" #languageSwitcher>
     <option *ngFor="let language of languages" [value]="language.code" >
