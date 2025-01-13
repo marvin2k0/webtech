@@ -1,1 +1,44 @@
-/* Styling */
+.card-container {
+  margin: 0 auto;
+}
+
+.card-content {
+  padding: 1rem;
+}
+
+.button-aligner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.form-element {
+  margin-bottom: 1rem;
+}
+
+.form-element label {
+  font-size: 1rem;
+}
+
+.inner-card {
+  background: var(--middle-light-gray);
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.icon-container {
+  width: 100%;
+}
+
+.icon-container svg {
+  height: 1rem;
+  stroke-width: 0.3rem;
+}
+
+.wide-button {
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+}
