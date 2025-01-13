@@ -51,13 +51,6 @@ textarea:focus {
   border: 1px solid var(--primary);
 }
 
-.pdf-container {
-  flex: 4;
-  background: #4a5568;
-  height: 100vh;
-  z-index: 999;
-}
-
 .num-container {
   display: flex;
   gap: 1rem;
@@ -133,3 +126,37 @@ textarea:focus {
   height: 20px;
   margin-right: 10px;
 }
+
+.pdf-container {
+  flex: 4;
+  height: 110vh;
+  z-index: 999;
+  padding: 0;
+}
+
+.pdf-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  margin: 0;
+  padding: 0;
+}
+
+.edit-mode-btn {
+  position: fixed;
+  top: calc(100vh - 100px);
+  left: calc(100vw - 100px);
+  border: 1px solid var(--gray) !important;
+  border-radius: var(--border-radius-xs);
+  box-shadow: var(--shadow-xs);
+  padding: 10px;
+}
+
+.edit-mode-btn path {
+  fill: none;
+  stroke: var(--foreground);
+  stroke-width: 2px;
+}
+
+

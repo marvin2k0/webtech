@@ -20,25 +20,32 @@ import mime from "mime";
  * @param next
  */
 export async function findFile(req: express.Request, res: express.Response, next: express.NextFunction) {
-    const { course, rndFilename, uploadedAt, uploadedBy, visibility, filename } = req.body;
-    const attr = { course, rndFilename, uploadedAt, uploadedBy, visibility, filename };
 
-    let searchParams: { [key: string]: any } = { };
-    for (let key in attr) {
-        // @ts-ignore
-        if (typeof attr[key] !== "undefined" && attr[key] !== null) {
-            // @ts-ignore
-            searchParams[key] = attr[key];
-        }
-    }
+    const files = await File.find({});
+    logger.error("Files: " + files)
+    res.status(200).send(success({ files }));
 
-    try {
-        const files = await File.find(searchParams);
-        res.status(200).send(success({ files }));
-    } catch (error) {
-        console.error("Error fetching files:", error);
-        next(error);
-    }
+    return;
+    //
+    // const { course, rndFilename, uploadedAt, uploadedBy, visibility, filename } = req.body;
+    // const attr = { course, rndFilename, uploadedAt, uploadedBy, visibility, filename };
+    //
+    // let searchParams: { [key: string]: any } = { };
+    // for (let key in attr) {
+    //     // @ts-ignore
+    //     if (typeof attr[key] !== "undefined" && attr[key] !== null) {
+    //         // @ts-ignore
+    //         searchParams[key] = attr[key];
+    //     }
+    // }
+    //
+    // try {
+    //     const files = await File.find(searchParams);
+    //     res.status(200).send(success({ files }));
+    // } catch (error) {
+    //     console.error("Error fetching files:", error);
+    //     next(error);
+    // }
 }
 
 export async function getFile(req: any, res: any, next: NextFunction) {

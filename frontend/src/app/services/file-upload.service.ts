@@ -14,9 +14,6 @@ export class FileUploadService {
 
   upload(params: any): Observable<any> | undefined {
 
-    console.log("Enter Upload..")
-    console.error("parameters", JSON.stringify(params));
-
     if (!params.filename) {
       return ;
     }
@@ -43,12 +40,28 @@ export class FileUploadService {
     // @ToDo:   Implement.
   }
 
-  find(params: Object): Observable<any> | undefined {
+  find(query: string): Observable<IRestResponse> {
+    const options = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${localStorage.getItem("accessToken")}`
+      }),
+    }
 
-    console.log("Enter Find files with params", JSON.stringify(params));
-
-    const options = {}
-
-    return ;
+    // @ToDo: suche erweitern
+    return this.http.get<IRestResponse>(`${this.baseUrl}/find?rndFilename=${query}`, options);
   }
+
+  retrieve(rndFilename: string): Observable<any> {
+    const options = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${localStorage.getItem("accessToken")}`
+      }),
+      responseType: 'blob' as 'json'
+    };
+
+    console.error("Looking for file", rndFilename);
+
+    return this.http.get(`${this.baseUrl}/${rndFilename}`, options);
+  }
+
 }
