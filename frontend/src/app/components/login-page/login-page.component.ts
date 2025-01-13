@@ -42,7 +42,7 @@ export class LoginPageComponent {
   constructor(private router: Router, private modalService: ModalService) { }
 
   ngOnInit(): void {
-    if (this.userService.getIsLoggedIn()) localStorage.removeItem("accessToken");
+    if (this.userService.isLoggedIn()) localStorage.removeItem("accessToken");
   }
 
   onSubmit(): void {

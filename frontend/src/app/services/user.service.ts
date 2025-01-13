@@ -19,9 +19,11 @@ export class UserService {
     return this.http.post(`${this.baseUrl}/login`, {username, password})
   }
 
-  getIsLoggedIn(): boolean {
-
-    return !!localStorage.getItem('accessToken');
+  getToken() {
+    return localStorage.getItem("accessToken");
   }
 
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('accessToken');
+  }
 }

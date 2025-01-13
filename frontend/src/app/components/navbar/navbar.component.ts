@@ -42,7 +42,7 @@ export class NavbarComponent {
   }
 
   isLoggedIn() {
-    return this.userService.getIsLoggedIn();
+    return this.userService.isLoggedIn();
   }
 
 }
