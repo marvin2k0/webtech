@@ -9,6 +9,7 @@ import {ButtonComponent} from '../button/button.component';
 import {CardComponent} from '../card/card.component';
 import {BackgroundArtComponent} from '../background-art/background-art.component';
 import {TranslatePipe} from '@ngx-translate/core';
+import {ModalService} from '../../services/modal.service';
 
 @Component({
   selector: 'app-login-page',
@@ -36,22 +37,23 @@ export class LoginPageComponent {
   password: string = ""
 
   isLoading: boolean = false;
-  modalShown: boolean = false;
   errorMessage: string = "";
 
-  handleConfirm = () => {
-    this.modalShown = false;
+  constructor(private router: Router, private modalService: ModalService) { }
+
+  ngOnInit(): void {
+    if (this.userService.getIsLoggedIn()) localStorage.removeItem("accessToken");
   }
 
-  constructor(private router: Router) { }
-
   onSubmit(): void {
+
+    // @ToDo:   Code is nested. Dont like that.
     this.isLoading = true;
 
     this.userService.login(this.username, this.password).subscribe({
       next: (response) => {
         if ("message" in response) {
-          this.modalShown = true;
+          this.modalService.openModal();
           this.errorMessage = response.message;
           console.error("Error occurred while trying to log in", response.message);
 
@@ -70,7 +72,7 @@ export class LoginPageComponent {
       error: (err) => {
         console.error("Login request failed", err);
         this.isLoading = false;
-        this.modalShown = true;
+        this.modalService.openModal();
 
         let errorMessage: string = "";
         if (err.message.includes("401")) {

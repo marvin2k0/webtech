@@ -1,0 +1,162 @@
+.files-page {
+  display: flex;
+  gap: 2rem;
+}
+
+.side-panel-card-container {
+  position: sticky;
+  z-index: 999;
+  margin-block-end: 3rem;
+  flex: 1;
+}
+
+.filter-container {
+  display: flex;
+  flex-direction: column;
+  height: calc(90vh - 110px);
+}
+
+label {
+  margin-block-start: 1rem;
+  margin-block-end: .5rem;
+}
+
+input {
+  width: 100%;
+  padding: .5rem;
+  border: 1px solid gray;
+  border-radius: var(--border-radius-xs);
+  background: var(--card-gradient);
+  transition: .3s;
+}
+
+input:focus {
+  outline: none;
+  border: 1px solid var(--primary);
+}
+
+textarea {
+  width: 100%;
+  height: 10%;
+  padding: .5rem;
+  border: 1px solid gray;
+  border-radius: var(--border-radius-xs);
+  background: var(--card-gradient);
+  transition: .3s;
+  resize: none;
+}
+
+textarea:focus {
+  outline: none;
+  border: 1px solid var(--primary);
+}
+
+.num-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.tools {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: var(--background);
+  border: 1px solid gray;
+  border-radius: var(--border-radius);
+  width: 50%;
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  justify-content: space-evenly;
+}
+
+.tool-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tool-item button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tool-item img {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 0.5rem;
+}
+
+.tool-item span {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.tool-item button:hover span {
+  color: var(--primary);
+}
+
+.bookmark-button {
+  margin-block-start: 100%;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  color: var(--foreground);
+  border: none;
+  border-radius: var(--border-radius-xs);
+  padding-block: 20px;
+  margin-top: auto;
+  cursor: pointer;
+}
+
+.bookmark-button .icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.pdf-container {
+  flex: 4;
+  height: 110vh;
+  z-index: 999;
+  padding: 0;
+}
+
+.pdf-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  margin: 0;
+  padding: 0;
+}
+
+.edit-mode-btn {
+  position: fixed;
+  top: calc(100vh - 100px);
+  left: calc(100vw - 100px);
+  border: 1px solid var(--gray) !important;
+  border-radius: var(--border-radius-xs);
+  box-shadow: var(--shadow-xs);
+  padding: 10px;
+}
+
+.edit-mode-btn path {
+  fill: none;
+  stroke: var(--foreground);
+  stroke-width: 2px;
+}
+
+

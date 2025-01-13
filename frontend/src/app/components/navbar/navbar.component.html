@@ -10,15 +10,38 @@
   </div>
 
   <div>
-    @if (!loggedIn) {
-      <div class="user-actions">
+    <div class="user-actions">
+
+    @if (!isLoggedIn()) {
         <a routerLink="/signin" (click)="setLinkActive(-1)">{{ "sign_in_button" | translate }}</a>
         <cta-button routerLink="/signup" (click)="setLinkActive(-1)">{{ "sign_up_button" | translate }}</cta-button>
-      </div>
     } @else {
-      <p>Hallo, User</p>
+
+      <span (click)="toggleUploadModal()" class="pointer">
+        <svg width="40" height="40" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 15 15 35 21 35" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M25 35 31 35" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M28 38 28 32" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M15 15 25 15" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M25 15 28 17" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M28 17 28 28" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M18 19 23 19 M18 23 25 23 M18 27 24 27" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+        </svg>
+      </span>
+
+      <span routerLink="userprofile" class="pointer">
+        <svg width="40" height="40" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="25" cy="20" r="5" fill="none" stroke-width="2" stroke-linecap="round"/>
+          <path d="M15 35 Q25 25 35 35" fill="none" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </span>
     }
+    </div>
   </div>
 </nav>
 
+@if (isLoggedIn()) {
+  <app-file-upload></app-file-upload>
+}
 

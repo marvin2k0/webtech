@@ -17,4 +17,10 @@ export class UserService {
   login(username: string, password: string): Observable<any> {
     return this.http.post(`${this.baseUrl}/login`, {username, password})
   }
+
+  getIsLoggedIn(): boolean {
+
+    return !!localStorage.getItem('accessToken');
+  }
+
 }

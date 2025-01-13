@@ -4,6 +4,8 @@ import {logger} from "../utils/Logger";
 import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
 import {error, success} from "../model/http/rest-response";
+import {EntityNotFoundError} from "../error/entity.not.found.error";
+import {ConflictError} from "../error/conflict.error";
 
 /**
  * Used to obtain a fresh jwt token for the received user. Token is only provided when password matches
@@ -115,8 +117,15 @@ export const createUser = async (req: Request, res: Response, next: NextFunction
     const { username, email, password } = req.body;
 
     try {
+
+        const existingUser = await User.findOne({ username });
+
+        logger.error(existingUser);
+        if (existingUser) {
+            throw new ConflictError("Username is already taken");
+        }
+
         const passwordHash = await bcrypt.hash(password, 15)
-        logger.debug(passwordHash)
         const user = new User({ username, email, passwordHash });
         await user.save();
         res.status(200).json(success("Success"));

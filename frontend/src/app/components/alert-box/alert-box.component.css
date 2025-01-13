@@ -12,7 +12,7 @@
 }
 
 .modal {
-  background: white;
+  background: var(--background);
   padding: 20px;
   border-radius: 5px;
   width: 300px;
@@ -42,20 +42,20 @@
   width: fit-content;
   padding-block: calc(.5rem - 1px);
   padding-inline: 1rem;
-  color: var(--primary-color);
+  color: var(--primary);
   cursor: pointer;
   transition-duration: .2s;
 }
 
 .modal-confirm-btn {
-  background-color: var(--accent-color);
+  background-color: var(--primary);
   box-shadow: var(--shadow-color) 0px 4px 12px;
   width: fit-content;
   padding-block: calc(.5rem - 1px);
   padding-inline: 1rem;
-  border: 1px solid var(--accent-color);
+  border: 1px solid var(--shadow-color);
   border-radius: .5rem;
-  color: var(--text-primary-color);
+  color: var(--foreground);
   cursor: pointer;
   transition-duration: .2s;
   font-weight: 600;
@@ -63,7 +63,7 @@
 }
 
 .modal-confirm-btn:hover {
-  background-color: var(--complementary-color);
+  background-color: var(--dark-primary);
 }
 
 .spacer {
@@ -74,13 +74,16 @@
   .modal-container {
     background: rgba(175, 175, 175, .1);
   }
+}
 
-  .modal {
-    background: var(--primary-color);
-    color: white;
-  }
+.inactive {
+  background-color: #c3c3c3;
+  border: 1px solid #c3c3c3;
+  color: #303030;
+  cursor: default;
+  box-shadow: none;
+}
 
-  .modal-deny-btn {
-    color: white;
-  }
+.inactive:hover {
+  background-color: #c3c3c3;
 }

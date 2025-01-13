@@ -9,6 +9,7 @@ import {LoadingSpinnerComponent} from '../loading-spinner/loading-spinner.compon
 import {BackgroundArtComponent} from '../background-art/background-art.component';
 import {CardComponent} from '../card/card.component';
 import {ButtonComponent} from '../button/button.component';
+import {ModalService} from '../../services/modal.service';
 
 @Component({
   selector: 'app-signup-page',
@@ -30,6 +31,7 @@ import {ButtonComponent} from '../button/button.component';
 })
 export class SignupPageComponent {
   private userService: UserService = inject(UserService)
+  private modalService: ModalService = inject(ModalService);
   private router: Router = inject(Router)
   successful = true
   errorMessage = ""
@@ -44,9 +46,6 @@ export class SignupPageComponent {
     acceptTos: new FormControl(false, Validators.required)
   })
 
-  handleConfirm = () => {
-    this.toggleModal();
-  };
 
   toggleModal = () => this.modalShown = !this.modalShown;
 
@@ -55,25 +54,31 @@ export class SignupPageComponent {
 
     if (password !== passwordConfirm) {
       this.successful = false
-      this.toggleModal();
+      this.modalService.openModal();
       this.errorMessage = "Passwords must match!"
       return ;
     }
 
     this.isLoading = true;
-    this.userService.register(username!, email!, password!).subscribe(response => {
+    this.userService.register(username!, email!, password!).subscribe({
+      next: (response) => {
+        if (response.successful) {
+          this.router.navigateByUrl("/signin")
+            .then(() => console.log("Successfully registered"))
+        }
+        else {
+          this.errorMessage = response.message;
+          this.modalService.openModal();
+        }
+        this.isLoading = false;
+      },
+      error: (err) => {
+        this.modalService.openModal();
+        this.errorMessage = err.error.message;
+        this.isLoading = false;
+        console.log(err.error)
+      },
 
-      if (response.successful) {
-        this.router.navigateByUrl("/signin")
-          .then(() => console.log("Successfully registered"))
-      } else {
-        this.successful = false
-        this.toggleModal();
-        this.errorMessage = response.message
-      }
-
-      // TODO @Deans coole ladeanimation einfügen, wenn sie fertig ist
-      this.isLoading = false;
     })
 
   }

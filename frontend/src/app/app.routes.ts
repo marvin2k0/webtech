@@ -8,6 +8,7 @@ import {DashboardPageComponent} from './components/dashboard-page/dashboard-page
 import {AuthGuard} from './guards/auth.guard'
 import {CoursesPageComponent} from './components/courses-page/courses-page.component';
 import {CoursePageComponent} from './components/course-page/course-page.component';
+import {FilePageComponent} from './components/file-page/file-page.component';
 
 export const routes: Routes = [
   {path: '', component: LandingPageComponent},
@@ -18,5 +19,6 @@ export const routes: Routes = [
   {path: 'userprofile', component: UserProfilePageComponent, canActivate: [AuthGuard]},
   // { path: 'dashboard', component: DashboardPageComponent, canActivate: [AuthGuard] },
   { path: 'dashboard', component: CoursesPageComponent, canActivate: [AuthGuard] },
+  { path: 'files', component: FilePageComponent, canActivate: [AuthGuard] },
   {path: '**', component: NotFoundComponent}
 ];

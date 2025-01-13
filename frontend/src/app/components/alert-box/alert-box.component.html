@@ -1,10 +1,26 @@
-<div class="modal-container">
+<div
+  class="modal-container"
+  role="dialog"
+  aria-labelledby="modal-header"
+  aria-describedby="modal-text"
+  *ngIf="modalService.modalVisibility$ | async">
   <div class="modal">
-    <div class="modal-hd">{{ modalHeader }}</div>
-    <div class="modal-txt">{{ modalText }}</div>
+    <div class="modal-hd" id="modal-header">{{ modalHeader }}</div>
+    <div class="modal-txt" id="modal-text">{{ modalText }}</div>
+
     <div class="modal-btns">
-      <div *ngIf="canDeny()" class="modal-deny-btn" (click)="onDeny()">{{ denyButtonText }}</div>
-      <div class="modal-confirm-btn" (click)="onConfirm()">{{ confirmButtonText }}</div>
+      <div
+        *ngIf="canDeny()"
+        class="modal-deny-btn"
+        (click)="onDeny()">
+        {{ denyButtonText }}
+      </div>
+      <div
+        class="modal-confirm-btn"
+        [class.inactive]="!canConfirm"
+        (click)="onConfirm()">
+        {{ confirmButtonText }}
+      </div>
     </div>
   </div>
 </div>

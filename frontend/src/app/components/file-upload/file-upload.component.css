@@ -1,0 +1,365 @@
+.upload-area {
+  height: 5rem;
+  width: 100%;
+  border: 2px dashed var(--middle-light-gray);
+  border-radius: 8px;
+  margin-bottom: .75rem;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  gap: 10px;
+  transition-duration: .3s;
+}
+
+.upload-area.dragover {
+  border-color: var(--dark-primary);
+}
+
+.upload-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--dark-primary);
+}
+
+.upload-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.upload-area p {
+  color: gray;
+  margin: 0;
+}
+
+.upload-area label {
+  color: var(--dark-primary);
+  border-radius: 5px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.upload-area input[type=file] {
+  display: none;
+}
+
+.file-details {
+  color: gray;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.stepper-timeline {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+  margin-block: 1rem;
+  color: gray;
+}
+
+.active {
+  color: var(--dark-primary);
+}
+
+.step {
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--middle-light-gray);
+  margin-bottom: 10px;
+  transition: background-color 0.3s;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.current {
+  background-color: var(--dark-primary);
+  color: var(--light);
+}
+
+/* this is just awkward */
+.step:after {
+  content: '';
+  position: relative;
+  top: 70%;
+  left: 100%;
+  width: 57px;
+  height: 2px;
+  background-color: var(--middle-light-gray);
+  transform: translateY(-4000%);
+  z-index: 1;
+}
+
+.step:nth-child(2):after {
+  content: '';
+  position: relative;
+  top: 70%;
+  left: calc(100% - 18px);
+  width: 53px;
+  height: 2px;
+  background-color: var(--middle-light-gray);
+  transform: translateY(-4000%);
+  z-index: 1;
+}
+
+.step:last-child:after {
+  display: none;
+}
+
+.step p {
+  margin: 0;
+}
+
+.delete-file {
+  margin-inline-start: 10px;
+  background: transparent;
+  border: none;
+}
+
+.delete-file-icon {
+  fill: red;
+}
+
+.details-container {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  width: 100%;
+}
+
+.details-container label {
+  margin-block-end: -.5rem;
+}
+
+.details-container textarea {
+  width: 100%;
+  height: 80px;
+  resize: none;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid var(--middle-gray);
+  background-color: var(--background);
+  border-radius: 4px;
+  transition: border-color 0.3s;
+}
+
+.details-container textarea:focus {
+  border-color: var(--dark-primary);
+  outline: none;
+}
+
+.details-container select {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid var(--middle-gray);
+  background-color: var(--background);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: border-color 0.3s;
+  appearance: none;
+}
+
+.details-container select:focus {
+  border-color: var(--dark-primary);
+  outline: none;
+}
+
+.details-container select option {
+  padding: 0.5rem;
+}
+
+.details-container select:last-child {
+  margin-block-end: 1rem;
+}
+
+.file-success-hd {
+  font-size: 1.3rem;
+}
+
+.file-link {
+  color: var(--dark-primary);
+  cursor: pointer;
+  margin-block-end: 1rem;
+}
+
+/* Modal design for file upload */
+.modal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.modal {
+  background: var(--background);
+  padding: 20px;
+  border-radius: var(--border-radius-xs);
+  width: 300px;
+}
+
+.modal-hd {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: .8em;
+  cursor: pointer;
+  color: var(--middle-gray);
+  transition: color .3s;
+}
+
+.close-btn:hover {
+  color: var(--middle-light-gray);
+}
+
+.modal-txt {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.modal-btns {
+  display: flex;
+  justify-content: end;
+  gap: .75rem;
+  align-items: center;
+  width: 100%;
+}
+
+.modal-deny-btn {
+  background-color: transparent;
+  width: fit-content;
+  padding-block: calc(.5rem - 1px);
+  padding-inline: 1rem;
+  cursor: pointer;
+  transition-duration: .2s;
+  color: gray;
+}
+
+.modal-deny-btn:hover {
+  color: black;
+}
+
+.modal-confirm-btn {
+  background-color: var(--primary);
+  box-shadow: var(--shadow-color) 0px 4px 12px;
+  color: var(--light);
+  width: fit-content;
+  padding-block: calc(.5rem - 1px);
+  padding-inline: 1rem;
+  border: 1px solid var(--primary);
+  border-radius: .5rem;
+  cursor: pointer;
+  transition-duration: .2s;
+  font-weight: 600;
+  font-size: .875rem;
+}
+
+.modal-confirm-btn:hover {
+  background-color: var(--dark-primary);
+}
+
+.spacer {
+  flex-grow: 1;
+}
+
+.inactive {
+  background-color: var(--middle-light-gray);
+  border: 1px solid var(--middle-light-gray);
+  cursor: not-allowed;
+  box-shadow: none;
+  color: var(--faded-gray);
+}
+
+.inactive:hover {
+  background-color: var(--middle-light-gray);
+}
+
+.filename {
+  flex: 2;
+  overflow: hidden;
+}
+
+.filesize {
+  flex: 1;
+}
+
+
+@media (prefers-color-scheme: dark) {
+  .inactive, .circle {
+    background-color: var(--middle-gray);
+    border: 1px solid var(--middle-gray);
+  }
+
+  .inactive:hover {
+    background-color: var(--middle-gray);
+  }
+
+  p, label {
+    color: gray;
+  }
+
+  .modal-deny-btn:hover {
+    color: var(--middle-light-gray);
+  }
+
+  .current {
+    background-color: var(--dark-primary);
+    color: var(--light);
+  }
+
+  .step:after, .step:nth-child(2):after {
+    background-color: var(--middle-gray);
+  }
+
+  .modal-container {
+    background-color: rgba(120, 120, 120, 0.25);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+  }
+
+  .upload-area {
+    border-color: gray;
+  }
+}
+
+.show-anim {
+  opacity: 1;
+  animation: fade-in-animation .3s;
+}
+
+@keyframes fade-in-animation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -1,4 +1,5 @@
 import {Schema, model} from "mongoose";
+import {VisibilityTypes} from "./file.model";
 
 export const EMPTY_USER: UserDetails = {
     username: "",

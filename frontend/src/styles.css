@@ -44,6 +44,13 @@
   --background: var(--light);
   --input-bg: var(--light-accent);
   --input-border: var(--middle-light-gray);
+
+  /* GRADIENTS */
+  --card-gradient: linear-gradient(to bottom right, var(--light-light-light-gray) 0%, var(--light-light-gray) 100%);
+  --background-art-gradient: linear-gradient(to top right, #ff80b5 0%, #9089fc 100%);
+
+  /* SHADOWS */
+  --shadow-xs: 1px 10px 8px 4px rgba(0, 0, 0, 0.1);
 }
 
 @media (prefers-color-scheme: dark) {

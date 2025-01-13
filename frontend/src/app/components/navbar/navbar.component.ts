@@ -3,6 +3,9 @@ import {Router, RouterLink} from '@angular/router';
 import {TranslatePipe} from '@ngx-translate/core';
 import {ButtonComponent} from '../button/button.component';
 import {NgClass} from '@angular/common';
+import {UploadModalService} from '../../services/uplaod-modal.service';
+import {UserService} from '../../services/user.service';
+import {FileUploadComponent} from '../file-upload/file-upload.component';
 
 @Component({
   selector: 'app-navbar',
@@ -11,13 +14,13 @@ import {NgClass} from '@angular/common';
     RouterLink,
     TranslatePipe,
     ButtonComponent,
-    NgClass
+    NgClass,
+    FileUploadComponent
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  loggedIn: boolean = false
   router: Router = inject(Router)
 
   links = [
@@ -31,4 +34,15 @@ export class NavbarComponent {
   setLinkActive(link: number) {
     this.activeLink = link
   }
+
+  constructor(private uploadModalService: UploadModalService, private userService: UserService) { }
+
+  toggleUploadModal() {
+    this.uploadModalService.toggleModal();
+  }
+
+  isLoggedIn() {
+    return this.userService.getIsLoggedIn();
+  }
+
 }
