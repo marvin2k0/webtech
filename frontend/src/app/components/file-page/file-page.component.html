@@ -3,86 +3,22 @@
 <!-- The search bar -->
 
 <!-- Displays the files that have been found based on the search -->
-<div class="files-container" *ngIf="!fileSelected">
+<div class="files-container">
   @for (fileFound of filesFound; track fileFound._id) {
-    <card>
-      <h3>{{fileFound.filename}}</h3>
-      <p>{{fileFound.description}}</p>
-      <cta-button (click)="getFile(fileFound.rndFilename)">View File</cta-button>
-    </card>
+        <card>
+            <div class="file">
+                <div class="file-headline">
+                    <h3>{{ fileFound.filename }}</h3>
+                    <span class="download-info">0 Downloads</span>
+                </div>
+              <p>{{ fileFound.description.length >= 75 ? (fileFound.description | slice:0:75).trim() + "..." : fileFound.description }}</p>
+              <cta-button [routerLink]="['/files/read']" [queryParams]="{ filename: fileFound.rndFilename }" type="wide">View File</cta-button>
+            </div>
+        </card>
   } @empty {
-    <p>Oh no! There are no files!</p>
-  }
-</div>
-
-<div class="files-page" *ngIf="fileSelected">
-
-  <!-- Currently using this as spacer -->
-  <div class="side-panel-card-container" *ngIf="!readingMode"></div>
-
-  <div class="pdf-container" id="pdf-container">
-    <object *ngIf="file" [data]="file" class="pdf-iframe">
-      <h2>Oh no!</h2>
-      <p>Looks like your browser does not support displaying PDFs</p>
-      <a>Download PDF instead</a>
-    </object>
-    <span *ngIf="fileSelected && !file">
-      <h2>Oh no!</h2>
-      <p>The file youre looking for does not exist!</p>
+    <span>
+        <h2>Oh no! Looks like there are no files :(</h2>
+        <p><span (click)="true" style="color: var(--primary); cursor: pointer">Upload a file</span> and be the first one to Contribute</p>
     </span>
-  </div>
-
-  <!-- sidebar right (comments etc.) -->
-  <div class="side-panel-card-container" *ngIf="file && !readingMode">
-    <card>
-      <div class="filter-container">
-        <h2>Comments</h2>
-      </div>
-    </card>
-  </div>
-</div>
-
-<div class="tools" *ngIf="file && !readingMode">
-  <div class="tool-item" title="Highlight Text">
-    <button>
-      <!-- @ToDo: Add SVGs -->
-      <svg width="40" height="40" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"></svg>
-      <span>Highlight</span>
-    </button>
-  </div>
-  <div class="tool-item" title="Add Comment">
-    <button>
-      <svg width="40" height="40" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"></svg>
-      <span>Comment</span>
-    </button>
-  </div>
-  <div class="tool-item" title="Draw Markings">
-    <button>
-      <svg width="40" height="40" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"></svg>
-      <span>Draw</span>
-    </button>
-  </div>
-  <div class="tool-item" title="Erase Markings">
-    <button>
-      <svg width="40" height="40" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"></svg>
-      <span>Erase</span>
-    </button>
-  </div>
-  <div class="tool-item" title="Reading Mode">
-    <button (click)="toggleReadingMode()">
-      <svg width="40" height="40" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"></svg>
-      <span>Read</span>
-    </button>
-  </div>
-</div>
-
-<div class="tool-item">
-  <button (click)="toggleReadingMode()" *ngIf="file && readingMode" class="edit-mode-btn">
-    <svg width="40" height="40" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
-      <path d="M17 32, 15 25, 25 9, 35 15, 25 30, 17 32, m20 20" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
-      <path d="M15 24, 25 30"></path>
-      <path d="M17 37 Q 20 35, 25 40 Q 30 45, 35 40"/>
-    </svg>
-    <span>Edit</span>
-  </button>
+  }
 </div>

@@ -185,3 +185,8 @@ textarea:focus {
   color: var(--faded-gray);
   font-size: 0.75rem;
 }
+
+.image-container img {
+  flex: 1;
+  max-width: 70vw;
+}
