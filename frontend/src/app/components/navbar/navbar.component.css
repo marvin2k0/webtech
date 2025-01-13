@@ -37,3 +37,9 @@ li a.active {
 span path, span circle {
   stroke: var(--foreground);
 }
+
+@media only screen and (max-width: 950px) {
+  nav ul {
+    display: none;
+  }
+}
