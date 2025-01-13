@@ -2,12 +2,13 @@ import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import { IRestResponse } from '../model/http/rest-response';
+import {environment} from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private baseUrl: string = "http://localhost:8080/users"
+  private baseUrl: string = `${environment.baseUrl}/users`
   private http: HttpClient = inject(HttpClient)
 
   register(username: string, email: string, password: string) {

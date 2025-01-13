@@ -2,6 +2,7 @@ import {inject, Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import { IRestResponse } from '../model/http/rest-response';
+import {environment} from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { IRestResponse } from '../model/http/rest-response';
 
 // @ToDo:   Rename to FileService
 export class FileUploadService {
-  private baseUrl: string = "http://localhost:8080/files"
+  private baseUrl: string = `${environment.baseUrl}/files`
   private http: HttpClient = inject(HttpClient)
 
   upload(params: any): Observable<any> | undefined {

@@ -2,12 +2,13 @@ import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {IRestResponse} from '../model/http/rest-response';
+import {environment} from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CourseService {
-  private baseUrl: string = "http://localhost:8080/course"
+  private baseUrl: string = `${environment.baseUrl}/course`
 
   http: HttpClient = inject(HttpClient)
 
