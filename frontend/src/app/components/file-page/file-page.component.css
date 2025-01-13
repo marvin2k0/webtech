@@ -185,3 +185,28 @@ textarea:focus {
   color: var(--faded-gray);
   font-size: 0.75rem;
 }
+
+
+.search-box-wrapper {
+  width: fit-content;
+  margin-bottom: 5rem;
+  margin-inline: auto;
+}
+
+h1 {
+  margin-bottom: 2.5rem;
+  font-size: 5rem;
+  text-align: center;
+}
+
+.search-bar {
+  width: 45rem;
+  align-self: center;
+}
+
+.results {
+  color: var(--foreground-accent);
+  font-size: .8rem;
+  margin-top: 1rem;
+  text-align: center;
+}

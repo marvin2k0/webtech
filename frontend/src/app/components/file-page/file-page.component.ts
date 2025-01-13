@@ -7,6 +7,8 @@ import {FileDetails} from '../../model/file.model';
 import {BackgroundArtComponent} from '../background-art/background-art.component';
 import {ButtonComponent} from '../button/button.component';
 import {RouterLink} from "@angular/router";
+import {InputWithIconComponent} from "../input-with-icon/input-with-icon.component";
+import {TranslatePipe} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-file-page',
@@ -16,7 +18,9 @@ import {RouterLink} from "@angular/router";
     BackgroundArtComponent,
     ButtonComponent,
     SlicePipe,
-    RouterLink
+    RouterLink,
+    InputWithIconComponent,
+    TranslatePipe
   ],
   templateUrl: './file-page.component.html',
   styleUrls: ['./file-page.component.css']
