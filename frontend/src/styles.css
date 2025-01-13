@@ -27,13 +27,18 @@
   --light-light-gray: #F2F2F2;
   --light-light-light-gray: #FBF9F9;
 
+  /* GRADIENTS */
+  --gray-gradient: linear-gradient(to bottom right, var(--light-light-light-gray) 0%, var(--light-light-gray) 100%);
+  --dark-gradient: linear-gradient(to bottom right, var(--gray) 0%, var(--dark-gray) 100%);
+  --background-art-gradient: linear-gradient(to top right, #ff80b5 0%, #9089fc 100%);
+
   /* STYLES */
   --dark-primary: var(--dark-purple);
   --primary: var(--purple);
   --light-primary: var(--faded-purple);
   --dark-accent: var(--dark-gray);
   --light-accent: var(--accent-gray);
-  --card-bg: var(--light-gray);
+  --card-bg: var(--light);
   --foreground: var(--dark);
   --foreground-accent: var(--faded-gray);
   --background: var(--light);
@@ -51,11 +56,10 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --shadow-color: var(--pure-black);
-    --card-bg: var(--dark-accent);
+    --card-bg: var(--dark-gradient);
     --foreground: var(--light);
     --foreground-accent: var(--light-accent);
     --background: var(--dark);
-    --card-gradient: linear-gradient(to bottom right, var(--gray) 0%, var(--dark-gray) 100%);
     --input-bg: var(--middle-gray);
     --input-border: var(--gray);
   }
@@ -238,21 +242,4 @@ input[type="checkbox"]:checked::after {
   left: 50%;
   transform: translate(-50%, -50%);
   line-height: 1;
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #1e1e1e;
-}
-
-::-webkit-scrollbar-thumb {
-  background: gray;
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
 }

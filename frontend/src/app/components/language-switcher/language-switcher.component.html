@@ -9,8 +9,8 @@
 
 <!-- Might use a div instead to have full control over design, but this was the fastest way to go, so... -->
 <div class="language-switcher-2">
-  <select (change)="onLanguageChange($event)">
-    <option *ngFor="let language of languages" [value]="language.code">
+  <select (change)="onLanguageChange($event)" #languageSwitcher>
+    <option *ngFor="let language of languages" [value]="language.code" >
       {{ language.code.toUpperCase() }}
     </option>
   </select>

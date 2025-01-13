@@ -29,6 +29,12 @@
   "login_page_forgot_password": "Forgot password?",
   "login_page_sign_in_cta": "Sign In",
   "login_page_no_account": "Don’t have an account yet?",
-  "login_page_sign_up": "Sign up"
+  "login_page_sign_up": "Sign up",
 
+  "view_course": "View course",
+  "course_join": "Join course",
+  "course_members": "Members",
+  "course_results": "Results",
+  "course_search_header": "Search",
+  "course_description": "Description"
 }

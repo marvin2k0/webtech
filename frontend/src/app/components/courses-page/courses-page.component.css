@@ -1,0 +1,87 @@
+.search-box-wrapper {
+  width: fit-content;
+  margin-bottom: 5rem;
+  margin-inline: auto;
+}
+
+h1 {
+  margin-bottom: 2.5rem;
+  font-size: 5rem;
+  text-align: center;
+}
+
+.search-bar {
+  width: 45rem;
+  align-self: center;
+}
+
+.results {
+  color: var(--foreground-accent);
+  font-size: .8rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.courses-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.card-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-block: .25rem;
+  width: 25vw;
+  height: 25rem;
+  min-width: 340px;
+}
+
+.course-cta {
+  flex: 1;
+  text-align: center;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+h3 {
+  font-size: 3rem;
+}
+
+.members-info {
+  color: var(--faded-gray);
+  font-size: 0.75rem;
+}
+
+.course-description {
+  flex: 2;
+}
+
+.course-description h4 {
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.course-description p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.action-buttons {
+  width: 100%;
+  padding-block: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--foreground);
+  border-radius: var(--border-radius-xs);
+}
+
+#view-course {
+  text-align: center;
+  color: var(--foreground);
+}
+

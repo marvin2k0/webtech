@@ -4,3 +4,17 @@
   display: flex;
   justify-content: center;
 }
+
+.course-info-container {
+  flex: 1;
+}
+
+.course-activity-container {
+  flex: 3;
+  display: flex;
+  justify-content: center;
+}
+
+.course-members-container {
+  flex: 1;
+}

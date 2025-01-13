@@ -13,22 +13,24 @@ import {ConflictError} from "../error/conflict.error";
  * @param req - Http-Request
  * @param res - Http-Response
  */
-export const getToken = async (req: Request, res: Response) => {
-    const { username, password } = req.body
-    const {role, passwordHash} = await getUserObjectFromDatabase(username)
-    const validPassword = await bcrypt.compare(password, passwordHash)
+export const getToken = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { username, password } = req.body
+        const {role, passwordHash} = await getUserObjectFromDatabase(username)
+        const validPassword = await bcrypt.compare(password, passwordHash)
 
-    if (validPassword) {
-        const token = jwt.sign({username, role}, process.env.AUTH_TOKEN_SECRET!, {expiresIn: "15m"})
-        logger.debug(`User ${username} successfully authenticated`)
+        if (validPassword) {
+            const token = jwt.sign({username, role}, process.env.AUTH_TOKEN_SECRET!, {expiresIn: "30m"})
+            logger.debug(`User ${username} successfully authenticated`)
 
-        res.status(200)
-            .json(success<{ accessToken: string }>({accessToken: token}))
-    } else {
-        logger.warn(`There was a problem authenticating user ${username}`)
-
-        res.status(401)
-            .json(error("Wrong credentials"))
+            res.status(200)
+                .json(success<{ accessToken: string }>({accessToken: token}))
+        } else {
+            logger.warn(`There was a problem authenticating user ${username}`)
+            // TODO throw internal error
+        }
+    } catch (err: unknown) {
+        next(err)
     }
 }
 
@@ -89,11 +91,6 @@ export const getUserDetails = async (req: Request, res: Response, next: NextFunc
 export const deleteUser = async (req: any, res: Response, next: NextFunction) => {
     const username = req.params.username;
     const role = req.role;
-
-    if (role < UserRole.MODERATOR) {
-        res.status(403).json(error("Forbidden"));
-        return;
-    }
 
     try {
         // Replace with User.findOneAndDeleteOne if we want to return the user we just deleted!
