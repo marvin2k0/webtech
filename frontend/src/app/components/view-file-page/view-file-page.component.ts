@@ -44,17 +44,14 @@ export class ViewFilePageComponent {
   }
 
 
-  getFile( rndFilename: string ) {
-
+  getFile(rndFilename: string) {
     this.fileUploadService.retrieve(rndFilename).subscribe({
       next: (response: Blob) => {
         const objectUrl = URL.createObjectURL(response);
         this.file = this.sanitizer.bypassSecurityTrustResourceUrl(objectUrl);
-        console.log(this.file);
       },
       error: (error: any) => {
         console.error('Error fetching file:', error);
-
       },
     });
   }

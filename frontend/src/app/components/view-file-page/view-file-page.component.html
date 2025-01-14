@@ -14,6 +14,11 @@
           <img [src]="file" alt="Uploaded Image">
         </div>
       }
+      @case ("jpg") {
+        <div class="image-container">
+          <img [src]="file" alt="Uploaded Image">
+        </div>
+      }
       @default {
         <object *ngIf="file" [data]="file" class="pdf-iframe">
           <h2>Oh no!</h2>

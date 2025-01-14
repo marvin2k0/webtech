@@ -12,6 +12,8 @@ import {InternalServerError} from "../error/internal.server.error";
 import path from "node:path";
 import mime from "mime";
 
+const uploadDirectory = process.env.FILES_DIR || "/app/user_uploads/";
+
 /**
  * Get file with specific file (or files) for specified parameters.
  * Parameters may include: Course, Filename, uploadedDate or usernanme and more
@@ -66,8 +68,7 @@ export async function getFile(req: any, res: any, next: NextFunction) {
         // @ToDo:   Müssen noch berechtigungen prüfen.
         //          (Ob in course, private oder public etc.)
 
-        const filePath = path.join(__dirname, '../../uploaded_files', rndFilename);
-
+        const filePath = path.join(uploadDirectory, rndFilename);
         const mimeType = mime.getType(filePath) || 'application/octet-stream';
 
         // Mught adjust headers
@@ -76,7 +77,7 @@ export async function getFile(req: any, res: any, next: NextFunction) {
         res.setHeader('Cache-Control', 'public, max-age=3600');
         res.setHeader('X-Content-Type-Options', 'nosniff');
 
-        res.status(200).sendFile(filePath, (err: any) => {
+        res.status(200).sendFile(path.resolve(filePath), (err: any) => {
             if (err) {
                 console.error('Error sending file:', err);
                 throw new InternalServerError();
@@ -113,8 +114,9 @@ export async function uploadFile(req: any, res: express.Response, next: express.
         const fileType = filename.split(".").pop();
         const rndFilename: string = uuidv4() + "." + fileType;
         const fileUrl = "http://localhost:8080/files/" + rndFilename
+        const filePath = path.join(uploadDirectory, rndFilename)
 
-        fs.writeFile("./uploaded_files/" + rndFilename, decode, (err) => {
+        fs.writeFile(filePath, decode, (err) => {
             if (err) {
                 logger.error('Error writing file:', err);
                 throw new InternalServerError();
@@ -166,7 +168,7 @@ export async function deleteFile(req: any, res: express.Response, next: NextFunc
 
     try {
         const fileDeleted = await File.findByIdAndDelete(file._id).exec();
-        fs.unlink("./uploaded_files/" + file.rndFilename, (err) => {
+        fs.unlink(path.join(uploadDirectory, file.rndFilename), (err) => {
             if (err) {
                 throw new InternalServerError();
             }

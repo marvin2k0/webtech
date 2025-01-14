@@ -53,16 +53,6 @@ export class FileUploadService {
   }
 
   retrieve(rndFilename: string): Observable<any> {
-    const options = {
-      headers: new HttpHeaders({
-        'Authorization': `Bearer ${localStorage.getItem("accessToken")}`
-      }),
-      responseType: 'blob' as 'json'
-    };
-
-    console.error("Looking for file", rndFilename);
-
-    return this.http.get(`${this.baseUrl}/${rndFilename}`, options);
+    return this.http.get(`${this.baseUrl}/${rndFilename}`, { responseType: "blob" });
   }
-
 }
