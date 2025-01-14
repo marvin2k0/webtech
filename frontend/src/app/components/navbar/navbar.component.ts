@@ -49,14 +49,18 @@ export class NavbarComponent {
 
   toggleSidebar() {
     this.sidebar.nativeElement.classList.toggle("visible")
-    document.body.style.overflow = this.sidebar.nativeElement.classList.contains("visible") ? "hidden" : "auto";
 
-    console.log(this.sidebar.nativeElement)
+    const overflowValue = this.sidebar.nativeElement.classList.contains("visible") ? "hidden" : ""
+    document.body.style.overflow = overflowValue
+    document.documentElement.style.overflow = overflowValue
+
+    console.log(overflowValue)
   }
 
   closeSidebar() {
     this.sidebar.nativeElement.classList.remove("visible")
-    document.body.style.overflow = "auto"
+    document.body.style.overflow = ""
+    document.documentElement.style.overflow = ""
   }
 
   protected readonly close = close;
