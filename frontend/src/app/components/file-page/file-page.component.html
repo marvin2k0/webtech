@@ -43,9 +43,11 @@
             </div>
         </card>
   } @empty {
-    <span>
-        <h2>Oh no! Looks like there are no files :(</h2>
-        <p><span (click)="true" style="color: var(--primary); cursor: pointer">Upload a file</span> and be the first one to Contribute</p>
+    <span style="display: flex; justify-content: center; align-items: center; width: 100%;">
+        <span style="display: block;">
+            <h2>Oh no! Looks like there are no files :(</h2>
+            <p><span (click)="true" style="color: var(--primary); cursor: pointer">Upload a file</span> and be the first one to Contribute</p>
+        </span>
     </span>
   }
 </div>
