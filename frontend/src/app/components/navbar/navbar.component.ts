@@ -25,7 +25,7 @@ export class NavbarComponent {
   uploadModalService: UploadModalService = inject(UploadModalService)
   userService: UserService = inject(UserService)
 
-  @ViewChild("linksList") linksList!: ElementRef;
+  @ViewChild("sidebar") sidebar!: ElementRef;
 
   links = [
     {name: "nav_link_home", path: ""},
@@ -48,10 +48,16 @@ export class NavbarComponent {
   }
 
   toggleSidebar() {
-    this.linksList.nativeElement.classList.toggle("visible")
+    this.sidebar.nativeElement.classList.toggle("visible")
+    document.body.style.overflow = this.sidebar.nativeElement.classList.contains("visible") ? "hidden" : "auto";
+
+    console.log(this.sidebar.nativeElement)
   }
 
   closeSidebar() {
-    this.linksList.nativeElement.classList.remove("visible")
+    this.sidebar.nativeElement.classList.remove("visible")
+    document.body.style.overflow = "auto"
   }
+
+  protected readonly close = close;
 }
