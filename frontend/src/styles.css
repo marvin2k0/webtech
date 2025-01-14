@@ -97,7 +97,6 @@ app-root {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;
 }
 
 .main-content {
