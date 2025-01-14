@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, ElementRef, inject, ViewChild} from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
 import {TranslatePipe} from '@ngx-translate/core';
 import {ButtonComponent} from '../button/button.component';
@@ -22,6 +22,10 @@ import {FileUploadComponent} from '../file-upload/file-upload.component';
 })
 export class NavbarComponent {
   router: Router = inject(Router)
+  uploadModalService: UploadModalService = inject(UploadModalService)
+  userService: UserService = inject(UserService)
+
+  @ViewChild("linksList") linksList!: ElementRef;
 
   links = [
     {name: "nav_link_home", path: ""},
@@ -35,8 +39,6 @@ export class NavbarComponent {
     this.activeLink = link
   }
 
-  constructor(private uploadModalService: UploadModalService, private userService: UserService) { }
-
   toggleUploadModal() {
     this.uploadModalService.toggleModal();
   }
@@ -45,4 +47,11 @@ export class NavbarComponent {
     return this.userService.isLoggedIn();
   }
 
+  toggleSidebar() {
+    this.linksList.nativeElement.classList.toggle("visible")
+  }
+
+  closeSidebar() {
+    this.linksList.nativeElement.classList.remove("visible")
+  }
 }

@@ -38,8 +38,52 @@ span path, span circle {
   stroke: var(--foreground);
 }
 
+.icon-container {
+  cursor: pointer;
+  min-width: 40px;
+  min-height: 40px;
+}
+
+.hamburger-menu {
+  display: none;
+}
+
+.close-sidebar {
+  display: none;
+}
+
 @media only screen and (max-width: 950px) {
   nav ul {
+    flex-direction: column;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translateX(100%);
+    height: 100vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background: var(--background);
+    font-size: 1.5rem;
+  }
+
+  nav ul.visible {
+    transform: translateX(0);
+  }
+
+  .user-actions {
     display: none;
+    /* TODO put at bottom in sidebar */
+  }
+
+  .hamburger-menu {
+    display: block;
+  }
+
+  .close-sidebar {
+    display: block;
+    position: absolute;
+    top: 3rem;
+    right: 3rem;
   }
 }

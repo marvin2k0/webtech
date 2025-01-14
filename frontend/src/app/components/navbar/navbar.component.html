@@ -1,20 +1,24 @@
 <nav>
   <h1 routerLink="" (click)="setLinkActive(0)">EducationEmpire</h1>
 
-  <ul>
+  <ul #linksList>
+    <div class="close-sidebar icon-container" (click)="closeSidebar()">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/>
+      </svg>
+    </div>
+
     @for (link of links; track link.name) {
-      <li><a [ngClass]="{'active': activeLink === $index}" [routerLink]="link.path" (click)="setLinkActive($index)">{{ link.name | translate }}</a></li>
+      <li><a [ngClass]="{'active': activeLink === $index}" [routerLink]="link.path"
+             (click)="setLinkActive($index); closeSidebar()">{{ link.name | translate }}</a></li>
     }
   </ul>
 
-  <div>
-    <div class="user-actions">
-
+  <div class="user-actions">
     @if (!isLoggedIn()) {
-        <a routerLink="/signin" (click)="setLinkActive(-1)">{{ "sign_in_button" | translate }}</a>
-        <cta-button routerLink="/signup" (click)="setLinkActive(-1)">{{ "sign_up_button" | translate }}</cta-button>
+      <a routerLink="/signin" (click)="setLinkActive(-1)">{{ "sign_in_button" | translate }}</a>
+      <cta-button routerLink="/signup" (click)="setLinkActive(-1)">{{ "sign_up_button" | translate }}</cta-button>
     } @else {
-
       <span (click)="toggleUploadModal()" class="pointer">
         <svg width="40" height="40" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
           <path d="M15 15 15 35 21 35" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -23,11 +27,11 @@
           <path d="M15 15 25 15" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M25 15 28 17" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M28 17 28 28" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M18 19 23 19 M18 23 25 23 M18 27 24 27" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M18 19 23 19 M18 23 25 23 M18 27 24 27" fill="none" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round"/>
 
         </svg>
       </span>
-
       <span routerLink="userprofile" class="pointer">
         <svg width="40" height="40" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
           <circle cx="25" cy="20" r="5" fill="none" stroke-width="2" stroke-linecap="round"/>
@@ -35,8 +39,12 @@
         </svg>
       </span>
     }
-    </div>
   </div>
+
+  <svg (click)="toggleSidebar()" class="hamburger-menu icon-container" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+       viewBox="0 0 24 24">
+    <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14"/>
+  </svg>
 </nav>
 
 @if (isLoggedIn()) {
