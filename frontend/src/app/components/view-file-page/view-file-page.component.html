@@ -9,17 +9,17 @@
   <div class="pdf-container" id="pdf-container">
     <!-- Images wont be rendered in object -->
     @switch (fileType) {
-      @case ("png" || "jpg") {
-        <div class="image-container">
+      @case (fileType && fileTypes.IMAGES.includes(fileType)) {
+        <div class="image-container" *ngIf="file">
           <img [src]="file" alt="Uploaded Image">
         </div>
       }
+      @case (fileType && fileTypes.DOCUMENTS.includes(fileType)) {
+          <iframe *ngIf="file" [src]="file" class="pdf-iframe"></iframe>
+      }
       @default {
-        <iframe *ngIf="file" [src]="file" class="pdf-iframe">
           <h2>Oh no!</h2>
-          <p>Looks like your browser does not support displaying PDFs</p>
-          <a>Download PDF instead</a>
-        </iframe>
+          <p>The requested resource cannot be rendered</p>
       }
     }
     <span *ngIf="!file">

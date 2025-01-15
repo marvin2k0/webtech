@@ -24,6 +24,13 @@ export class ViewFilePageComponent {
   filename: string | null = "";
   fileType: string | undefined;
 
+  fileTypes = {
+    IMAGES: ["png", "jpg", "jpeg"],
+    DOCUMENTS: ["pdf"],
+    VIDEOS: ["mp4", "webm"],
+    AUDIOS: ["mp3"]
+  }
+
   constructor(
     private sanitizer: DomSanitizer, private route: ActivatedRoute
   ) {}
