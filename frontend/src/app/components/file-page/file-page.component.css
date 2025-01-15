@@ -260,3 +260,7 @@ h1 {
 button svg {
   width: 25px;
 }
+
+.files-container {
+  margin-block-end: 5rem;
+}
