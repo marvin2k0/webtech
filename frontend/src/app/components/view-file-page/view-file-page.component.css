@@ -128,10 +128,12 @@ textarea:focus {
 }
 
 .pdf-container {
+  display: flex;
   flex: 4;
-  height: 110vh;
+  height: calc(100vh - 110px);
   z-index: 999;
   padding: 0;
+  align-items: center;
 }
 
 .pdf-iframe {
@@ -187,6 +189,6 @@ textarea:focus {
 }
 
 .image-container img {
-  flex: 1;
-  max-width: 70vw;
+  margin-top: -110px;
+  width: 100%;
 }
