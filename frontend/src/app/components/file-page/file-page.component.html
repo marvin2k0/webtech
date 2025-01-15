@@ -15,7 +15,7 @@
             <div class="file">
                 <div class="file-headline">
                     <h3>{{ fileFound.filename }}</h3>
-                    <span class="download-info">0 Downloads</span>
+                    <span class="download-info">{{ fileFound.views }} Views</span>
                 </div>
               <p>{{ fileFound.description.length >= 75 ? (fileFound.description | slice:0:75).trim() + "..." : fileFound.description }}</p>
                 <span style="display: flex; justify-content: space-between">

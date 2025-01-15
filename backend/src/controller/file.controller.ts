@@ -24,7 +24,6 @@ const uploadDirectory = process.env.FILES_DIR || "/app/user_uploads/";
 export async function findFile(req: express.Request, res: express.Response, next: express.NextFunction) {
 
     const files = await File.find({});
-    logger.error("Files: " + files)
     res.status(200).send(success({ files }));
 
     return;
@@ -184,4 +183,20 @@ export async function deleteFile(req: any, res: express.Response, next: NextFunc
 export function editFile(req: any, res: express.Response, next: NextFunction) {
 
     return;
+}
+
+export async function addView(req: any, res: express.Response, next: NextFunction) {
+    const { rndFilename } = req.body;
+
+    try {
+        if (!rndFilename) {
+            throw new InvalidFormatError();
+        }
+
+        // Might want to do something with that
+        const viewedFile = await File.findOneAndUpdate({rndFilename: rndFilename}, { $inc: { views: 1 } } )
+
+    } catch (e) {
+        next(e)
+    }
 }

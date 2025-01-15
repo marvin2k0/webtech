@@ -20,6 +20,7 @@ export interface FileDetails {
     upVotes: number,
     downVotes: number,
     voteId: string,
+    views: 0,
 }
 
 export enum VisibilityTypes {
@@ -99,6 +100,11 @@ const fileSchema = new Schema<FileDetails>({
         type: String,
         required: true,
         default: UP_DOWN_PREFIX + uuidv4()
+    },
+    views: {
+        type: Number,
+        required: false,
+        default: 0
     }
 })
 
