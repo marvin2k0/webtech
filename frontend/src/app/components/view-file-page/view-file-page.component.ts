@@ -45,6 +45,11 @@ export class ViewFilePageComponent {
       return ;
     }
 
+    this.fileUploadService.addView(this.filename).subscribe({
+      next: (res) => { },
+      error: (err) => { console.error(err) }
+    })
+
     this.fileType = this.filename.split('.')[1];
 
     this.getFile(this.filename);

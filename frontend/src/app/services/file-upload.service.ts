@@ -55,4 +55,10 @@ export class FileUploadService {
   retrieve(rndFilename: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/${rndFilename}`, { responseType: "blob" });
   }
+
+  addView (rndFilename: string): Observable<any> {
+    const params = { rndFilename };
+
+    return this.http.post(`${this.baseUrl}/views`, params)
+  }
 }
