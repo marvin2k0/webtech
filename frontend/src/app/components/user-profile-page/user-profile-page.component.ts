@@ -40,7 +40,13 @@ export class UserProfilePageComponent {
       if (this.usernameInput.nativeElement.value === '') {
         alert("Username cannot be empty");
       } else {
+        let oldUsername: string = "";
 
+        this.userService.getUserInformation().subscribe(response => {
+          oldUsername = response.data.username;
+
+          this.userService.postNewUsername(this.usernameInput.nativeElement.value, oldUsername).subscribe();
+        })
 
         this.showUsernameSaveButton = false;
       }
