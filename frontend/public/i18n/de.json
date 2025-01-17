@@ -41,6 +41,7 @@
   "course_search_header": "Suchen",
   "course_description": "Beschreibung",
 
+  "need_login": "Du musst angemeldet sein, um dies zu tun.",
   "login_page_headline": "Anmelden",
   "login_page_username_label": "Nutzername",
   "login_page_username_placeholder": "max.mustermann",

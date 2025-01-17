@@ -134,6 +134,11 @@ app-root {
   border-radius: var(--border-radius-xs);
 }
 
+.cta-button.disabled {
+  background: var(--faded-purple);
+  cursor: not-allowed;
+}
+
 .inputs-container {
   display: flex;
   flex-direction: column;

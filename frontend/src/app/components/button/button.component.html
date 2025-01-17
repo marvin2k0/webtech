@@ -1,3 +1,3 @@
-<button (click)="navigate()" class="cta-button" [ngClass]="{'raised': raised, 'square': type === 'square', 'wide': type === 'wide'}">
+<button (click)="navigate()" class="cta-button" [ngClass]="{'raised': raised, 'square': size === 'square', 'wide': size === 'wide', 'disabled': buttonStyle === 'disabled'}">
   <ng-content></ng-content>
 </button>

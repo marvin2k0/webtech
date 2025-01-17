@@ -33,6 +33,7 @@
   "landing_page_jumbotron_headline": "Conquer your exams",
   "landing_page_jumbotron_paragraph": "With EducationEmpire you will achieve great things!",
 
+  "need_login": "You need to be logged in to do that",
   "login_page_headline": "Sign in to your account",
   "login_page_username_label": "Your username",
   "login_page_username_placeholder": "johndoe",

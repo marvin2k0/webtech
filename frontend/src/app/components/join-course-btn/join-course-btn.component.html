@@ -1,0 +1,9 @@
+@if (userService.isLoggedIn()) {
+  @if (course.members.includes(ownId)) {
+    <cta-button raised="false" size="wide" buttonStyle="disabled">{{ "already_joined" | translate }}</cta-button>
+  } @else {
+    <cta-button raised="false" size="wide" (click)="joinCourse(course._id!)">{{ "course_join" | translate }}</cta-button>
+  }
+} @else {
+  <cta-button title="{{ 'need_login' | translate }}" raised="false" buttonStyle="disabled" size="wide">{{ "course_join" | translate }}</cta-button>
+}
