@@ -2,16 +2,45 @@ import {NextFunction, Request, Response} from "express";
 import {success} from "../model/http/rest-response";
 import Course, {CourseDetails} from "../model/course.model";
 import {EntityNotFoundError} from "../error/entity.not.found.error";
+import {logger} from "../utils/Logger";
+import {ConflictError} from "../error/conflict.error";
 
 
-export async function joinCourse(req: Request, res: Response, next: NextFunction) {
-    const { } = req.body
-    // TODO
+export async function joinCourse(req: any, res: Response, next: NextFunction) {
+    try {
+        const courseId = req.params.courseId
+        const username = req.username
+        const course = await getCourseById(courseId)
+        const members = course.members
+
+        logger.debug(members)
+
+        if (members.includes(username)) {
+            logger.warn(`User ${username} was already in course ${course.name}`)
+            throw new ConflictError("Username was already in course")
+        }
+
+        members.push(username)
+
+        await Course.updateOne(
+            { _id: courseId },
+            { $addToSet: { members: username } }
+        )
+
+        res.status(200)
+            .json(success(`Added user to course ${course.name}`))
+    } catch (err: unknown) {
+        next(err)
+    }
+}
+
+export function leaveCourse(req: Request, res: Response, next: NextFunction) {
+
 }
 
 export async function findCourse(req: Request, res: Response, next: NextFunction) {
-    const { name, description } = req.query;
-    const attr = { name, description };
+    const {name, description} = req.query;
+    const attr = {name, description};
 
     let searchParams: { [key: string]: any }[] = [];
 
@@ -19,12 +48,12 @@ export async function findCourse(req: Request, res: Response, next: NextFunction
         // @ts-ignore
         if (typeof attr[key] !== "undefined" && attr[key] !== null) {
             // @ts-ignore
-            searchParams.push({ [key]: {$regex: `${attr[key]}`, $options: "i"} })
+            searchParams.push({[key]: {$regex: `${attr[key]}`, $options: "i"}})
         }
     }
 
     try {
-        const courses = await Course.find({ $or: searchParams });
+        const courses = await Course.find({$or: searchParams});
         res.status(200).send(success(courses));
     } catch (error) {
         console.error("Error fetching courses:", error);
@@ -72,6 +101,16 @@ export const deleteCourse = async (req: Request, res: Response, next: NextFuncti
     } catch (error: unknown) {
         next(error)
     }
+}
+
+const getCourseById = async (id: string): Promise<CourseDetails> => {
+    const courseFound = await Course.findById(id);
+
+    if (!courseFound) {
+        throw new EntityNotFoundError("Course")
+    }
+
+    return courseFound
 }
 
 const getCourseByName = async (name: string): Promise<CourseDetails> => {

@@ -8,6 +8,7 @@ import {BackgroundArtComponent} from '../background-art/background-art.component
 import {SlicePipe} from '@angular/common';
 import {RouterLink} from '@angular/router';
 import {InputWithIconComponent} from '../input-with-icon/input-with-icon.component';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-courses-page',
@@ -25,6 +26,7 @@ import {InputWithIconComponent} from '../input-with-icon/input-with-icon.compone
   styleUrl: './courses-page.component.css'
 })
 export class CoursesPageComponent {
+  userService: UserService = inject(UserService)
   courseService: CourseService = inject(CourseService)
   courses: CourseDetails[] = []
 
@@ -32,6 +34,7 @@ export class CoursesPageComponent {
     this.courseService.findCourses("").subscribe(response => {
       this.courses = response.data
     })
+    this.userService.
   }
 
   searchAndLoadCourses(query: string) {
