@@ -59,7 +59,7 @@ export const getPersonalInformation = async (req: any, res: Response, next: Next
     try {
         const username = req.username;
         const userData = await User.findOne({ username });
-        res.status(200).json(userData);
+        res.status(200).json(success(userData));
     } catch (err: unknown) {
         next(err)
     }

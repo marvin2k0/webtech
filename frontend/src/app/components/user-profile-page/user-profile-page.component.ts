@@ -1,9 +1,10 @@
-import {Component} from '@angular/core';
+import {Component, ElementRef, inject, ViewChild} from '@angular/core';
 import {TranslatePipe} from '@ngx-translate/core';
 import {FormsModule} from '@angular/forms';
 import {ButtonComponent} from '../button/button.component';
 import {CardComponent} from '../card/card.component';
 import {BackgroundArtComponent} from '../background-art/background-art.component';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-user-profile-page',
@@ -20,11 +21,31 @@ import {BackgroundArtComponent} from '../background-art/background-art.component
 })
 export class UserProfilePageComponent {
   showSaveButton = false;
+  showUsernameSaveButton = false;
   focusPointBool: boolean = true;
   instituteBool: boolean = true;
   dobBool: boolean = true;
 
-  onUsernameButtonClick(): void {}
+  userService: UserService = inject(UserService)
+
+  username: string = "";
+
+  @ViewChild("usernameInput") usernameInput!: ElementRef;
+
+  onUsernameButtonClick(): void {
+    if (!this.showUsernameSaveButton) {
+      this.showUsernameSaveButton = true;
+
+    } else {
+      if (this.usernameInput.nativeElement.value === '') {
+        alert("Username cannot be empty");
+      } else {
+
+
+        this.showUsernameSaveButton = false;
+      }
+    }
+  }
 
   onUserInformationEditButtonClick() {
     this.focusPointBool = !this.focusPointBool;
@@ -34,6 +55,8 @@ export class UserProfilePageComponent {
   }
 
   ngOnInit() {
-
+    this.userService.getUserInformation().subscribe(response => {
+      this.username = response.data.username;
+    })
   }
 }

@@ -26,4 +26,8 @@ export class UserService {
   isLoggedIn(): boolean {
     return !!localStorage.getItem('accessToken');
   }
+
+  getUserInformation() {
+    return this.http.get<IRestResponse>(`${this.baseUrl}/me`)
+  }
 }
