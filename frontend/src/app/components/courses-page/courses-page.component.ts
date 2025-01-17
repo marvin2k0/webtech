@@ -29,17 +29,24 @@ export class CoursesPageComponent {
   userService: UserService = inject(UserService)
   courseService: CourseService = inject(CourseService)
   courses: CourseDetails[] = []
+  ownId: string = ""
 
   ngOnInit() {
-    this.courseService.findCourses("").subscribe(response => {
-      this.courses = response.data
+    this.searchAndLoadCourses("")
+    this.userService.getUserInformation().subscribe(response => {
+      this.ownId = response.data._id
     })
-    this.userService.
   }
 
   searchAndLoadCourses(query: string) {
     this.courseService.findCourses(query).subscribe(response => {
       this.courses = response.data
+    })
+  }
+
+  joinCourse(id: string) {
+    this.courseService.joinCourse(id).subscribe(response => {
+      this.searchAndLoadCourses("")
     })
   }
 }

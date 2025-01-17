@@ -19,4 +19,8 @@ export class CourseService {
   findCourseById(id: string): Observable<IRestResponse> {
     return this.http.get<IRestResponse>(`${this.baseUrl}/${id}`)
   }
+
+  joinCourse(id: string): Observable<IRestResponse> {
+    return this.http.post<IRestResponse>(`${this.baseUrl}/join/${id}`, {})
+  }
 }

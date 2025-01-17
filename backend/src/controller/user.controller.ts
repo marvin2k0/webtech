@@ -134,7 +134,7 @@ export const createUser = async (req: Request, res: Response, next: NextFunction
     }
 }
 
-export async function getUserObjectFromDatabase(findUsername: string): Promise<UserDetails> {
+export async function getUserObjectFromDatabase(findUsername: string): Promise<any> {
     const userFound = await User.findOne({username: findUsername}).exec()
 
     if (!userFound)

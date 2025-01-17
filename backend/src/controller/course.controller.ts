@@ -4,6 +4,7 @@ import Course, {CourseDetails} from "../model/course.model";
 import {EntityNotFoundError} from "../error/entity.not.found.error";
 import {logger} from "../utils/Logger";
 import {ConflictError} from "../error/conflict.error";
+import {getUserObjectFromDatabase} from "./user.controller";
 
 
 export async function joinCourse(req: any, res: Response, next: NextFunction) {
@@ -11,20 +12,18 @@ export async function joinCourse(req: any, res: Response, next: NextFunction) {
         const courseId = req.params.courseId
         const username = req.username
         const course = await getCourseById(courseId)
+        const userDetails = await getUserObjectFromDatabase(username)
+        const userId = userDetails._id
         const members = course.members
 
-        logger.debug(members)
-
-        if (members.includes(username)) {
+        if (members.includes(userId)) {
             logger.warn(`User ${username} was already in course ${course.name}`)
             throw new ConflictError("Username was already in course")
         }
 
-        members.push(username)
-
         await Course.updateOne(
             { _id: courseId },
-            { $addToSet: { members: username } }
+            { $addToSet: { members: userId } }
         )
 
         res.status(200)
@@ -35,7 +34,7 @@ export async function joinCourse(req: any, res: Response, next: NextFunction) {
 }
 
 export function leaveCourse(req: Request, res: Response, next: NextFunction) {
-
+    // TODO
 }
 
 export async function findCourse(req: Request, res: Response, next: NextFunction) {

@@ -28,10 +28,10 @@
       <div class="action-buttons">
         <a routerLink="/course/{{ course._id }}" id="view-course">{{ "view_course" | translate }}</a>
       </div>
-      @if (course.members.includes()) {
-
+      @if (course.members.includes(ownId)) {
+        <cta-button raised="false" type="wide">{{ "already_joined" | translate }}</cta-button>
       } @else {
-        <cta-button raised="false" type="wide" routerLink="/course/{{ course._id }}">{{ "course_join" | translate }}</cta-button>
+        <cta-button raised="false" type="wide" (click)="joinCourse(course._id!)">{{ "course_join" | translate }}</cta-button>
       }
     </card>
   }
