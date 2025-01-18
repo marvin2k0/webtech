@@ -27,7 +27,7 @@ export class ViewFilePageComponent {
   fileTypes = {
     IMAGES: ["png", "jpg", "jpeg"],
     DOCUMENTS: ["pdf"],
-    VIDEOS: ["mp4", "webm"],
+    VIDEOS: ["mp4", "webm", "mov"],
     AUDIOS: ["mp3"]
   }
 
@@ -67,7 +67,6 @@ export class ViewFilePageComponent {
       },
     });
   }
-
 
   toggleReadingMode(): void {
     this.readingMode = !this.readingMode;

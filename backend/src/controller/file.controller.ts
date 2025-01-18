@@ -23,30 +23,25 @@ const uploadDirectory = process.env.FILES_DIR || "/app/user_uploads/";
  */
 export async function findFile(req: express.Request, res: express.Response, next: express.NextFunction) {
 
-    const files = await File.find({});
-    res.status(200).send(success({ files }));
+    const { rndFilename, filename, description, uploadedBy, course, fileType } = req.query;
+    const attr = { rndFilename, filename, description, uploadedBy, course, fileType };
 
-    return;
-    //
-    // const { course, rndFilename, uploadedAt, uploadedBy, visibility, filename } = req.body;
-    // const attr = { course, rndFilename, uploadedAt, uploadedBy, visibility, filename };
-    //
-    // let searchParams: { [key: string]: any } = { };
-    // for (let key in attr) {
-    //     // @ts-ignore
-    //     if (typeof attr[key] !== "undefined" && attr[key] !== null) {
-    //         // @ts-ignore
-    //         searchParams[key] = attr[key];
-    //     }
-    // }
-    //
-    // try {
-    //     const files = await File.find(searchParams);
-    //     res.status(200).send(success({ files }));
-    // } catch (error) {
-    //     console.error("Error fetching files:", error);
-    //     next(error);
-    // }
+    let searchParams: { [key: string]: any }[] = [];
+
+    for (let key in attr) {
+        if (attr.hasOwnProperty(key)) {
+            // @ts-ignore
+            searchParams.push({ [key]: {$regex: `${attr[key]}`, $options: "i"} })
+        }
+    }
+
+    try {
+        const files = await File.find({ $or: searchParams });
+        res.status(200).send(success(files));
+    } catch (error) {
+        logger.error("Error fetching files:", error);
+        next(error);
+    }
 }
 
 export async function getFile(req: any, res: any, next: NextFunction) {
