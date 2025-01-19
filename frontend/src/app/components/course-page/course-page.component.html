@@ -2,7 +2,7 @@
   <div class="course-info-container course-column">
     <h1>{{ course.name }}</h1>
 
-    @defer () {
+    @if (course._id) {
       <join-course-btn [course]="course"/>
     }
 
