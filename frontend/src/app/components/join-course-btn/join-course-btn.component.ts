@@ -1,6 +1,6 @@
 import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
 import {ButtonComponent} from "../button/button.component";
-import {TranslatePipe} from "@ngx-translate/core";
+import {equals, TranslatePipe} from "@ngx-translate/core";
 import {UserService} from '../../services/user.service';
 import {CourseDetails, EMPTY_COURSE} from '../../model/course.model';
 import {CourseService} from '../../services/course.service';
@@ -31,7 +31,7 @@ export class JoinCourseBtnComponent {
 
     this.userService.getUserInformation().subscribe(response => {
       this.ownId = response.data._id
-      this.joined = this.course.members.includes(this.ownId)
+      this.joined = this.course.members.some(member => equals(this.ownId, member._id))
     })
   }
 

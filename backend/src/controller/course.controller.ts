@@ -78,7 +78,7 @@ export async function findCourse(req: Request, res: Response, next: NextFunction
     }
 
     try {
-        const courses = await Course.find({$or: searchParams});
+        const courses = await Course.find({$or: searchParams}).populate("members", "username");
         res.status(200).send(success(courses));
     } catch (error) {
         console.error("Error fetching courses:", error);
@@ -89,7 +89,7 @@ export async function findCourse(req: Request, res: Response, next: NextFunction
 export async function findCourseById(req: Request, res: Response, next: NextFunction) {
     try {
         const id = req.params.courseId
-        const courseFound = await Course.findById(id);
+        const courseFound = await Course.findById(id).populate("members", "username")
 
         if (!courseFound) {
             throw new EntityNotFoundError("Course")

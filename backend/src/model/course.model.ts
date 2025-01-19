@@ -19,7 +19,8 @@ const courseSchema = new Schema<CourseDetails>({
     },
     members: {
         type: [],
-        required: false
+        required: false,
+        ref: "User"
     }
 })
 

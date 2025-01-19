@@ -8,6 +8,7 @@
 
 h1 {
   font-size: 4rem;
+  overflow-wrap: break-word;
   margin-bottom: 2rem;
   text-align: center;
 }
@@ -36,4 +37,30 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 3rem;
+}
+
+@media screen and (max-width: 1350px) {
+  .course-members-container {
+    flex: 1;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .course-members-container {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .course-column {
+    width: 100%;
+  }
+
+  .activities {
+    width: 100%;
+  }
 }

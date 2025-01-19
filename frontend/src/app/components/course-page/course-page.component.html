@@ -1,7 +1,10 @@
 <div class="container">
   <div class="course-info-container course-column">
     <h1>{{ course.name }}</h1>
-    <join-course-btn [course]="course"/>
+
+    @defer () {
+      <join-course-btn [course]="course"/>
+    }
 
     <div class="course-description">
       <h3>{{ "course_description" | translate }}</h3>
@@ -20,7 +23,7 @@
     <h2>{{ "course_members" | translate }}</h2>
     <ul>
       @for (member of course.members; track member) {
-        <li>{{ member }}</li>
+        <li>{{ member.username }}</li>
       }
     </ul>
   </div>
