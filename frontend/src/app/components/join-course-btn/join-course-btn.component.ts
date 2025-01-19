@@ -23,6 +23,7 @@ export class JoinCourseBtnComponent {
   courseService: CourseService = inject(CourseService)
   router: Router = inject(Router)
   ownId: string = ""
+  joined: boolean = false
 
   ngOnInit(): void {
     if (!this.userService.isLoggedIn())
@@ -30,12 +31,21 @@ export class JoinCourseBtnComponent {
 
     this.userService.getUserInformation().subscribe(response => {
       this.ownId = response.data._id
+      this.joined = this.course.members.includes(this.ownId)
     })
   }
 
   joinCourse(id: string) {
     this.courseService.joinCourse(id).subscribe(response => {
+      this.joined = true
       this.refreshCourses.emit(true)
+    })
+  }
+
+  leaveCourse(id: string) {
+    this.courseService.leaveCourse(id).subscribe(response => {
+      this.joined = false
+      this.refreshCourses.emit(false)
     })
   }
 }

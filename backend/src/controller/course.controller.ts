@@ -5,6 +5,7 @@ import {EntityNotFoundError} from "../error/entity.not.found.error";
 import {logger} from "../utils/Logger";
 import {ConflictError} from "../error/conflict.error";
 import {getUserObjectFromDatabase} from "./user.controller";
+import {ObjectId} from "mongodb";
 
 
 export async function joinCourse(req: any, res: Response, next: NextFunction) {
@@ -33,8 +34,33 @@ export async function joinCourse(req: any, res: Response, next: NextFunction) {
     }
 }
 
-export function leaveCourse(req: Request, res: Response, next: NextFunction) {
-    // TODO
+export async function leaveCourse(req: any, res: Response, next: NextFunction) {
+    try {
+        const courseId = req.params.courseId
+        const username = req.username
+        const course = await getCourseById(courseId)
+        const userDetails = await getUserObjectFromDatabase(username)
+        const userId = userDetails._id
+        const members = course.members
+
+        logger.debug(members)
+
+        // @ts-ignore
+        if (members.some(id => id === new ObjectId(userId))) {
+            logger.warn(`User ${username} was never in course ${course.name}`)
+            throw new ConflictError("Username was never in course")
+        }
+
+        await Course.updateOne(
+            {_id: courseId},
+            {$pull: {members: userId}}
+        )
+
+        res.status(200)
+            .json(success(`Removed user from course ${course.name}`))
+    } catch (err: unknown) {
+        next(err)
+    }
 }
 
 export async function findCourse(req: Request, res: Response, next: NextFunction) {

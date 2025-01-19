@@ -4,7 +4,6 @@ import {logger} from "../utils/Logger";
 import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
 import {error, success} from "../model/http/rest-response";
-import {EntityNotFoundError} from "../error/entity.not.found.error";
 import {ConflictError} from "../error/conflict.error";
 
 /**

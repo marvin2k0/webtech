@@ -139,6 +139,11 @@ app-root {
   cursor: not-allowed;
 }
 
+.cta-button.secondary {
+  background: var(--foreground);
+  color: var(--background);
+}
+
 .inputs-container {
   display: flex;
   flex-direction: column;

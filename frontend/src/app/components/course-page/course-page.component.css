@@ -3,18 +3,37 @@
   height: 100%;
   display: flex;
   justify-content: center;
+  gap: 2rem;
 }
 
-.course-info-container {
-  flex: 1;
+h1 {
+  font-size: 4rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.course-column {
+  flex: 3;
+  width: 0;
+}
+
+.course-description {
+  margin-top: 3rem;
+  font-size: 1.25rem;
+}
+
+.course-description p {
+  font-size: 0.9rem;
 }
 
 .course-activity-container {
-  flex: 3;
-  display: flex;
-  justify-content: center;
+  flex: 8;
 }
 
-.course-members-container {
-  flex: 1;
+.activities {
+  width: 90%;
+  margin: 5rem auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
 }
