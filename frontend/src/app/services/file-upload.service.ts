@@ -48,7 +48,6 @@ export class FileUploadService {
     //   }),
     // }
 
-    // @ToDo: suche erweitern
     return this.http.get<IRestResponse>(`${this.baseUrl}/find?rndFilename=${query}&filename=${query}&description=${query}&uploadedBy=${query}&course=${query}&fileType=${query}`);
   }
 
