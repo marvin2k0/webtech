@@ -15,7 +15,8 @@ export class ButtonComponent {
   private router: Router = inject(Router)
 
   @Input() link: string | null = null
-  @Input() type: "square" | "wide" | "normal" = "normal"
+  @Input() buttonStyle: "cta" | "secondary" | "disabled" = "cta"
+  @Input() size: "square" | "wide" | "normal" = "normal"
   @Input({transform: booleanAttribute}) raised: boolean = true
 
   navigate() {

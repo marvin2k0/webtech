@@ -33,13 +33,13 @@ export class LoginPageComponent {
   //          just to ensure less bakcned workload and a consistently good UX
 
   userService: UserService = inject(UserService)
+  router: Router = inject(Router)
+  modalService: ModalService = inject(ModalService)
   username: string = ""
   password: string = ""
 
   isLoading: boolean = false;
   errorMessage: string = "";
-
-  constructor(private router: Router, private modalService: ModalService) { }
 
   ngOnInit(): void {
     if (this.userService.isLoggedIn()) localStorage.removeItem("accessToken");
