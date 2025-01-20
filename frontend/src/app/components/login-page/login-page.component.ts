@@ -77,7 +77,10 @@ export class LoginPageComponent {
         let errorMessage: string = "";
         if (err.message.includes("401")) {
           errorMessage = "Invalid credentials";
+        } else if (err.message.includes("409")) {
+          errorMessage = err.error.message
         }
+
         this.errorMessage = errorMessage;
       },
     });

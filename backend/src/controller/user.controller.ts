@@ -26,7 +26,7 @@ export const getToken = async (req: Request, res: Response, next: NextFunction) 
                 .json(success<{ accessToken: string }>({accessToken: token}))
         } else {
             logger.warn(`There was a problem authenticating user ${username}`)
-            // TODO throw internal error
+            throw new ConflictError(`There was a problem authenticating user ${username}`)
         }
     } catch (err: unknown) {
         next(err)
