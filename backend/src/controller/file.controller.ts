@@ -136,7 +136,7 @@ export async function uploadFile(req: any, res: express.Response, next: express.
         });
         await file.save();
 
-        res.status(200).send(success({ fileUrl }));
+        res.status(200).send(success({ rndFilename, fileUrl }));
     } catch(err: unknown) {
         next(err);
     }

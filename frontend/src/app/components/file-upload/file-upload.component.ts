@@ -116,7 +116,7 @@ export class FileUploadComponent {
       this.fileUploadService.upload({ filename: this.filename, course, visibility, fileContent: this.fileData, description })?.subscribe(response => {
 
         if (response.successful) {
-          this.fileLink = response.data.fileUrl;
+          this.fileLink = "http://localhost:4200/files/read?filename=" + response.data.rndFilename;
 
           this.uploaded = true;
           console.log("response", response)
