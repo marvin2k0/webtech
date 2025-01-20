@@ -1,6 +1,7 @@
 import {NextFunction, Request, Response} from "express";
 import {success} from "../model/http/rest-response";
 import Course, {CourseDetails} from "../model/course.model";
+import User from "../model/user.model";
 import {EntityNotFoundError} from "../error/entity.not.found.error";
 import {logger} from "../utils/Logger";
 import {ConflictError} from "../error/conflict.error";
@@ -27,6 +28,11 @@ export async function joinCourse(req: any, res: Response, next: NextFunction) {
             { $addToSet: { members: userId } }
         )
 
+        await User.updateOne(
+            { _id: userId },
+            { $addToSet: {enrolledCourses: courseId} }
+        )
+
         res.status(200)
             .json(success(`Added user to course ${course.name}`))
     } catch (err: unknown) {
@@ -43,8 +49,6 @@ export async function leaveCourse(req: any, res: Response, next: NextFunction) {
         const userId = userDetails._id
         const members = course.members
 
-        logger.debug(members)
-
         // @ts-ignore
         if (members.some(id => id === new ObjectId(userId))) {
             logger.warn(`User ${username} was never in course ${course.name}`)
@@ -54,6 +58,11 @@ export async function leaveCourse(req: any, res: Response, next: NextFunction) {
         await Course.updateOne(
             {_id: courseId},
             {$pull: {members: userId}}
+        )
+
+        await User.updateOne(
+            { _id: userId },
+            { $pull: { enrolledCourses: courseId } }
         )
 
         res.status(200)

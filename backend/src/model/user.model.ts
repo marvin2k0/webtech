@@ -52,7 +52,8 @@ const userSchema = new Schema<UserDetails>({
     },
     enrolledCourses: {
         type: [],
-        required: false
+        required: false,
+        ref: "Course"
     },
     role: {
         type: Number,
