@@ -35,11 +35,13 @@
 
   "view_course": "Kurs ansehen",
   "course_join": "Kurs beitreten",
+  "leave_course": "Kurs verlassen ",
   "course_members": "Mitglieder",
   "course_results": "Ergebnisse",
   "course_search_header": "Suchen",
   "course_description": "Beschreibung",
 
+  "need_login": "Du musst angemeldet sein, um dies zu tun.",
   "login_page_headline": "Anmelden",
   "login_page_username_label": "Nutzername",
   "login_page_username_placeholder": "max.mustermann",
