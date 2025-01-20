@@ -25,7 +25,8 @@ export interface FileDetails {
 
 export enum VisibilityTypes {
     PUBLIC = 0, // Everyone can see
-    PRIVATE = 1 // Only Moderators, Admins and the person that uploaded can see
+    PRIVATE = 1, // Only Moderators, Admins and the person that uploaded can see,
+    COURSE = 2,
 }
 
 const fileSchema = new Schema<FileDetails>({

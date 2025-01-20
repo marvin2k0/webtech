@@ -11,6 +11,7 @@ import {EntityNotFoundError} from "../error/entity.not.found.error";
 import {InternalServerError} from "../error/internal.server.error";
 import path from "node:path";
 import mime from "mime";
+import {InsufficientRoleError} from "../error/insufficient.role.error";
 
 const uploadDirectory = process.env.FILES_DIR || "/app/user_uploads/";
 
@@ -21,8 +22,11 @@ const uploadDirectory = process.env.FILES_DIR || "/app/user_uploads/";
  * @param res
  * @param next
  */
-export async function findFile(req: express.Request, res: express.Response, next: express.NextFunction) {
+export async function findFile(req: any, res: any, next: NextFunction) {
 
+    // With the new way the search works, doing this is unnesccary.
+    // though im keeping this, just in case i want to adjust
+    // the way the search works in the frontend
     const { rndFilename, filename, description, uploadedBy, course, fileType } = req.query;
     const attr = { rndFilename, filename, description, uploadedBy, course, fileType };
 
@@ -36,7 +40,10 @@ export async function findFile(req: express.Request, res: express.Response, next
     }
 
     try {
-        const files = await File.find({ $or: searchParams });
+        let files = await File.find({ $or: searchParams });
+
+        files = files.filter(file => canGetFileCallback(req, file));
+
         res.status(200).send(success(files));
     } catch (error) {
         logger.error("Error fetching files:", error);
@@ -57,10 +64,9 @@ export async function getFile(req: any, res: any, next: NextFunction) {
             throw new EntityNotFoundError("File not found");
         }
 
-        const username = req.username;
-        const role = req.role;
-        // @ToDo:   Müssen noch berechtigungen prüfen.
-        //          (Ob in course, private oder public etc.)
+        if (!canGetFileCallback(req, fileDb)) {
+            throw new InsufficientRoleError();
+        }
 
         const filePath = path.join(uploadDirectory, rndFilename);
         const mimeType = mime.getType(filePath) || 'application/octet-stream';
@@ -193,5 +199,24 @@ export async function addView(req: any, res: express.Response, next: NextFunctio
 
     } catch (e) {
         next(e)
+    }
+}
+
+function canGetFileCallback(req: any, file: FileDetails) {
+    // Admins are able to do everything
+    if ([UserRole.ADMIN, UserRole.MODERATOR].includes(req.role)) {
+        return true;
+    }
+
+    switch (file.visibility) {
+        case VisibilityTypes.PUBLIC:
+            // Visible for everyone, just keep :)
+            return true;
+        case VisibilityTypes.PRIVATE:
+            return req.username === file.uploadedBy;
+        case VisibilityTypes.COURSE:
+            // @ToDo:   Check if user is enrolled in course, for now just return true
+            //          (awaiting response from marvin)
+            return true;
     }
 }
