@@ -5,6 +5,7 @@ import {UploadModalService} from '../../services/uplaod-modal.service';
 import {UserService} from '../../services/user.service';
 import {FileUploadService} from '../../services/file-upload.service';
 import {FormsModule} from '@angular/forms';
+import {equals} from '@ngx-translate/core';
 
 
 @Component({
@@ -27,6 +28,8 @@ export class FileUploadComponent {
   filesize: string = "";
   fileData: string = "";
 
+  userService: UserService = inject(UserService)
+
   @ViewChild('dragDropField') dragDropField: ElementRef | undefined;
   @Input() currentSite: number = 1;
   uploaded: boolean = false;
@@ -37,6 +40,7 @@ export class FileUploadComponent {
   isCourseSelectionVisible: boolean = false;
 
   fileLink: string = "";
+  enrolledCourses: String[] = [];
 
 
   constructor(protected modalService: UploadModalService) {}
@@ -171,6 +175,7 @@ export class FileUploadComponent {
         break;
       case 3:
       default:
+        this.deleteFile()
         this.modalService.closeModal();
     }
   }
@@ -229,6 +234,13 @@ export class FileUploadComponent {
     const selectedValue = (event.target as HTMLSelectElement).value;
 
     if (selectedValue === '2') {
+      // Load the courses taht the user is enrolled in
+      // @ToDo:   Refactor!!!
+      this.userService.getUserInformation().subscribe(response => {
+        console.log(JSON.stringify(response))
+        this.enrolledCourses = response.data.enrolledCourses;
+      });
+
       this.isCourseSelectionVisible = true;
     } else {
       this.isCourseSelectionVisible = false;

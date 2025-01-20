@@ -188,11 +188,18 @@ textarea:focus {
   font-size: 0.75rem;
 }
 
+.oic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
 .image-container {
   margin-top: -110px;
   background-color: var(--background);
   border-radius: var(--border-radius-xs);
-  box-shadow: 0 0 2px var(--shadow-color)
+  box-shadow: 0 0 2px var(--shadow-color);
 }
 
 .image-container .title {
@@ -215,6 +222,7 @@ textarea:focus {
 
 .image-container img {
   width: 100%;
+  max-width: 50vw;
 }
 
 .video-container {

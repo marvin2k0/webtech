@@ -9,6 +9,7 @@
   <div class="pdf-container" id="pdf-container">
     <!-- Images wont be rendered in object -->
       @if (fileType && fileTypes.IMAGES.includes(fileType)) {
+        <div class="oic">
           <div class="image-container" *ngIf="file">
               <div class="title">
                   <h3>Title</h3>
@@ -36,6 +37,7 @@
                   </div>
               </span>
           </div>
+        </div>
       } @else if (fileType && fileTypes.DOCUMENTS.includes(fileType)) {
           <iframe *ngIf="file" [src]="file" class="pdf-iframe"></iframe>
       } @else if (fileType && fileTypes.VIDEOS.includes(fileType)) {

@@ -78,7 +78,11 @@
       <span *ngIf="isCourseSelectionVisible" [class.show-anim]="isCourseSelectionVisible">
         <label for="file-course">Course</label>
         <select id="file-course">
-          <option>&#64;ToDo: implement</option>
+          @for (course of enrolledCourses; track course) {
+            <option value="{{course}}">{{course}}</option>
+          } @empty {
+            <option>-- You need to be enrolled in a course --</option>
+          }
         </select>
       </span>
     </div>
