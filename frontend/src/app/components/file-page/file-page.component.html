@@ -4,7 +4,7 @@
 <div class="search-box-wrapper">
     <h1>Search</h1>
     <input-with-icon (clickFunction)="searchAndLoadFiles($event)"/>
-    <div class="results">{{ filesFound.length }} Files found</div>
+    <div class="results">{{ filesFound.length }} {{ filesFound.length == 1 ? 'File' : 'Files' }} found</div>
 </div>
 
 

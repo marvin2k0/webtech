@@ -1,6 +1,5 @@
 import express, {NextFunction} from "express";
 import {error, success} from "../model/http/rest-response";
-import {UserRole} from "../model/user.model";
 import {InvalidFormatError} from "../error/invalid.format.error";
 import File, {FileDetails, VisibilityTypes} from "../model/file.model";
 import { Buffer } from "buffer";
@@ -12,6 +11,8 @@ import {InternalServerError} from "../error/internal.server.error";
 import path from "node:path";
 import mime from "mime";
 import {InsufficientRoleError} from "../error/insufficient.role.error";
+import User, {EMPTY_USER, UserDetails, UserRole} from "../model/user.model";
+
 
 const uploadDirectory = process.env.FILES_DIR || "/app/user_uploads/";
 
@@ -42,7 +43,16 @@ export async function findFile(req: any, res: any, next: NextFunction) {
     try {
         let files = await File.find({ $or: searchParams });
 
-        files = files.filter(file => canGetFileCallback(req, file));
+        const filteredFiles = await Promise.all(
+            files.map(async file => ({
+                file,
+                canGet: await canGetFileCallback(req, file),
+            }))
+        );
+
+        files = filteredFiles
+            .filter(({ canGet }) => canGet)
+            .map(({ file }) => file);
 
         res.status(200).send(success(files));
     } catch (error) {
@@ -202,7 +212,7 @@ export async function addView(req: any, res: express.Response, next: NextFunctio
     }
 }
 
-function canGetFileCallback(req: any, file: FileDetails) {
+async function canGetFileCallback(req: any, file: FileDetails) {
     // Admins are able to do everything
     if ([UserRole.ADMIN, UserRole.MODERATOR].includes(req.role)) {
         return true;
@@ -215,8 +225,9 @@ function canGetFileCallback(req: any, file: FileDetails) {
         case VisibilityTypes.PRIVATE:
             return req.username === file.uploadedBy;
         case VisibilityTypes.COURSE:
-            // @ToDo:   Check if user is enrolled in course, for now just return true
-            //          (awaiting response from marvin)
-            return true;
+            const user = await User.findOne({ username: req.username})
+
+            // @ts-ignore
+            return user!.enrolledCourses && user!.enrolledCourses.includes(file.course);
     }
 }
