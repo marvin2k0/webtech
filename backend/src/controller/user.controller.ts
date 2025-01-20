@@ -4,7 +4,6 @@ import {logger} from "../utils/Logger";
 import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
 import {error, success} from "../model/http/rest-response";
-import {EntityNotFoundError} from "../error/entity.not.found.error";
 import {ConflictError} from "../error/conflict.error";
 
 /**
@@ -20,7 +19,7 @@ export const getToken = async (req: Request, res: Response, next: NextFunction) 
         const validPassword = await bcrypt.compare(password, passwordHash)
 
         if (validPassword) {
-            const token = jwt.sign({username, role}, process.env.AUTH_TOKEN_SECRET!, {expiresIn: "30m"})
+            const token = jwt.sign({username, role}, process.env.AUTH_TOKEN_SECRET!/*, {expiresIn: "30m"}*/)
             logger.debug(`User ${username} successfully authenticated`)
 
             res.status(200)
@@ -59,7 +58,7 @@ export const getPersonalInformation = async (req: any, res: Response, next: Next
     try {
         const username = req.username;
         const userData = await User.findOne({ username });
-        res.status(200).json(userData);
+        res.status(200).json(success(userData));
     } catch (err: unknown) {
         next(err)
     }
@@ -134,7 +133,7 @@ export const createUser = async (req: Request, res: Response, next: NextFunction
     }
 }
 
-export async function getUserObjectFromDatabase(findUsername: string): Promise<UserDetails> {
+export async function getUserObjectFromDatabase(findUsername: string): Promise<any> {
     const userFound = await User.findOne({username: findUsername}).exec()
 
     if (!userFound)

@@ -1,16 +1,29 @@
 <div class="container">
-  <div class="course-info-container">
+  <div class="course-info-container course-column">
     <h1>{{ course.name }}</h1>
-    <p>{{ course.description }}</p>
+
+    @if (course._id) {
+      <join-course-btn [course]="course"/>
+    }
+
+    <div class="course-description">
+      <h3>{{ "course_description" | translate }}</h3>
+      <p>{{ course.description }}</p>
+    </div>
   </div>
-  <div class="course-activity-container">
-    <app-post-card />
+  <div class="course-activity-container course-column">
+    <input-with-icon/>
+    <div class="activities">
+      <app-post-card/>
+      <app-post-card/>
+      <app-post-card/>
+    </div>
   </div>
-  <div class="course-members-container">
+  <div class="course-members-container course-column">
     <h2>{{ "course_members" | translate }}</h2>
     <ul>
       @for (member of course.members; track member) {
-        <li>{{ member }}</li>
+        <li>{{ member.username }}</li>
       }
     </ul>
   </div>

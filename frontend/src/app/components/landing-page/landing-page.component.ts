@@ -1,10 +1,9 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {TranslatePipe} from '@ngx-translate/core';
 import {BackgroundArtComponent} from '../background-art/background-art.component';
 import {ButtonComponent} from '../button/button.component';
 import {ModalService} from '../../services/modal.service';
-import {FileUploadComponent} from '../file-upload/file-upload.component';
 
 @Component({
   selector: 'app-landing-page',
@@ -12,7 +11,6 @@ import {FileUploadComponent} from '../file-upload/file-upload.component';
   imports: [
     RouterLink,
     TranslatePipe,
-    FileUploadComponent,
     BackgroundArtComponent,
     ButtonComponent
   ],
@@ -20,8 +18,7 @@ import {FileUploadComponent} from '../file-upload/file-upload.component';
   styleUrl: './landing-page.component.css'
 })
 export class LandingPageComponent {
-
-  constructor(private modalService: ModalService) { }
+  modalService: ModalService = inject(ModalService)
 
   openModal() {
     this.modalService.openModal();
