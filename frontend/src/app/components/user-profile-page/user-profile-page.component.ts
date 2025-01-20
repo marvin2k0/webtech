@@ -5,6 +5,7 @@ import {ButtonComponent} from '../button/button.component';
 import {CardComponent} from '../card/card.component';
 import {BackgroundArtComponent} from '../background-art/background-art.component';
 import {UserService} from '../../services/user.service';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-user-profile-page',
@@ -14,7 +15,8 @@ import {UserService} from '../../services/user.service';
     FormsModule,
     ButtonComponent,
     CardComponent,
-    BackgroundArtComponent
+    BackgroundArtComponent,
+    RouterLink
   ],
   templateUrl: './user-profile-page.component.html',
   styleUrl: './user-profile-page.component.css'
@@ -40,7 +42,13 @@ export class UserProfilePageComponent {
       if (this.usernameInput.nativeElement.value === '') {
         alert("Username cannot be empty");
       } else {
+        let oldUsername: string = "";
 
+        this.userService.getUserInformation().subscribe(response => {
+          oldUsername = response.data.username;
+
+          this.userService.postNewUsername(this.usernameInput.nativeElement.value, oldUsername).subscribe();
+        })
 
         this.showUsernameSaveButton = false;
       }

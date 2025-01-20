@@ -133,6 +133,25 @@ export const createUser = async (req: Request, res: Response, next: NextFunction
     }
 }
 
+export async function updateUser(req: any, res: Response, next: NextFunction) {
+    try {
+        const user = await getUserObjectFromDatabase(req.username);
+        let oldUsername: string = req.body.oldUsername;
+        user.username = req.body.newUsername;
+
+        console.log(user.username);
+
+        await User.updateOne(
+            { username: oldUsername},
+            { $set: { username: user.username } }
+        )
+
+        res.status(200).json(success("Username updated successfully!"));
+    } catch (error: unknown) {
+        next(error);
+    }
+}
+
 export async function getUserObjectFromDatabase(findUsername: string): Promise<any> {
     const userFound = await User.findOne({username: findUsername}).exec()
 
