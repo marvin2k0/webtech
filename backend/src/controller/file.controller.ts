@@ -74,7 +74,7 @@ export async function getFile(req: any, res: any, next: NextFunction) {
             throw new EntityNotFoundError("File not found");
         }
 
-        if (!canGetFileCallback(req, fileDb)) {
+        if (!await canGetFileCallback(req, fileDb)) {
             throw new InsufficientRoleError();
         }
 
