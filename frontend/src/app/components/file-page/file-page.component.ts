@@ -32,12 +32,14 @@ export class FilePageComponent implements OnInit {
 
 
   ngOnInit() {
-
     // Load all files (No search params)
-    this.fileUploadService.find("").subscribe(response => {
-      this.filesFound = response.data.files
-    })
+    this.searchAndLoadFiles("");
+  }
 
+  searchAndLoadFiles(query: string): void {
+    this.fileUploadService.find(query).subscribe(response => {
+      this.filesFound = response.data
+    });
   }
 
 }

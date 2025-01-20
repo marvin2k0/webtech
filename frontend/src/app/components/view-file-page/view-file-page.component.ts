@@ -24,6 +24,13 @@ export class ViewFilePageComponent {
   filename: string | null = "";
   fileType: string | undefined;
 
+  fileTypes = {
+    IMAGES: ["png", "jpg", "jpeg"],
+    DOCUMENTS: ["pdf"],
+    VIDEOS: ["mp4", "webm", "mov"],
+    AUDIOS: ["mp3"]
+  }
+
   constructor(
     private sanitizer: DomSanitizer, private route: ActivatedRoute
   ) {}
@@ -37,6 +44,11 @@ export class ViewFilePageComponent {
     if (!this.filename) {
       return ;
     }
+
+    this.fileUploadService.addView(this.filename).subscribe({
+      next: (res) => { },
+      error: (err) => { console.error(err) }
+    })
 
     this.fileType = this.filename.split('.')[1];
 
@@ -55,7 +67,6 @@ export class ViewFilePageComponent {
       },
     });
   }
-
 
   toggleReadingMode(): void {
     this.readingMode = !this.readingMode;

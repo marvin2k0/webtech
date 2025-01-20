@@ -20,11 +20,13 @@ export interface FileDetails {
     upVotes: number,
     downVotes: number,
     voteId: string,
+    views: 0,
 }
 
 export enum VisibilityTypes {
     PUBLIC = 0, // Everyone can see
-    PRIVATE = 1 // Only Moderators, Admins and the person that uploaded can see
+    PRIVATE = 1, // Only Moderators, Admins and the person that uploaded can see,
+    COURSE = 2,
 }
 
 const fileSchema = new Schema<FileDetails>({
@@ -99,6 +101,11 @@ const fileSchema = new Schema<FileDetails>({
         type: String,
         required: true,
         default: UP_DOWN_PREFIX + uuidv4()
+    },
+    views: {
+        type: Number,
+        required: false,
+        default: 0
     }
 })
 

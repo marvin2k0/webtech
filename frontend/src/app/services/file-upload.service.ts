@@ -42,17 +42,22 @@ export class FileUploadService {
   }
 
   find(query: string): Observable<IRestResponse> {
-    const options = {
-      headers: new HttpHeaders({
-        'Authorization': `Bearer ${localStorage.getItem("accessToken")}`
-      }),
-    }
+    // const options = {
+    //   headers: new HttpHeaders({
+    //     'Authorization': `Bearer ${localStorage.getItem("accessToken")}`
+    //   }),
+    // }
 
-    // @ToDo: suche erweitern
-    return this.http.get<IRestResponse>(`${this.baseUrl}/find?rndFilename=${query}`, options);
+    return this.http.get<IRestResponse>(`${this.baseUrl}/find?rndFilename=${query}&filename=${query}&description=${query}&uploadedBy=${query}&course=${query}&fileType=${query}`);
   }
 
   retrieve(rndFilename: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/${rndFilename}`, { responseType: "blob" });
+  }
+
+  addView (rndFilename: string): Observable<any> {
+    const params = { rndFilename };
+
+    return this.http.post(`${this.baseUrl}/views`, params)
   }
 }

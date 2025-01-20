@@ -6,4 +6,5 @@ export interface FileDetails {
   fileType: string,
   description: string,
   voteId: string,
+  views: number,
 }
