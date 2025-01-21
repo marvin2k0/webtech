@@ -18,5 +18,5 @@ jobs:
           ssh_key: ${{ secrets.SSH_KEY }}
 
       - run: |
-          docker context use docker-test 
+          docker context use remote
           docker context ls
