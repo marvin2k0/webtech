@@ -5,8 +5,7 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-FROM nginx:alpine
-COPY --from=build /app/dist/frontend/browser /usr/share/nginx/html
-COPY --from=build /app/nginx.conf /etc/nginx/
+FROM nginx:latest
+COPY --from=build /app/dist/frontend/browser /var/www/eduempire.de
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
