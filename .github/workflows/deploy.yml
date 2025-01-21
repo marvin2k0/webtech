@@ -17,7 +17,7 @@ jobs:
         uses: amirmarmul/docker-context-ssh-action@v1
         with:
           ssh-host: 138.199.144.210
-          ssh-username: ${{ secrets.VPS_USER }}
+          ssh-username: root
           ssh-private-key: ${{ secrets.SSH_KEY }}
 
       - run: |
