@@ -17,4 +17,4 @@ jobs:
           context_name: 'remote'
           ssh_key: ${{ secrets.SSH_KEY }}
 
-      - run: docker-compose --context remote -f production-docker.yaml up -d --build
+      - run: docker compose --context remote -f production-docker.yaml up -d --build
