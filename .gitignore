@@ -1,4 +1,10 @@
 .idea/
+
+certbot/
+nginx/
+
+production-compose.yaml
+
 *.iml
 *.tar
 
