@@ -19,6 +19,11 @@ jobs:
           context_name: 'remote'
           ssh_key: ${{ secrets.SSH_KEY }}
 
+      - name: Add remote host to known hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan eduempire.de >> ~/.ssh/known_hosts
+
       - run: |
           docker context use remote
           docker context ls
