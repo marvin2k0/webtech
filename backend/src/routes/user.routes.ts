@@ -1,5 +1,13 @@
 import express, { Router } from "express";
-import { createUser, getToken, getAllUsers, getUserDetails, getPersonalInformation, deleteUser } from "../controller/user.controller";
+import {
+    createUser,
+    getToken,
+    getAllUsers,
+    getUserDetails,
+    getPersonalInformation,
+    deleteUser,
+    updateUser
+} from "../controller/user.controller";
 import { authenticate } from "../middleware/authentication.middleware";
 import {requireRole} from "../middleware/role.auth.middleware";
 import {UserRole} from "../model/user.model";
@@ -15,5 +23,7 @@ router.get("/", authenticate, requireRole(UserRole.MODERATOR), getAllUsers);
 router.post("/login", getToken);
 
 router.delete("/delete/:username", authenticate, requireRole(UserRole.MODERATOR), deleteUser)
+
+router.post("/updateUser", authenticate, updateUser)
 
 export default router;

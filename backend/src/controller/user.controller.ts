@@ -26,7 +26,7 @@ export const getToken = async (req: Request, res: Response, next: NextFunction) 
                 .json(success<{ accessToken: string }>({accessToken: token}))
         } else {
             logger.warn(`There was a problem authenticating user ${username}`)
-            // TODO throw internal error
+            throw new ConflictError(`There was a problem authenticating user ${username}`)
         }
     } catch (err: unknown) {
         next(err)
@@ -130,6 +130,25 @@ export const createUser = async (req: Request, res: Response, next: NextFunction
         res.status(200).json(success("Success"));
     } catch (error: unknown) {
         next(error)
+    }
+}
+
+export async function updateUser(req: any, res: Response, next: NextFunction) {
+    try {
+        const user = await getUserObjectFromDatabase(req.username);
+        let oldUsername: string = req.body.oldUsername;
+        user.username = req.body.newUsername;
+
+        console.log(user.username);
+
+        await User.updateOne(
+            { username: oldUsername},
+            { $set: { username: user.username } }
+        )
+
+        res.status(200).json(success("Username updated successfully!"));
+    } catch (error: unknown) {
+        next(error);
     }
 }
 
