@@ -12,12 +12,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-    
-      - uses: arwynfr/actions-docker-context@v2
+
+      - name: Set up docker context over SSH authentication
+        uses: amirmarmul/docker-context-ssh-action@v1
         with:
-          docker_host: 'ssh://eduempire@eduempire.de'
-          context_name: 'remote'
-          ssh_key: ${{ secrets.SSH_KEY }}
+          ssh-host: eduempire.de
+          ssh-username: eduempire
+          ssh-private-key: ${{ secrets.SSH_KEY }}
+          context-use: true
 
       - name: Add remote host to known hosts
         run: |
