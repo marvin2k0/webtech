@@ -42,11 +42,6 @@ export class FileUploadService {
   }
 
   find(query: string): Observable<IRestResponse> {
-    // const options = {
-    //   headers: new HttpHeaders({
-    //     'Authorization': `Bearer ${localStorage.getItem("accessToken")}`
-    //   }),
-    // }
 
     return this.http.get<IRestResponse>(`${this.baseUrl}/find?rndFilename=${query}&filename=${query}&description=${query}&uploadedBy=${query}&course=${query}&fileType=${query}`);
   }
@@ -59,5 +54,18 @@ export class FileUploadService {
     const params = { rndFilename };
 
     return this.http.post(`${this.baseUrl}/views`, params)
+  }
+
+  addDrawing(payload: any) {
+    if (!payload.rndFilename || !payload.drawing) {
+      return ;
+    }
+
+    return this.http.post(`${this.baseUrl}/addDrawing`, payload);
+  }
+
+  getDrawing(rndFilename: string): Observable<any> {
+
+    return this.http.get(`${this.baseUrl}/getDrawing?rndFilename=${rndFilename}`);
   }
 }

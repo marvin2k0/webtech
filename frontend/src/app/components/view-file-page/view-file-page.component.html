@@ -15,7 +15,17 @@
                   <h3>Title</h3>
                   <span>X</span>
               </div>
-              <img [src]="file" alt="Uploaded Image">
+              <div class="canvas-wrapper">
+                <canvas
+                  #overlayCanvas
+                  class="overlay-canvas"
+                  (mousedown)="onCanvasMouseDown($event)"
+                  (mousemove)="onCanvasMouseMove($event)"
+                  (mouseup)="onDrawStop()"
+                  (mouseleave)="onDrawStop()">
+                </canvas>
+                <img [src]="file" alt="Uploaded Image" draggable="false">
+              </div>
               <span class="bottom">
                   <div class="interactions">
                       <div class="interaction-wrapper">
@@ -83,7 +93,7 @@
     </button>
   </div>
   <div class="tool-item" title="Draw Markings">
-    <button>
+    <button (click)="toggleDrawMode()">
       <svg width="40" height="40" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"></svg>
       <span>Draw</span>
     </button>

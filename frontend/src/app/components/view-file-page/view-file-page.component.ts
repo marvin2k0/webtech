@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, inject, ViewChild} from '@angular/core';
 import {CardComponent} from "../card/card.component";
 import {NgIf} from "@angular/common";
 import {FileUploadService} from '../../services/file-upload.service';
@@ -31,6 +31,97 @@ export class ViewFilePageComponent {
     AUDIOS: ["mp3"]
   }
 
+  @ViewChild('overlayCanvas') canvasRef!: ElementRef<HTMLCanvasElement>;
+
+  private ctx!: CanvasRenderingContext2D;
+  private isDrawing = false;
+  private lastX = 0;
+  private lastY = 0;
+
+
+  initCanvas() {
+    console.log("initCanvas")
+    const canvas = this.canvasRef.nativeElement;
+    this.ctx = canvas.getContext('2d')!;
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+
+  onCanvasMouseDown(event: MouseEvent) {
+    this.isDrawing = true;
+    this.lastX = event.offsetX;
+    this.lastY = event.offsetY;
+  }
+
+  onCanvasMouseMove(event: MouseEvent) {
+    if (!this.isDrawing) return;
+
+    const currentX = event.offsetX;
+    const currentY = event.offsetY;
+
+    this.ctx.beginPath();
+    this.ctx.moveTo(this.lastX, this.lastY);
+    this.ctx.lineTo(currentX, currentY);
+    this.ctx.strokeStyle = 'rgba(0, 0, 255, 0.8)';
+    this.ctx.lineWidth = 5;
+    this.ctx.stroke();
+    this.ctx.closePath();
+
+    this.lastX = currentX;
+    this.lastY = currentY;
+  }
+
+  onDrawStop() {
+    this.isDrawing = false;
+    this.saveDrawing()
+  }
+
+  /**
+   * Converts the drawing thats on the canvas into an image, which is base64 encoded
+   * Sends the image to server via HTTP-Post as payload
+   */
+  saveDrawing(): boolean {
+    const canvas = this.canvasRef.nativeElement;
+    const imageData = canvas.toDataURL('image/png');
+    const payload = { rndFilename: this.filename, drawing: imageData };
+
+    this.fileUploadService.addDrawing(payload)!.subscribe();
+    return true;
+  }
+
+  /**
+   * Performs an HTTP-Get. Receives b64 img data. Loads the data into the canvas
+   */
+  loadImage() {
+    this.fileUploadService.getDrawing(this.filename!).subscribe({
+      next: (response: any) => {
+        const b64ImgData = response.data;
+        this.drawImageOnCanvas(b64ImgData);
+      },
+      error: (err) => {
+        console.error('Error fetching image:', err);
+        // @ToDo: I might want to add a modal to let the user know something didnt go as planned,
+        //        This will do until then
+      }
+    });
+  }
+
+  private drawImageOnCanvas(b64ImgData: string): void {
+    const canvas = this.canvasRef.nativeElement;
+    const img = new Image();
+
+    img.onload = () => {
+      this.ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    };
+
+    img.onerror = (error) => {
+      console.error('Error loading image:', error);
+    };
+
+    img.src = b64ImgData;
+  }
+
+
   constructor(
     private sanitizer: DomSanitizer, private route: ActivatedRoute
   ) {}
@@ -45,6 +136,7 @@ export class ViewFilePageComponent {
       return ;
     }
 
+    // Adding 1 to the "Views"-Counter
     this.fileUploadService.addView(this.filename).subscribe({
       next: (res) => { },
       error: (err) => { console.error(err) }
@@ -70,5 +162,11 @@ export class ViewFilePageComponent {
 
   toggleReadingMode(): void {
     this.readingMode = !this.readingMode;
+  }
+
+  toggleDrawMode(): void {
+    // @ToDo: Implement
+    this.initCanvas();
+    this.loadImage();
   }
 }

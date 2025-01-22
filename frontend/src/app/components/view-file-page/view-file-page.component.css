@@ -283,3 +283,29 @@ textarea:focus {
 button svg {
   width: 25px;
 }
+
+
+.canvas-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: auto;
+}
+
+.canvas-wrapper img {
+  z-index: 1;
+  pointer-events: none;
+  width: 100%;
+  display: block;
+}
+
+.overlay-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+
