@@ -73,7 +73,6 @@ export class ViewFilePageComponent {
 
   onDrawStop() {
     this.isDrawing = false;
-    this.saveDrawing()
   }
 
   /**
@@ -93,9 +92,11 @@ export class ViewFilePageComponent {
    * Performs an HTTP-Get. Receives b64 img data. Loads the data into the canvas
    */
   loadImage() {
+    console.log("loadImage");
     this.fileUploadService.getDrawing(this.filename!).subscribe({
       next: (response: any) => {
         const b64ImgData = response.data;
+        console.log(JSON.stringify(response.successfulx));
         this.drawImageOnCanvas(b64ImgData);
       },
       error: (err) => {
@@ -107,6 +108,8 @@ export class ViewFilePageComponent {
   }
 
   private drawImageOnCanvas(b64ImgData: string): void {
+    console.log("drawImageOnCanvas");
+    console.info(b64ImgData);
     const canvas = this.canvasRef.nativeElement;
     const img = new Image();
 

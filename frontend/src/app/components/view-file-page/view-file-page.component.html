@@ -79,19 +79,6 @@
 </div>
 
 <div class="tools" *ngIf="file && !readingMode">
-  <div class="tool-item" title="Highlight Text">
-    <button>
-      <!-- @ToDo: Add SVGs -->
-      <svg width="40" height="40" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"></svg>
-      <span>Highlight</span>
-    </button>
-  </div>
-  <div class="tool-item" title="Add Comment">
-    <button>
-        <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"></svg>
-        <span>Comment</span>
-    </button>
-  </div>
   <div class="tool-item" title="Draw Markings">
     <button (click)="toggleDrawMode()">
       <svg width="40" height="40" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"></svg>
@@ -102,6 +89,19 @@
     <button>
       <svg width="40" height="40" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"></svg>
       <span>Erase</span>
+    </button>
+  </div>
+  <div class="tool-item" title="Save changes">
+    <button (click)="saveDrawing()">
+      <!-- @ToDo: Add SVGs -->
+      <svg width="40" height="40" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"></svg>
+      <span>Save</span>
+    </button>
+  </div>
+  <div class="tool-item" title="Add Comment">
+    <button>
+        <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"></svg>
+        <span>Comment</span>
     </button>
   </div>
   <div class="tool-item" title="Reading Mode">
