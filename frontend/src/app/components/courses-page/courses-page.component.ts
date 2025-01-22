@@ -9,6 +9,8 @@ import {RouterLink} from '@angular/router';
 import {InputWithIconComponent} from '../input-with-icon/input-with-icon.component';
 import {UserService} from '../../services/user.service';
 import {JoinCourseBtnComponent} from '../join-course-btn/join-course-btn.component';
+import {CachingService} from '../../services/caching.service';
+import {environment} from '../../../environments/environment.development';
 
 @Component({
   selector: 'app-courses-page',
@@ -26,8 +28,11 @@ import {JoinCourseBtnComponent} from '../join-course-btn/join-course-btn.compone
   styleUrl: './courses-page.component.css'
 })
 export class CoursesPageComponent {
+  private baseUrl: string = `${environment.baseUrl}/course`
+
   userService: UserService = inject(UserService)
   courseService: CourseService = inject(CourseService)
+  cachingService: CachingService = inject(CachingService)
   courses: CourseDetails[] = []
   ownId: string = ""
 
