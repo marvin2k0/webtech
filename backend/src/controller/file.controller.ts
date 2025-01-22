@@ -90,7 +90,7 @@ export async function getFile(req: any, res: any, next: NextFunction) {
         res.status(200).sendFile(path.resolve(filePath), (err: any) => {
             if (err) {
                 console.error('Error sending file:', err);
-                throw new InternalServerError();
+                next(new InternalServerError());
             }
         });
     } catch (err) {
