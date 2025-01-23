@@ -87,14 +87,19 @@
   </div>
   <div class="tool-item" title="Erase Markings">
     <button>
-      <svg width="40" height="40" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"></svg>
-      <span>Erase</span>
+      <svg width="40" height="40" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 5, 35 35, M35 5, 5 35" stroke="black" stroke-width="2" fill="none"></path>
+      </svg>
+      <span>Clear</span>
     </button>
   </div>
   <div class="tool-item" title="Save changes">
     <button (click)="saveDrawing()">
-      <!-- @ToDo: Add SVGs -->
-      <svg width="40" height="40" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"></svg>
+      <svg width="40" height="40" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+        <rect x="5" y="5" width="40" height="40" stroke="black" stroke-width="2" fill="none"/>
+        <rect x="10" y="10" width="30" height="10" stroke="black" stroke-width="2" fill="none"/>
+        <circle cx="25" cy="35" r="5" stroke="black" stroke-width="2" fill="none"/>
+      </svg>
       <span>Save</span>
     </button>
   </div>
