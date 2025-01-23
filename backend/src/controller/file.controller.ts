@@ -208,6 +208,8 @@ export async function addView(req: any, res: express.Response, next: NextFunctio
         // Might want to do something with that
         const viewedFile = await File.findOneAndUpdate({rndFilename: rndFilename}, { $inc: { views: 1 } } )
 
+        res.status(200).send(success("Success"));
+
     } catch (e) {
         next(e)
     }
@@ -270,6 +272,11 @@ export async function getDrawing(req: any, res: any, next: NextFunction) {
     res.status(200).send(success(image?.drawing));
 }
 
+/**
+ * Function to check if user is allowed to get / edit file based on their roles and files metadata
+ * @param req
+ * @param file
+ */
 async function canGetFileCallback(req: any, file: FileDetails) {
     // Admins are able to do everything
     if ([UserRole.ADMIN, UserRole.MODERATOR].includes(req.role)) {
