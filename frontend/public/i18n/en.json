@@ -51,5 +51,8 @@
   "course_members": "Members",
   "course_results": "Results",
   "course_search_header": "Search",
-  "course_description": "Description"
+  "course_description": "Description",
+
+  "dashboard_courses_title": "Your Courses",
+  "dashboard_courses_view_all": "View all"
 }
