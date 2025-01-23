@@ -19,7 +19,7 @@ services:
     image: backend
     environment:
       - DB_USER=boraxgitarre3m
-      - DB_PASSWORD=SygjhbmYeGEECgX0
+      - DB_PASSWORD=9hXtttB2fefduRBP
       - DB_NAME=webtech
       - AUTH_TOKEN_SECRET=db094f147279a7ce72defc88b8bc584726693923460589a45c9c8e844804dc3b460b1d96955a82204fed252b265432c6d1f230a0467b7ada12685995677925d6
     volumes:
