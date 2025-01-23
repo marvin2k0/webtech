@@ -5,7 +5,7 @@ import {UploadModalService} from '../../services/uplaod-modal.service';
 import {UserService} from '../../services/user.service';
 import {FileUploadService} from '../../services/file-upload.service';
 import {FormsModule} from '@angular/forms';
-import {equals} from '@ngx-translate/core';
+import {CourseService} from '../../services/course.service';
 
 
 @Component({
@@ -13,7 +13,6 @@ import {equals} from '@ngx-translate/core';
   standalone: true,
   imports: [
     NgIf,
-    RouterLink,
     AsyncPipe,
     FormsModule
   ],
@@ -36,11 +35,12 @@ export class FileUploadComponent {
   file: File | undefined;
 
   private fileUploadService: FileUploadService = inject(FileUploadService);
+  private courseService: CourseService = inject(CourseService);
   selectedOption: string = "0";
   isCourseSelectionVisible: boolean = false;
 
   fileLink: string = "";
-  enrolledCourses: String[] = [];
+  enrolledCourses: any[] = [];
 
 
   constructor(protected modalService: UploadModalService) {}
@@ -237,13 +237,21 @@ export class FileUploadComponent {
       // Load the courses taht the user is enrolled in
       // @ToDo:   Refactor!!!
       this.userService.getUserInformation().subscribe(response => {
-        console.log(JSON.stringify(response))
-        this.enrolledCourses = response.data.enrolledCourses;
+        response.data.enrolledCourses.forEach((course: string) => this.getCourseInformation(course));
       });
 
       this.isCourseSelectionVisible = true;
     } else {
       this.isCourseSelectionVisible = false;
     }
+  }
+
+  getCourseInformation(course: string) {
+    this.courseService.findCourseById(course).subscribe({
+      next: (response) => {
+        this.enrolledCourses.push({ name: response.data.name, id: course})
+      },
+      error: (error) => { /* hmmm */ }
+    })
   }
 }
