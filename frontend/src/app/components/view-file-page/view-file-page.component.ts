@@ -23,6 +23,7 @@ export class ViewFilePageComponent {
   file?: SafeResourceUrl | undefined;
   filename: string | null = "";
   fileType: string | undefined;
+  fileMetaData: any;
 
   fileTypes = {
     IMAGES: ["png", "jpg", "jpeg"],
@@ -107,6 +108,16 @@ export class ViewFilePageComponent {
     });
   }
 
+  getFileMetadata() {
+    this.fileUploadService.find(this.filename!).subscribe({
+      next: (response: any) => {
+        console.log(JSON.stringify(response.data));
+        console.log(typeof response.data)
+        this.fileMetaData = response.data[0];
+      }
+    })
+  }
+
   private drawImageOnCanvas(b64ImgData: string): void {
     console.log("drawImageOnCanvas");
     console.info(b64ImgData);
@@ -148,6 +159,7 @@ export class ViewFilePageComponent {
     this.fileType = this.filename.split('.')[1];
 
     this.getFile(this.filename);
+    this.getFileMetadata();
   }
 
 
