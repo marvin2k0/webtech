@@ -29,7 +29,8 @@ export async function authenticate(req: any, res: Response, next: NextFunction) 
     try {
         // @ToDo: refactoring + we might want to add something different into the header!
         const decodedToken: any = jwt.verify(token, process.env.AUTH_TOKEN_SECRET!);
-        const username: string = decodedToken.username;
+        const username: string = decodedToken.username
+        const userId: string = decodedToken.userId
         const role: string = decodedToken.role
         const user = await User.findOne({username});
 
@@ -39,6 +40,7 @@ export async function authenticate(req: any, res: Response, next: NextFunction) 
 
         req.username = username;
         req.role = role;
+        req.userId = userId
         next();
     } catch (err) {
         next(err)
