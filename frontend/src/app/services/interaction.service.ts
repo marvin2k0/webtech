@@ -11,7 +11,8 @@ export class InteractionService {
 
   http: HttpClient = inject(HttpClient)
 
-  saveComment(text: string) {
-    return this.http.post<IRestResponse>(this.baseUrl, {text})
+  saveComment(referenceId: string, text: string) {
+    console.log(referenceId, text)
+    return this.http.post<IRestResponse>(this.baseUrl, {referenceId, text})
   }
 }

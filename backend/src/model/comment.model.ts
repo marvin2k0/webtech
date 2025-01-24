@@ -3,6 +3,7 @@ import {model, Schema} from "mongoose";
 export interface CommentDetails {
     author: string,
     comment: string,
+    timestamp: number,
     referenceId: string
 }
 
@@ -17,6 +18,11 @@ const commentSchema = new Schema<CommentDetails>({
         required: true,
         type: String,
         unique: false
+    },
+    timestamp: {
+        required: false,
+        type: Number,
+        default: Date.now()
     },
     referenceId: {
         required: true,

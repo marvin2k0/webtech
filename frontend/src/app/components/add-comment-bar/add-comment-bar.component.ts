@@ -1,4 +1,4 @@
-import {Component, EventEmitter, inject, Output} from '@angular/core';
+import {Component, inject, Input} from '@angular/core';
 import {InputWithIconComponent} from "../input-with-icon/input-with-icon.component";
 import {UserService} from '../../services/user.service';
 import {InteractionService} from '../../services/interaction.service';
@@ -13,7 +13,7 @@ import {InteractionService} from '../../services/interaction.service';
   styleUrl: './add-comment-bar.component.css'
 })
 export class AddCommentBarComponent {
-  @Output() saveComment: EventEmitter<string> = new EventEmitter()
+  @Input() referenceId: string | undefined;
 
   userService: UserService = inject(UserService)
   interactionService: InteractionService = inject(InteractionService)
@@ -29,11 +29,11 @@ export class AddCommentBarComponent {
   }
 
   addComment(text: string) {
-    if (!this.userId)
+    if (!this.userId || !this.referenceId)
       return;
 
-    this.interactionService.saveComment(text).subscribe(response => {
-      this.saveComment.emit(response.data)
+    this.interactionService.saveComment(this.referenceId, text).subscribe(response => {
+
     })
   }
 }

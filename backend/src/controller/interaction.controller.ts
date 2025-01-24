@@ -6,7 +6,7 @@ import CommentModel, {CommentDetails} from "../model/comment.model";
 export const getCommentByReference = async (req: any, res: Response, next: NextFunction) => {
     try {
         const referenceId = req.query.referenceId
-        const comments: CommentDetails[] = await CommentModel.find({referenceId: referenceId})
+        const comments: CommentDetails[] = await CommentModel.find({referenceId: referenceId}).populate("author", "username")
 
         res.status(200)
             .json(success(comments))
