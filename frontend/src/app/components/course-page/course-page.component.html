@@ -12,7 +12,7 @@
     </div>
   </div>
   <div class="course-activity-container course-column">
-    <add-comment-bar [referenceId]="courseId"/>
+    <add-comment-bar [referenceId]="courseId" (afterFinished)="onCommentSent($event)" />
 
     <div class="activities">
       @for (comment of comments; track comment._id) {

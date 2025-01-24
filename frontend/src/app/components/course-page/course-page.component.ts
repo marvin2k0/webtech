@@ -44,4 +44,8 @@ export class CoursePageComponent {
       }
     })
   }
+
+  onCommentSent(newComment: CommentDetails) {
+    this.comments.unshift(newComment)
+  }
 }

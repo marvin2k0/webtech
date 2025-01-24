@@ -30,6 +30,5 @@ export class PostCardComponent {
 
   onCommentSent(newComment: CommentDetails) {
     this.comment.replies.push(newComment)
-    console.log(newComment)
   }
 }
