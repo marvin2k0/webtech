@@ -50,6 +50,8 @@ export class UserProfilePageComponent {
           this.userService.postNewUsername(this.usernameInput.nativeElement.value, oldUsername).subscribe();
         })
 
+        alert("Username changed successfully");
+
         this.showUsernameSaveButton = false;
       }
     }

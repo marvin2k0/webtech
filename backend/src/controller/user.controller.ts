@@ -139,8 +139,6 @@ export async function updateUser(req: any, res: Response, next: NextFunction) {
         let oldUsername: string = req.body.oldUsername;
         user.username = req.body.newUsername;
 
-        console.log(user.username);
-
         await User.updateOne(
             { username: oldUsername},
             { $set: { username: user.username } }
