@@ -7,6 +7,8 @@ import {BackgroundArtComponent} from '../background-art/background-art.component
 import {UserService} from '../../services/user.service';
 import {RouterLink} from '@angular/router';
 import {CachingService} from '../../services/caching.service';
+import {ModalService} from '../../services/modal.service';
+import {AlertBoxComponent} from '../alert-box/alert-box.component';
 
 @Component({
   selector: 'app-user-profile-page',
@@ -17,7 +19,8 @@ import {CachingService} from '../../services/caching.service';
     ButtonComponent,
     CardComponent,
     BackgroundArtComponent,
-    RouterLink
+    RouterLink,
+    AlertBoxComponent
   ],
   templateUrl: './user-profile-page.component.html',
   styleUrl: './user-profile-page.component.css'
@@ -28,12 +31,16 @@ export class UserProfilePageComponent {
 
   userService: UserService = inject(UserService)
   cachingService: CachingService = inject(CachingService)
+  modalService:ModalService = inject(ModalService)
 
   username: string = "";
 
   focusPoint: string = "";
   institute: string = "";
   dob: number = -1;
+
+  headerMessage: string = "";
+  errorMessage: string = "";
 
   @ViewChild("usernameInput") usernameInput!: ElementRef;
   @ViewChild("focuspointInput") focuspointInput!: ElementRef;
@@ -46,7 +53,9 @@ export class UserProfilePageComponent {
 
     } else {
       if (this.usernameInput.nativeElement.value === '') {
-        alert("Username cannot be empty");
+        this.headerMessage = "Error"
+        this.errorMessage = "Username cannot be empty!";
+        this.modalService.openModal();
       } else {
         let oldUsername: string = "";
 
@@ -58,7 +67,9 @@ export class UserProfilePageComponent {
           this.userService.postNewUsername(this.usernameInput.nativeElement.value, oldUsername).subscribe();
         })
 
-        alert("Username changed successfully");
+        this.headerMessage = "Success"
+        this.errorMessage = "Username changed successfully.";
+        this.modalService.openModal();
 
         this.showUsernameSaveButton = false;
       }
@@ -70,7 +81,9 @@ export class UserProfilePageComponent {
       this.showSaveButton = true;
     } else {
       if (this.focuspointInput.nativeElement.value === '') {
-        alert("Focus Point cannot be empty!");
+        this.headerMessage = "Error"
+        this.errorMessage = "Focus Point cannot be empty!";
+        this.modalService.openModal();
       } else {
         let usernameTemp: string = "";
 
@@ -82,7 +95,9 @@ export class UserProfilePageComponent {
           this.userService.postNewInformation(usernameTemp, this.focuspointInput.nativeElement.value, this.instituteInput.nativeElement.value, this.dobInput.nativeElement.value).subscribe();
         })
 
-        alert("User Information changed successfully");
+        this.headerMessage = "Success"
+        this.errorMessage = "User Information changed successfully.";
+        this.modalService.openModal();
 
         this.showSaveButton = false;
       }
