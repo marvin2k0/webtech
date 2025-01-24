@@ -19,6 +19,10 @@ export class UserService {
     return this.http.post(`${this.baseUrl}/login`, {username, password})
   }
 
+  getUserId() {
+    return localStorage.getItem("userId")
+  }
+
   getToken() {
     return localStorage.getItem("accessToken");
   }

@@ -23,7 +23,7 @@ export const getToken = async (req: Request, res: Response, next: NextFunction) 
             logger.debug(`User ${username} successfully authenticated`)
 
             res.status(200)
-                .json(success<{ accessToken: string }>({accessToken: token}))
+                .json(success<{ accessToken: string, userId: string}>({accessToken: token, userId: _id}))
         } else {
             logger.warn(`There was a problem authenticating user ${username}`)
             throw new ConflictError(`There was a problem authenticating user ${username}`)

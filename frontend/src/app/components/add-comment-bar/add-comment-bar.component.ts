@@ -27,9 +27,7 @@ export class AddCommentBarComponent {
     if (!this.userService.isLoggedIn())
       return;
 
-    this.userService.getUserInformation().subscribe(response => {
-      this.userId = response.data._id
-    })
+    this.userId = this.userService.getUserId()!
   }
 
   addComment(text: string) {
