@@ -3,8 +3,8 @@
 <!-- The search bar -->
 <div class="search-box-wrapper">
     <h1>Search</h1>
-    <input-with-icon/>
-    <div class="results">{{ filesFound.length }} Files found</div>
+    <input-with-icon (clickFunction)="searchAndLoadFiles($event)"/>
+    <div class="results">{{ filesFound.length }} {{ filesFound.length == 1 ? 'File' : 'Files' }} found</div>
 </div>
 
 
@@ -15,7 +15,7 @@
             <div class="file">
                 <div class="file-headline">
                     <h3>{{ fileFound.filename }}</h3>
-                    <span class="download-info">0 Downloads</span>
+                    <span class="download-info">{{ fileFound.views }} {{ fileFound.views == 1 ? 'View' : 'Views' }}</span>
                 </div>
               <p>{{ fileFound.description.length >= 75 ? (fileFound.description | slice:0:75).trim() + "..." : fileFound.description }}</p>
                 <span style="display: flex; justify-content: space-between">

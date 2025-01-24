@@ -5,6 +5,7 @@ import {UploadModalService} from '../../services/uplaod-modal.service';
 import {UserService} from '../../services/user.service';
 import {FileUploadService} from '../../services/file-upload.service';
 import {FormsModule} from '@angular/forms';
+import {CourseService} from '../../services/course.service';
 
 
 @Component({
@@ -12,7 +13,6 @@ import {FormsModule} from '@angular/forms';
   standalone: true,
   imports: [
     NgIf,
-    RouterLink,
     AsyncPipe,
     FormsModule
   ],
@@ -27,16 +27,20 @@ export class FileUploadComponent {
   filesize: string = "";
   fileData: string = "";
 
+  userService: UserService = inject(UserService)
+
   @ViewChild('dragDropField') dragDropField: ElementRef | undefined;
   @Input() currentSite: number = 1;
   uploaded: boolean = false;
   file: File | undefined;
 
   private fileUploadService: FileUploadService = inject(FileUploadService);
+  private courseService: CourseService = inject(CourseService);
   selectedOption: string = "0";
   isCourseSelectionVisible: boolean = false;
 
   fileLink: string = "";
+  enrolledCourses: any[] = [];
 
 
   constructor(protected modalService: UploadModalService) {}
@@ -116,7 +120,7 @@ export class FileUploadComponent {
       this.fileUploadService.upload({ filename: this.filename, course, visibility, fileContent: this.fileData, description })?.subscribe(response => {
 
         if (response.successful) {
-          this.fileLink = response.data.fileUrl;
+          this.fileLink = "http://localhost:4200/files/read?filename=" + response.data.rndFilename;
 
           this.uploaded = true;
           console.log("response", response)
@@ -171,6 +175,7 @@ export class FileUploadComponent {
         break;
       case 3:
       default:
+        this.deleteFile()
         this.modalService.closeModal();
     }
   }
@@ -229,9 +234,24 @@ export class FileUploadComponent {
     const selectedValue = (event.target as HTMLSelectElement).value;
 
     if (selectedValue === '2') {
+      // Load the courses taht the user is enrolled in
+      // @ToDo:   Refactor!!!
+      this.userService.getUserInformation().subscribe(response => {
+        response.data.enrolledCourses.forEach((course: string) => this.getCourseInformation(course));
+      });
+
       this.isCourseSelectionVisible = true;
     } else {
       this.isCourseSelectionVisible = false;
     }
+  }
+
+  getCourseInformation(course: string) {
+    this.courseService.findCourseById(course).subscribe({
+      next: (response) => {
+        this.enrolledCourses.push({ name: response.data.name, id: course})
+      },
+      error: (error) => { /* hmmm */ }
+    })
   }
 }

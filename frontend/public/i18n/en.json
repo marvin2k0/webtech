@@ -17,6 +17,7 @@
   "nav_link_course": "Courses",
   "nav_link_services": "Services",
   "nav_link_contact": "Contact",
+  "nav_link_files": "Files",
 
   "user_view_focus_point": "Focus Point",
   "user_view_institute": "Institute",
@@ -50,5 +51,8 @@
   "course_members": "Members",
   "course_results": "Results",
   "course_search_header": "Search",
-  "course_description": "Description"
+  "course_description": "Description",
+
+  "dashboard_courses_title": "Your Courses",
+  "dashboard_courses_view_all": "View all"
 }

@@ -17,6 +17,7 @@
   "nav_link_course": "Kurse",
   "nav_link_services": "Services",
   "nav_link_contact": "Kontakt",
+  "nav_link_files": "Dateien",
 
   "user_view_focus_point": "Schwerpunkt",
   "user_view_institute": "Lerninstitut",
@@ -50,5 +51,8 @@
   "login_page_forgot_password": "Passwort vergessen?",
   "login_page_sign_in_cta": "Anmelden",
   "login_page_no_account": "Noch keinen Account?",
-  "login_page_sign_up": "Jetzt erstellen"
+  "login_page_sign_up": "Jetzt erstellen",
+
+  "dashboard_courses_title": "Deine Kurse",
+  "dashboard_courses_view_all": "Alle ansehen"
 }

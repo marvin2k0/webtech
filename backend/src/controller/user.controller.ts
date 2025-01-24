@@ -26,7 +26,7 @@ export const getToken = async (req: Request, res: Response, next: NextFunction) 
                 .json(success<{ accessToken: string }>({accessToken: token}))
         } else {
             logger.warn(`There was a problem authenticating user ${username}`)
-            // TODO throw internal error
+            throw new ConflictError(`There was a problem authenticating user ${username}`)
         }
     } catch (err: unknown) {
         next(err)
@@ -150,7 +150,7 @@ export async function updateUser(req: any, res: Response, next: NextFunction) {
     }
 }
 
-export async function getUserObjectFromDatabase(findUsername: string): Promise<UserDetails> {
+export async function getUserObjectFromDatabase(findUsername: string): Promise<any> {
     const userFound = await User.findOne({username: findUsername}).exec()
 
     if (!userFound)

@@ -1,0 +1,26 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    name: 'Publish on the development server'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up docker context over SSH authentication
+        uses: amirmarmul/docker-context-ssh-action@v1
+        with:
+          ssh-host: 138.199.144.210
+          ssh-username: root
+          ssh-private-key: ${{ secrets.SSH_KEY }}
+
+      - run: |
+          docker context use remote
+          docker context ls
+          docker compose -f production-compose.yaml up -d --build
