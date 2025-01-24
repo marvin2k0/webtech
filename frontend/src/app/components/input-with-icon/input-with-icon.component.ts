@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {booleanAttribute, Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 
 @Component({
@@ -11,11 +11,14 @@ import {FormsModule} from '@angular/forms';
   styleUrl: './input-with-icon.component.css'
 })
 export class InputWithIconComponent {
+  @Input({transform: booleanAttribute}) clearAfterSend: boolean = true
   @Output() clickFunction = new EventEmitter<string>();
   text: string = "";
 
   onSubmit() {
     this.clickFunction.emit(this.text)
-    this.text = "";
+
+    if (this.clearAfterSend)
+      this.text = "";
   }
 }
