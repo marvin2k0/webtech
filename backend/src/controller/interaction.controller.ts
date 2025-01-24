@@ -35,8 +35,10 @@ export const postComment = async (req: any, res: Response, next: NextFunction)=>
         await comment.save()
         await CommentModel.findByIdAndUpdate(referenceId, {$addToSet: { replies:  comment._id }})
 
+        const responseToSend = await comment.populate("author", "username")
+
         res.status(200)
-            .json(success(comment._id))
+            .json(success(responseToSend))
     } catch (error: unknown) {
         next(error)
     }

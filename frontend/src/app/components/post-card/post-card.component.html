@@ -36,7 +36,7 @@
     </div>
   </div>
 
-  <add-comment-bar [referenceId]="comment._id"/>
+  <add-comment-bar [referenceId]="comment._id" (afterFinished)="onCommentSent($event)" />
 
   @if (comment.replies.length > 0) {
     <a (click)="loadReplies = !loadReplies" class="toggle-replies">Toggle replies ({{ comment.replies.length }})</a>

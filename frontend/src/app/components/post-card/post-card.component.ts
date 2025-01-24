@@ -27,4 +27,9 @@ export class PostCardComponent {
   ngOnInit() {
     this.timestamp = this.interactionService.formatTime(this.comment)
   }
+
+  onCommentSent(newComment: CommentDetails) {
+    this.comment.replies.push(newComment)
+    console.log(newComment)
+  }
 }
