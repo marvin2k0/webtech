@@ -1,7 +1,7 @@
 import {Component, inject, Input} from '@angular/core';
 import {AddCommentBarComponent} from '../add-comment-bar/add-comment-bar.component';
 import {CommentDetails} from '../../model/comment.model';
-import {SlicePipe} from '@angular/common';
+import {SlicePipe, TitleCasePipe} from '@angular/common';
 import {CommentComponent} from '../comment/comment.component';
 import {InteractionService} from '../../services/interaction.service';
 
@@ -11,7 +11,8 @@ import {InteractionService} from '../../services/interaction.service';
   imports: [
     AddCommentBarComponent,
     SlicePipe,
-    CommentComponent
+    CommentComponent,
+    TitleCasePipe
   ],
   templateUrl: './post-card.component.html',
   styleUrl: './post-card.component.css'

@@ -1,7 +1,7 @@
 <div class="post">
   <div class="post-header">
     <div class="title-container">
-      <h3>{{ (comment.comment | slice:0:30).trim() }}</h3>
+      <h3>{{ (comment.comment | slice:0:32).trim() | titlecase }}{{ (comment.comment.length > 32 ? "..." : "") }}</h3>
       <span class="tagline">by <span class="author">{{ comment.author.username }}</span></span>
     </div>
     <div class="post-timestamp">{{ timestamp }}</div>
