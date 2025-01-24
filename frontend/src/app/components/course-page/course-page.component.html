@@ -3,7 +3,7 @@
     <h1>{{ course.name }}</h1>
 
     @if (course._id) {
-      <join-course-btn [course]="course"/>
+      <join-course-btn [course]="course" (refreshCourses)="onJoinLeave($event)"/>
     }
 
     <div class="course-description">

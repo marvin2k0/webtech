@@ -9,6 +9,7 @@ import {JoinCourseBtnComponent} from '../join-course-btn/join-course-btn.compone
 import {InteractionService} from '../../services/interaction.service';
 import {CommentDetails} from '../../model/comment.model';
 import {AddCommentBarComponent} from '../add-comment-bar/add-comment-bar.component';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-course-page',
@@ -25,6 +26,7 @@ import {AddCommentBarComponent} from '../add-comment-bar/add-comment-bar.compone
 export class CoursePageComponent {
   private courseService: CourseService = inject(CourseService)
   private interactionService: InteractionService = inject(InteractionService)
+  private userService: UserService = inject(UserService)
   private route: ActivatedRoute = inject(ActivatedRoute)
   courseId: string = "";
   course: CourseDetails = EMPTY_COURSE
@@ -47,5 +49,12 @@ export class CoursePageComponent {
 
   onCommentSent(newComment: CommentDetails) {
     this.comments.unshift(newComment)
+  }
+
+  onJoinLeave(joined: boolean) {
+    if (joined)
+      this.course.members.push({username: this.userService.getUserName()!})
+    else
+      this.course.members = this.course.members.filter(member => member.username !== this.userService.getUserName()!)
   }
 }
