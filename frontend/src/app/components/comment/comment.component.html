@@ -1,0 +1,7 @@
+<div class="comment">
+  <div class="meta-info">
+    <span class="author">{{ comment.author.username }}</span>
+    <span class="timestamp">{{ interactionService.formatTime(comment) }}</span>
+  </div>
+  <span class="content">{{ comment.comment.trim() }}</span>
+</div>

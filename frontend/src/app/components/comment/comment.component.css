@@ -1,0 +1,28 @@
+.comment {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: var(--light-accent);
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius-xs);
+}
+
+.meta-info {
+  font-size: 0.75rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.content {
+  margin-bottom: 0;
+  font-size: 0.9rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .comment {
+    background: var(--dark-accent);
+  }
+}

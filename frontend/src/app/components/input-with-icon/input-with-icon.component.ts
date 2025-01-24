@@ -13,4 +13,9 @@ import {FormsModule} from '@angular/forms';
 export class InputWithIconComponent {
   @Output() clickFunction = new EventEmitter<string>();
   text: string = "";
+
+  onSubmit() {
+    this.clickFunction.emit(this.text)
+    this.text = "";
+  }
 }

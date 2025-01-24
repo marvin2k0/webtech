@@ -3,7 +3,7 @@
     <h1>{{ course.name }}</h1>
 
     @if (course._id) {
-      <join-course-btn [course]="course"/>
+      <join-course-btn [course]="course" (refreshCourses)="onJoinLeave($event)"/>
     }
 
     <div class="course-description">
@@ -12,11 +12,14 @@
     </div>
   </div>
   <div class="course-activity-container course-column">
-    <input-with-icon/>
+    <add-comment-bar [referenceId]="courseId" (afterFinished)="onCommentSent($event)" />
+
     <div class="activities">
-      <app-post-card/>
-      <app-post-card/>
-      <app-post-card/>
+      @for (comment of comments; track comment._id) {
+        <app-post-card [comment]="comment" referenceId="{{ comment._id }}" />
+      } @empty {
+        <p>No comments found</p>
+      }
     </div>
   </div>
   <div class="course-members-container course-column">

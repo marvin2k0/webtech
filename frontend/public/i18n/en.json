@@ -53,6 +53,10 @@
   "course_search_header": "Search",
   "course_description": "Description",
 
+  "time_minutes_short": "m",
+  "time_hours_short": "h",
+  "time_days_short": "d",
+
   "dashboard_courses_title": "Your Courses",
   "dashboard_courses_view_all": "View all"
 }
