@@ -4,7 +4,8 @@ export interface CommentDetails {
     author: string,
     comment: string,
     timestamp: number,
-    referenceId: string
+    referenceId: string,
+    replies: []
 }
 
 const commentSchema = new Schema<CommentDetails>({
@@ -20,14 +21,19 @@ const commentSchema = new Schema<CommentDetails>({
         unique: false
     },
     timestamp: {
-        required: false,
-        type: Number,
-        default: Date.now()
+        required: true,
+        type: Number
     },
     referenceId: {
         required: true,
         type: String,
         unique: false
+    },
+    replies: {
+        required: false,
+        type: [],
+        unique: false,
+        ref: "Comment"
     }
 })
 

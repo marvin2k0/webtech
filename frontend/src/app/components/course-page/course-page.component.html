@@ -12,9 +12,14 @@
     </div>
   </div>
   <div class="course-activity-container course-column">
-    <input-with-icon/>
+    <add-comment-bar [referenceId]="courseId"/>
+
     <div class="activities">
-      <app-post-card referenceId="test2"/>
+      @for (comment of comments; track comment._id) {
+        <app-post-card [comment]="comment" referenceId="{{ comment._id }}" />
+      } @empty {
+        <p>No comments found</p>
+      }
     </div>
   </div>
   <div class="course-members-container course-column">

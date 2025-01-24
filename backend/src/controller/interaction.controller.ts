@@ -6,7 +6,17 @@ import CommentModel, {CommentDetails} from "../model/comment.model";
 export const getCommentByReference = async (req: any, res: Response, next: NextFunction) => {
     try {
         const referenceId = req.query.referenceId
-        const comments: CommentDetails[] = await CommentModel.find({referenceId: referenceId}).populate("author", "username")
+        const comments: CommentDetails[] = await CommentModel.find({referenceId: referenceId})
+            .populate("author", "username")
+            .populate({
+                path: 'replies',
+                select: 'author comment timestamp',
+                populate: {
+                    path: 'author',
+                    select: 'username'
+                }
+            })
+            .sort({timestamp: -1})
 
         res.status(200)
             .json(success(comments))
@@ -17,15 +27,13 @@ export const getCommentByReference = async (req: any, res: Response, next: NextF
 
 export const postComment = async (req: any, res: Response, next: NextFunction)=>  {
     try {
-        const username = req.username
         const userId = req.userId
         const referenceId = req.body.referenceId
         const commentText = req.body.text
+        const comment = new CommentModel({author: userId, comment: commentText, referenceId, timestamp: Date.now()})
 
-        logger.debug(`${username} wants to comment ${commentText}`)
-
-        const comment = new CommentModel({author: userId, comment: commentText, referenceId})
         await comment.save()
+        await CommentModel.findByIdAndUpdate(referenceId, {$addToSet: { replies:  comment._id }})
 
         res.status(200)
             .json(success(comment._id))
