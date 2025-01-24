@@ -12,13 +12,15 @@ export interface UserDetails {
     email: string,
     passwordHash: string,
     dateOfBirth?: number,
-    fieldOfInterests?: [],
+    fieldOfInterests?: string,
     enrolledCourses?: [],
     role?: UserRole,
     created?: number,
     lastLogin?: number,
     profilePicture?: string,
     active?: boolean
+    dob?: number,
+    institute?: string
 }
 
 export enum UserRole {
@@ -44,11 +46,13 @@ const userSchema = new Schema<UserDetails>({
     },
     dateOfBirth: {
         type: Number,
-        required: false
+        required: false,
+        default: -1
     },
     fieldOfInterests: {
-        type: [],
-        required: false
+        type: String,
+        required: false,
+        default: ""
     },
     enrolledCourses: {
         type: [],
@@ -79,6 +83,11 @@ const userSchema = new Schema<UserDetails>({
         type: Boolean,
         required: false,
         default: true
+    },
+    institute: {
+        type: String,
+        required: false,
+        default: ""
     }
 })
 

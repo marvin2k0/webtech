@@ -150,6 +150,26 @@ export async function updateUser(req: any, res: Response, next: NextFunction) {
     }
 }
 
+export async function updateUserInformation(req: any, res: Response, next: NextFunction) {
+    try {
+        const user = await getUserObjectFromDatabase(req.usernameTemp);
+
+        let usernameTemp: string = req.body.usernameTemp;
+        user.fieldOfInterests = req.body.newFocusPoint;
+        user.dateOfBirth = req.body.newDob;
+        user.institute = req.body.newInstitute;
+
+        await User.updateOne(
+            { username: usernameTemp },
+            { $set: { fieldOfInterests: user.fieldOfInterests, dateOfBirth: user.dateOfBirth, institute: user.institute} }
+        )
+
+        res.status(200).json(success("User Information updated successfully!"));
+    } catch (error: unknown) {
+        next(error);
+    }
+}
+
 export async function getUserObjectFromDatabase(findUsername: string): Promise<any> {
     const userFound = await User.findOne({username: findUsername}).exec()
 

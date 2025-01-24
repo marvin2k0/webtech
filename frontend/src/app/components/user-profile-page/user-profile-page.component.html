@@ -81,15 +81,15 @@
         <div class="inner-card">
           <div class="form-element">
             <label for="focus_point_input_field">{{ "user_view_focus_point" | translate }}*</label>
-            <input type="text" id="focus_point_input_field" [disabled]="focusPointBool">
+            <input type="text" id="focus_point_input_field" value="{{focusPoint}}" #focuspointInput [disabled]="!showSaveButton">
           </div>
           <div class="form-element">
             <label for="institute_input_field">{{ "user_view_institute" | translate }}</label>
-            <input type="text" id="institute_input_field" [disabled]="instituteBool">
+            <input type="text" id="institute_input_field" value="{{institute}}" #instituteInput [disabled]="!showSaveButton">
           </div>
           <div class="form-element">
             <label for="dob_input_field">{{ "user_view_dob" | translate }}</label>
-            <input type="text" id="dob_input_field" [disabled]="dobBool">
+            <input type="text" id="dob_input_field" value="{{dob}}" #dobInput [disabled]="!showSaveButton">
           </div>
         </div>
 

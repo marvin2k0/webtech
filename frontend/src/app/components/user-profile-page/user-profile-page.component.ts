@@ -6,6 +6,7 @@ import {CardComponent} from '../card/card.component';
 import {BackgroundArtComponent} from '../background-art/background-art.component';
 import {UserService} from '../../services/user.service';
 import {RouterLink} from '@angular/router';
+import {CachingService} from '../../services/caching.service';
 
 @Component({
   selector: 'app-user-profile-page',
@@ -24,15 +25,20 @@ import {RouterLink} from '@angular/router';
 export class UserProfilePageComponent {
   showSaveButton = false;
   showUsernameSaveButton = false;
-  focusPointBool: boolean = true;
-  instituteBool: boolean = true;
-  dobBool: boolean = true;
 
   userService: UserService = inject(UserService)
+  cachingService: CachingService = inject(CachingService)
 
   username: string = "";
 
+  focusPoint: string = "";
+  institute: string = "";
+  dob: number = -1;
+
   @ViewChild("usernameInput") usernameInput!: ElementRef;
+  @ViewChild("focuspointInput") focuspointInput!: ElementRef;
+  @ViewChild("instituteInput") instituteInput!: ElementRef;
+  @ViewChild("dobInput") dobInput!: ElementRef;
 
   onUsernameButtonClick(): void {
     if (!this.showUsernameSaveButton) {
@@ -47,6 +53,8 @@ export class UserProfilePageComponent {
         this.userService.getUserInformation().subscribe(response => {
           oldUsername = response.data.username;
 
+          this.cachingService.invalidateAll();
+
           this.userService.postNewUsername(this.usernameInput.nativeElement.value, oldUsername).subscribe();
         })
 
@@ -58,15 +66,35 @@ export class UserProfilePageComponent {
   }
 
   onUserInformationEditButtonClick() {
-    this.focusPointBool = !this.focusPointBool;
-    this.instituteBool = !this.instituteBool;
-    this.dobBool = !this.dobBool;
-    this.showSaveButton = !this.showSaveButton;
+    if (!this.showSaveButton) {
+      this.showSaveButton = true;
+    } else {
+      if (this.focuspointInput.nativeElement.value === '') {
+        alert("Focus Point cannot be empty!");
+      } else {
+        let usernameTemp: string = "";
+
+        this.userService.getUserInformation().subscribe(response => {
+          usernameTemp = response.data.username;
+
+          this.cachingService.invalidateAll();
+
+          this.userService.postNewInformation(usernameTemp, this.focuspointInput.nativeElement.value, this.instituteInput.nativeElement.value, this.dobInput.nativeElement.value).subscribe();
+        })
+
+        alert("User Information changed successfully");
+
+        this.showSaveButton = false;
+      }
+    }
   }
 
   ngOnInit() {
     this.userService.getUserInformation().subscribe(response => {
       this.username = response.data.username;
+      this.focusPoint = response.data.fieldOfInterests;
+      this.institute = response.data.institute;
+      this.dob = response.data.dateOfBirth;
     })
   }
 }

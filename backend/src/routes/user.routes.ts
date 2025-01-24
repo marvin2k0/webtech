@@ -6,7 +6,7 @@ import {
     getUserDetails,
     getPersonalInformation,
     deleteUser,
-    updateUser
+    updateUser, updateUserInformation
 } from "../controller/user.controller";
 import { authenticate } from "../middleware/authentication.middleware";
 import {requireRole} from "../middleware/role.auth.middleware";
@@ -25,5 +25,7 @@ router.post("/login", getToken);
 router.delete("/delete/:username", authenticate, requireRole(UserRole.MODERATOR), deleteUser)
 
 router.post("/updateUser", authenticate, updateUser)
+
+router.post("/updateUserInformation", authenticate, updateUserInformation)
 
 export default router;
