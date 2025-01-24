@@ -38,7 +38,6 @@ export class AddCommentBarComponent {
 
     this.interactionService.saveComment(this.referenceId, text).subscribe(response => {
       this.afterFinished.emit(response.data)
-      this.cachingService.invalidateAll()
     })
   }
 }

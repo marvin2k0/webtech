@@ -6,8 +6,10 @@ import {of, tap} from 'rxjs';
 export const cachingInterceptor: HttpInterceptorFn = (req, next) => {
   const cachingService: CachingService = inject(CachingService)
 
-  if (req.method !== "GET")
+  if (req.method !== "GET") {
+    cachingService.invalidateAll();
     return next(req)
+  }
 
   const cachedResponse = cachingService.get(req.url)
 

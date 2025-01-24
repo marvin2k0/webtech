@@ -23,12 +23,10 @@ export class CourseService {
   }
 
   joinCourse(id: string): Observable<IRestResponse> {
-    this.cachingService.invalidateAll()
     return this.http.post<IRestResponse>(`${this.baseUrl}/join/${id}`, {})
   }
 
   leaveCourse(id: string ): Observable<IRestResponse> {
-    this.cachingService.invalidateAll()
     return this.http.post<IRestResponse>(`${this.baseUrl}/leave/${id}`, {})
   }
 }
