@@ -3,7 +3,7 @@ import {model, Schema} from "mongoose";
 export interface CommentDetails {
     author: string,
     comment: string,
-    replies: []
+    referenceId: string
 }
 
 const commentSchema = new Schema<CommentDetails>({
@@ -18,9 +18,9 @@ const commentSchema = new Schema<CommentDetails>({
         type: String,
         unique: false
     },
-    replies: {
-        required: false,
-        type: [],
+    referenceId: {
+        required: true,
+        type: String,
         unique: false
     }
 })
