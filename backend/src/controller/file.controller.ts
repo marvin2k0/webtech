@@ -124,7 +124,7 @@ export async function uploadFile(req: any, res: express.Response, next: express.
         const fileSize = decode.length;
         const fileType = filename.split(".").pop();
         const rndFilename: string = uuidv4() + "." + fileType;
-        const fileUrl = "http://localhost:8080/files/" + rndFilename
+        const fileUrl = `https://${process.env.BASE_URL}/files/` + rndFilename
         const filePath = path.join(uploadDirectory, rndFilename)
 
         fs.writeFile(filePath, decode, (err) => {

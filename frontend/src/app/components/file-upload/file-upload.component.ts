@@ -6,6 +6,7 @@ import {UserService} from '../../services/user.service';
 import {FileUploadService} from '../../services/file-upload.service';
 import {FormsModule} from '@angular/forms';
 import {CourseService} from '../../services/course.service';
+import {environment} from '../../../environments/environment.development';
 
 
 @Component({
@@ -120,7 +121,7 @@ export class FileUploadComponent {
       this.fileUploadService.upload({ filename: this.filename, course, visibility, fileContent: this.fileData, description })?.subscribe(response => {
 
         if (response.successful) {
-          this.fileLink = "http://localhost:4200/files/read?filename=" + response.data.rndFilename;
+          this.fileLink = environment.baseUrlFrontend + "/files/read?filename=" + response.data.rndFilename;
 
           this.uploaded = true;
           console.log("response", response)

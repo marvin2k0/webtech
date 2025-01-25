@@ -18,6 +18,7 @@ services:
     build: ./backend
     image: backend
     environment:
+      - BASE_URL=https://eduempire.de/
       - DB_USER=boraxgitarre3m
       - DB_PASSWORD=9hXtttB2fefduRBP
       - DB_NAME=webtech
