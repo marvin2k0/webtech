@@ -4,6 +4,7 @@ import {CommentDetails} from '../../model/comment.model';
 import {SlicePipe, TitleCasePipe} from '@angular/common';
 import {CommentComponent} from '../comment/comment.component';
 import {InteractionService} from '../../services/interaction.service';
+import {TranslatePipe} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-post-card',
@@ -12,7 +13,8 @@ import {InteractionService} from '../../services/interaction.service';
     AddCommentBarComponent,
     SlicePipe,
     CommentComponent,
-    TitleCasePipe
+    TitleCasePipe,
+    TranslatePipe
   ],
   templateUrl: './post-card.component.html',
   styleUrl: './post-card.component.css'

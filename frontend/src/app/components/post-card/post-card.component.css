@@ -96,6 +96,7 @@ button svg {
   text-align: center;
   margin-top: 1rem;
   cursor: pointer;
+  user-select: none;
 }
 
 .replies-container {

@@ -39,7 +39,7 @@
   <add-comment-bar [referenceId]="comment._id" (afterFinished)="onCommentSent($event)" />
 
   @if (comment.replies.length > 0) {
-    <a (click)="loadReplies = !loadReplies" class="toggle-replies">Toggle replies ({{ comment.replies.length }})</a>
+    <a (click)="loadReplies = !loadReplies" class="toggle-replies">{{ "toggle_replies" | translate }} ({{ comment.replies.length }})</a>
   }
 
   @if (loadReplies) {
