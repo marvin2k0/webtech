@@ -38,7 +38,7 @@ export class UserProfilePageComponent {
 
   focusPoint: string = "";
   institute: string = "";
-  dob: number = -1;
+  dob: string = "";
 
   headerMessage: string = "";
   errorMessage: string = "";
@@ -102,7 +102,10 @@ export class UserProfilePageComponent {
     this.userService.getUserInformation().subscribe(response => {
       const usernameTemp: string = response.data.username;
 
-      this.userService.postNewInformation(usernameTemp, this.focuspointInput.nativeElement.value, this.instituteInput.nativeElement.value, this.dobInput.nativeElement.value).subscribe();
+      const dateString = this.dobInput.nativeElement.value;
+      const date = new Date(dateString);
+      const unixTimestamp = Math.floor(date.getTime() / 1000);
+      this.userService.postNewInformation(usernameTemp, this.focuspointInput.nativeElement.value, this.instituteInput.nativeElement.value, unixTimestamp.toString()).subscribe();
     })
 
     this.headerMessage = "Success"
@@ -114,10 +117,14 @@ export class UserProfilePageComponent {
 
   ngOnInit() {
     this.userService.getUserInformation().subscribe(response => {
+      const dateUnixTimeStamp = response.data.dateOfBirth;
+      const date = new Date(dateUnixTimeStamp * 1000);
+      const dateString = date.toISOString().split('T')[0];
+
       this.username = response.data.username;
       this.focusPoint = response.data.fieldOfInterests;
       this.institute = response.data.institute;
-      this.dob = response.data.dateOfBirth;
+      this.dob = dateString;
     })
   }
 }
