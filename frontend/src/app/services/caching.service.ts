@@ -31,6 +31,7 @@ export class CachingService {
 
   invalidate(url: string) {
     this.cache.delete(url)
+    console.log(`Invalidating ${url}`)
   }
 
   invalidateAll() {

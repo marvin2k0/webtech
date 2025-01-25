@@ -13,6 +13,10 @@ ul {
   display: flex;
   list-style: none;
   gap: 1rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 h1 {
@@ -78,7 +82,7 @@ span path, span circle {
   align-items: center;
 }
 
-@media only screen and (max-width: 950px) {
+@media only screen and (max-width: 1050px) {
   nav ul {
     display: none;
   }

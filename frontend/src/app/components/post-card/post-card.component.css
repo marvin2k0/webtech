@@ -88,3 +88,20 @@ p {
 button svg {
   width: 25px;
 }
+
+.toggle-replies {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--primary);
+  text-align: center;
+  margin-top: 1rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.replies-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}

@@ -12,7 +12,7 @@
         <div class="oic">
           <div class="image-container" *ngIf="file">
               <div class="title">
-                  <h3>Title</h3>
+                  <h3>{{ fileMetaData.filename }}</h3>
                   <span>X</span>
               </div>
               <div class="canvas-wrapper">
@@ -101,12 +101,6 @@
         <circle cx="25" cy="35" r="5" stroke="black" stroke-width="2" fill="none"/>
       </svg>
       <span>Save</span>
-    </button>
-  </div>
-  <div class="tool-item" title="Add Comment">
-    <button>
-        <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"></svg>
-        <span>Comment</span>
     </button>
   </div>
   <div class="tool-item" title="Reading Mode">

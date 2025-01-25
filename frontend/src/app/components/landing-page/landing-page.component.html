@@ -6,11 +6,59 @@
     <p>{{ "landing_page_jumbotron_paragraph" | translate }}</p>
 
     <div class="jumbotron-buttons">
-      <cta-button size="square" routerLink="/signin">Get started</cta-button>
-      <a>Learn more <span aria-hidden="true">→</span></a>
+      <cta-button size="square" routerLink="/signin">{{ "landing_page_get_started" | translate }}</cta-button>
+      <a href="#learn-more">{{ "landing_page_learn_more" | translate }}<span aria-hidden="true">→</span></a>
     </div>
   </div>
 </div>
+
+<div class="content-wrapper" id="learn-more">
+  <div class="content">
+    <h1>{{ "landing_page_features_hd" | translate }}</h1>
+    <div class="inline">
+      <div class="block">
+        <img src="./img/course-page.png" alt="EduEmpire course page">
+        <br>
+        <img src="./img/file-upload.png" alt="EduEmpire file upload">
+      </div>
+      <div class="block">
+        <h3>{{ "landing_page_collab_working_hd" | translate }}</h3>
+        <p>
+          {{ "landing_page_collab_working_p0" | translate }}
+        </p>
+        <p>
+          {{ "landing_page_collab_working_p1" | translate }}
+        </p>
+        <p>
+          {{ "landing_page_collab_working_p2" | translate }}
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <h1>{{ "landing_page_security_hd" | translate }}</h1>
+    <div class="inline">
+      <div class="block">
+        <h3>{{ "landing_page_privacy_hd" | translate }}</h3>
+        <p>{{ "landing_page_privacy_p" | translate }}</p>
+        <br>
+        <h3>{{ "landing_page_moderation_hd" | translate }}</h3>
+        <p>{{ "landing_page_moderation_p" | translate }}</p>
+      </div>
+        <div class="block">
+        <img src="./img/private-file.png" alt="EduEmpire private file upload">
+        <br>
+        <img src="./img/admin-dashboard.png" alt="EduEmpire file upload">
+      </div>
+    </div>
+    <div class="block try-it">
+      <h3>{{ "landing_page_couldnt_decide_hd" | translate }}</h3>
+      <p>{{ "landing_page_couldnt_decide_p" | translate }}</p>
+      <a routerLink="signup">{{ "landing_page_couldnt_decide_link" | translate }}</a>
+    </div>
+  </div>
+</div>
+
 
 
 <!-- example implementation of modal -->

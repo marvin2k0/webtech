@@ -31,6 +31,11 @@ h1 {
   flex: 8;
 }
 
+.course-members-container ul li {
+  list-style: none;
+  margin-top: 1rem;
+}
+
 .activities {
   width: 90%;
   margin: 5rem auto 0;

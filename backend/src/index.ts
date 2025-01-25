@@ -10,6 +10,7 @@ import {logRequests} from "./middleware/access.logger.middleware";
 import cors from "cors"
 import swaggerUi from "swagger-ui-express"
 import swaggerFile from "./swagger/swagger.json";
+import interactionRoutes from "./routes/interaction.routes";
 
 const app = express()
 const port = process.env.PORT || 8080
@@ -39,9 +40,10 @@ connect(mongoUri)
 app.use(cors())
 app.use(json({ limit: '100mb' }));
 app.use(logRequests)
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile))
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerFile))
 app.use("/users", userRoutes)
 app.use("/course", courseRoutes)
 app.use("/test", testRoutes)
 app.use("/files", fileRoutes)
+app.use("/interaction", interactionRoutes)
 app.use(errorHandler)

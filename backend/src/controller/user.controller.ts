@@ -15,15 +15,19 @@ import {ConflictError} from "../error/conflict.error";
 export const getToken = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { username, password } = req.body
-        const {role, passwordHash} = await getUserObjectFromDatabase(username)
+        const {_id, role, passwordHash} = await getUserObjectFromDatabase(username)
         const validPassword = await bcrypt.compare(password, passwordHash)
 
         if (validPassword) {
-            const token = jwt.sign({username, role}, process.env.AUTH_TOKEN_SECRET!/*, {expiresIn: "30m"}*/)
+            const token = jwt.sign({username, role, userId: _id}, process.env.AUTH_TOKEN_SECRET!/*, {expiresIn: "30m"}*/)
             logger.debug(`User ${username} successfully authenticated`)
 
             res.status(200)
-                .json(success<{ accessToken: string }>({accessToken: token}))
+                .json(success<{ accessToken: string, userId: string, username: string}>({
+                    accessToken: token,
+                    userId: _id,
+                    username
+                }))
         } else {
             logger.warn(`There was a problem authenticating user ${username}`)
             throw new ConflictError(`There was a problem authenticating user ${username}`)

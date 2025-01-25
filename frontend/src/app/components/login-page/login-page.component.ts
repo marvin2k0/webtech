@@ -66,6 +66,8 @@ export class LoginPageComponent {
           this.router.navigate(['/dashboard']);
 
           // Buttons ausblenden etc....
+          localStorage.setItem("userId", response.data.userId)
+          localStorage.setItem("username", response.data.username)
         }
         this.isLoading = false;
       },

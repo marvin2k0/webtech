@@ -10,7 +10,6 @@
 }
 .header h5 {
   font-size: 1.25rem;
-  color: #111827;
   margin: 0;
 }
 .header a {
@@ -47,12 +46,11 @@
 .list-item-title {
   font-size: 0.875rem;
   font-weight: 600;
-  color: #111827;
   margin: 0;
 }
 .list-item-subtitle {
   font-size: 0.875rem;
-  color: #6b7280;
+  color: gray;
   margin: 4px 0 0;
 }
 .list-item-action {
