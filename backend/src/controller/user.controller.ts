@@ -143,14 +143,32 @@ export async function updateUser(req: any, res: Response, next: NextFunction) {
         let oldUsername: string = req.body.oldUsername;
         user.username = req.body.newUsername;
 
-        console.log(user.username);
-
         await User.updateOne(
             { username: oldUsername},
             { $set: { username: user.username } }
         )
 
         res.status(200).json(success("Username updated successfully!"));
+    } catch (error: unknown) {
+        next(error);
+    }
+}
+
+export async function updateUserInformation(req: any, res: Response, next: NextFunction) {
+    try {
+        const user = await getUserObjectFromDatabase(req.usernameTemp);
+
+        let usernameTemp: string = req.body.usernameTemp;
+        user.fieldOfInterests = req.body.newFocusPoint;
+        user.dateOfBirth = req.body.newDob;
+        user.institute = req.body.newInstitute;
+
+        await User.updateOne(
+            { username: usernameTemp },
+            { $set: { fieldOfInterests: user.fieldOfInterests, dateOfBirth: user.dateOfBirth, institute: user.institute} }
+        )
+
+        res.status(200).json(success("User Information updated successfully!"));
     } catch (error: unknown) {
         next(error);
     }

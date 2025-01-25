@@ -36,11 +36,15 @@ export class UserService {
   }
 
   getUserInformation() {
-    return this.http.get<IRestResponse>(`${this.baseUrl}/me`)
+    return this.http.get<IRestResponse>(`${this.baseUrl}/me`);
   }
 
   postNewUsername(newUsername: string, oldUsername: string): Observable<any> {
-    console.log(newUsername, oldUsername);
-    return this.http.post<IRestResponse>(`${this.baseUrl}/updateUser`, {newUsername, oldUsername})
+    return this.http.post<IRestResponse>(`${this.baseUrl}/updateUser`, {newUsername, oldUsername});
+  }
+
+  postNewInformation(usernameTemp: string, newFocusPoint: string, newInstitute: string, newDob: string): Observable<any> {
+    console.log(usernameTemp, newInstitute, newFocusPoint, newDob);
+    return this.http.post<IRestResponse>(`${this.baseUrl}/updateUserInformation`, {usernameTemp, newFocusPoint, newInstitute, newDob});
   }
 }
