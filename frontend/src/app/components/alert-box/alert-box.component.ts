@@ -1,13 +1,12 @@
 import { Component, Input } from '@angular/core';
 import {AsyncPipe, NgIf} from '@angular/common';
-import { FileUploadComponent } from '../file-upload/file-upload.component';
 import { ModalService } from '../../services/modal.service';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'alert-box',
   standalone: true,
-  imports: [NgIf, FileUploadComponent, AsyncPipe],
+  imports: [NgIf, AsyncPipe],
   templateUrl: './alert-box.component.html',
   styleUrls: ['./alert-box.component.css'],
 })
