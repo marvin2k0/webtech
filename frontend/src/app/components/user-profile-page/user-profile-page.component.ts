@@ -5,8 +5,7 @@ import {ButtonComponent} from '../button/button.component';
 import {CardComponent} from '../card/card.component';
 import {BackgroundArtComponent} from '../background-art/background-art.component';
 import {UserService} from '../../services/user.service';
-import {RouterLink} from '@angular/router';
-import {CachingService} from '../../services/caching.service';
+import {Router, RouterLink} from '@angular/router';
 import {ModalService} from '../../services/modal.service';
 import {AlertBoxComponent} from '../alert-box/alert-box.component';
 
@@ -25,13 +24,15 @@ import {AlertBoxComponent} from '../alert-box/alert-box.component';
   templateUrl: './user-profile-page.component.html',
   styleUrl: './user-profile-page.component.css'
 })
+
 export class UserProfilePageComponent {
+
   showSaveButton = false;
   showUsernameSaveButton = false;
 
-  userService: UserService = inject(UserService)
-  cachingService: CachingService = inject(CachingService)
-  modalService:ModalService = inject(ModalService)
+  router: Router = inject(Router);
+  userService: UserService = inject(UserService);
+  modalService: ModalService = inject(ModalService);
 
   username: string = "";
 
@@ -47,61 +48,68 @@ export class UserProfilePageComponent {
   @ViewChild("instituteInput") instituteInput!: ElementRef;
   @ViewChild("dobInput") dobInput!: ElementRef;
 
+  redirectUserToLogin(message: string) {
+    if (message != "Username changed successfully." ) {
+      return () => {};
+    }
+    return () => this.router.navigate(['/signin']);
+  }
+
   onUsernameButtonClick(): void {
     if (!this.showUsernameSaveButton) {
       this.showUsernameSaveButton = true;
 
-    } else {
-      if (this.usernameInput.nativeElement.value === '') {
-        this.headerMessage = "Error"
-        this.errorMessage = "Username cannot be empty!";
-        this.modalService.openModal();
-      } else {
-        let oldUsername: string = "";
-
-        this.userService.getUserInformation().subscribe(response => {
-          oldUsername = response.data.username;
-
-          this.cachingService.invalidateAll();
-
-          this.userService.postNewUsername(this.usernameInput.nativeElement.value, oldUsername).subscribe();
-        })
-
-        this.headerMessage = "Success"
-        this.errorMessage = "Username changed successfully.";
-        this.modalService.openModal();
-
-        this.showUsernameSaveButton = false;
-      }
+      return;
     }
+
+    if (this.usernameInput.nativeElement.value === '') {
+      this.headerMessage = "Error"
+      this.errorMessage = "Username cannot be empty!";
+      this.modalService.openModal();
+
+      return;
+    }
+
+    this.userService.getUserInformation().subscribe(response => {
+      const oldUsername: string = response.data.username;
+
+      this.userService.postNewUsername(this.usernameInput.nativeElement.value, oldUsername).subscribe();
+    })
+
+    this.headerMessage = "Success"
+    this.errorMessage = "Username changed successfully.";
+    this.modalService.openModal();
+
+
+    this.showUsernameSaveButton = false;
   }
 
-  onUserInformationEditButtonClick() {
+  onUserInformationEditButtonClick(): void {
     if (!this.showSaveButton) {
       this.showSaveButton = true;
-    } else {
-      if (this.focuspointInput.nativeElement.value === '') {
-        this.headerMessage = "Error"
-        this.errorMessage = "Focus Point cannot be empty!";
-        this.modalService.openModal();
-      } else {
-        let usernameTemp: string = "";
 
-        this.userService.getUserInformation().subscribe(response => {
-          usernameTemp = response.data.username;
-
-          this.cachingService.invalidateAll();
-
-          this.userService.postNewInformation(usernameTemp, this.focuspointInput.nativeElement.value, this.instituteInput.nativeElement.value, this.dobInput.nativeElement.value).subscribe();
-        })
-
-        this.headerMessage = "Success"
-        this.errorMessage = "User Information changed successfully.";
-        this.modalService.openModal();
-
-        this.showSaveButton = false;
-      }
+      return;
     }
+
+    if (this.focuspointInput.nativeElement.value === '') {
+      this.headerMessage = "Error"
+      this.errorMessage = "Focus Point cannot be empty!";
+      this.modalService.openModal();
+
+      return;
+    }
+
+    this.userService.getUserInformation().subscribe(response => {
+      const usernameTemp: string = response.data.username;
+
+      this.userService.postNewInformation(usernameTemp, this.focuspointInput.nativeElement.value, this.instituteInput.nativeElement.value, this.dobInput.nativeElement.value).subscribe();
+    })
+
+    this.headerMessage = "Success"
+    this.errorMessage = "User Information changed successfully.";
+    this.modalService.openModal();
+
+    this.showSaveButton = false;
   }
 
   ngOnInit() {
