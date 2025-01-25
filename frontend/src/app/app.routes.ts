@@ -10,6 +10,7 @@ import {CoursesPageComponent} from './components/courses-page/courses-page.compo
 import {CoursePageComponent} from './components/course-page/course-page.component';
 import {FilePageComponent} from './components/file-page/file-page.component';
 import {ViewFilePageComponent} from './components/view-file-page/view-file-page.component';
+import {ContactPageComponent} from './components/contact-page/contact-page.component';
 
 export const routes: Routes = [
   {path: '', component: LandingPageComponent},
@@ -21,5 +22,6 @@ export const routes: Routes = [
   { path: 'dashboard', component: DashboardPageComponent, canActivate: [AuthGuard] },
   { path: 'files', component: FilePageComponent, canActivate: [AuthGuard] },
   { path: 'files/read', component: ViewFilePageComponent, canActivate: [AuthGuard] },
+  { path: 'contact', component: ContactPageComponent},
   {path: '**', component: NotFoundComponent}
 ];
