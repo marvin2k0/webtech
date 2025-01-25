@@ -2,9 +2,9 @@
 
 <!-- The search bar -->
 <div class="search-box-wrapper">
-    <h1>Search</h1>
+    <h1>{{ "file_page_search_hd" | translate}}</h1>
     <input-with-icon (clickFunction)="searchAndLoadFiles($event)"/>
-    <div class="results">{{ filesFound.length }} {{ filesFound.length == 1 ? 'File' : 'Files' }} found</div>
+    <div class="results">{{ filesFound.length }} {{ filesFound.length == 1 ? ("file_page_files_found_sin" | translate) : ("file_page_files_found_pl" | translate) }}</div>
 </div>
 
 
@@ -15,7 +15,7 @@
             <div class="file">
                 <div class="file-headline">
                     <h3>{{ fileFound.filename }}</h3>
-                    <span class="download-info">{{ fileFound.views }} {{ fileFound.views == 1 ? 'View' : 'Views' }}</span>
+                    <span class="download-info">{{ fileFound.views }} {{ fileFound.views == 1 ? ("file_page_views_sin" | translate) : ("file_page_views_pl" | translate) }}</span>
                 </div>
               <p>{{ fileFound.description.length >= 75 ? (fileFound.description | slice:0:75).trim() + "..." : fileFound.description }}</p>
                 <span style="display: flex; justify-content: space-between">
@@ -38,7 +38,7 @@
                     </div>
                 </div>
 
-              <cta-button [routerLink]="['/files/read']" [queryParams]="{ filename: fileFound.rndFilename }">View File</cta-button>
+              <cta-button [routerLink]="['/files/read']" [queryParams]="{ filename: fileFound.rndFilename }">{{ "file_page_view_file" | translate }}</cta-button>
                 </span>
             </div>
         </card>

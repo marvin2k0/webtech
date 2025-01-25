@@ -54,5 +54,12 @@
   "course_description": "Description",
 
   "dashboard_courses_title": "Your Courses",
-  "dashboard_courses_view_all": "View all"
+  "dashboard_courses_view_all": "View all",
+
+  "file_page_search_hd": "Search",
+  "file_page_files_found_pl": "Files found",
+  "file_page_files_found_sin": "File found",
+  "file_page_views_sin": "View",
+  "file_page_views_pl": "Views",
+  "file_page_view_file": "View File"
 }
