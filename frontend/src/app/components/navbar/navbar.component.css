@@ -108,3 +108,41 @@ span path, span circle {
     right: 3rem;
   }
 }
+
+
+.profile-container {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-icon {
+  cursor: pointer;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 50px;
+  left: -40px;
+  z-index: 10;
+  min-width: 120px;
+}
+
+.dropdown ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown ul li {
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  color: red;
+  width: 100px;
+}
+
+.profile-container:hover .dropdown {
+  display: block;
+}
+
