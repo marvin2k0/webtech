@@ -30,7 +30,6 @@ export class NavbarComponent {
   links = [
     {name: "nav_link_home", path: ""},
     {name: "nav_link_course", path: "courses"},
-    {name: "nav_link_services", path: "services"},
     {name: "nav_link_contact", path: "contact"},
     {name: "nav_link_files", path: "files"}
   ]
