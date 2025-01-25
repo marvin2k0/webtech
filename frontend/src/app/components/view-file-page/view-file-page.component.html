@@ -13,7 +13,7 @@
           <div class="image-container" *ngIf="file">
               <div class="title">
                   <h3>{{ fileMetaData.filename }}</h3>
-                  <span>X</span>
+                  <button class="close-btn" routerLink="/files">&#x2715;</button>
               </div>
               <div class="canvas-wrapper">
                 <canvas
@@ -73,6 +73,12 @@
     <card>
       <div class="filter-container">
         <h2>Comments</h2>
+          <add-comment-bar [referenceId]="fileMetaData._id" (afterFinished)="onCommentSent($event)"></add-comment-bar>
+          @for (comment of comments; track comment._id) {
+              <app-post-card [comment]="comment" referenceId="{{ comment._id }}" />
+          } @empty {
+              <p>No comments found</p>
+          }
       </div>
     </card>
   </div>
@@ -115,6 +121,7 @@
   </div>
 </div>
 
+<div style="position: fixed; right: 0; bottom: 0; z-index: 999;">
 <div class="tool-item">
   <button (click)="toggleReadingMode()" *ngIf="file && readingMode" class="edit-mode-btn">
     <svg width="40" height="40" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
@@ -124,4 +131,5 @@
     </svg>
     <span>Edit</span>
   </button>
+</div>
 </div>

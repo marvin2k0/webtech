@@ -1,19 +1,25 @@
 .files-page {
   display: flex;
+  flex-direction: column;
   gap: 2rem;
 }
 
 .side-panel-card-container {
-  position: sticky;
   z-index: 999;
-  margin-block-end: 3rem;
-  flex: 1;
+  width: 50vw;
+  margin: 0 auto;
+  margin-bottom: 5rem;
 }
 
 .filter-container {
   display: flex;
   flex-direction: column;
-  height: calc(90vh - 110px);
+  padding: .5rem;
+  gap: 1rem;
+}
+
+.filter-container h2 {
+  margin-bottom: 1rem;
 }
 
 label {
@@ -196,10 +202,10 @@ textarea:focus {
 }
 
 .image-container {
-  margin-top: -110px;
   background-color: var(--background);
   border-radius: var(--border-radius-xs);
   box-shadow: 0 0 2px var(--shadow-color);
+  margin-bottom: 5rem;
 }
 
 .image-container .title {
@@ -308,4 +314,15 @@ button svg {
   z-index: 2;
 }
 
+.close-btn {
+  background: none;
+  border: none;
+  font-size: .8em;
+  cursor: pointer;
+  color: var(--middle-gray);
+  transition: color .3s;
+}
 
+.close-btn:hover {
+  color: var(--middle-light-gray);
+}
