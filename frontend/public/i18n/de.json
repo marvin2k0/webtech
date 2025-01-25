@@ -71,5 +71,12 @@
   "login_page_sign_up": "Jetzt erstellen",
 
   "dashboard_courses_title": "Deine Kurse",
-  "dashboard_courses_view_all": "Alle ansehen"
+  "dashboard_courses_view_all": "Alle ansehen",
+
+  "file_page_search_hd": "Suchen",
+  "file_page_files_found_pl": "Dateien gefunden",
+  "file_page_files_found_sin": "Datei gefunden",
+  "file_page_views_sin": "Aufruf",
+  "file_page_views_pl": "Aufrufe",
+  "file_page_view_file": "Datei ansehen"
 }

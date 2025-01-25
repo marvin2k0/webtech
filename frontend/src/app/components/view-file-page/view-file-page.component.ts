@@ -23,6 +23,7 @@ export class ViewFilePageComponent {
   file?: SafeResourceUrl | undefined;
   filename: string | null = "";
   fileType: string | undefined;
+  fileMetaData: any;
 
   fileTypes = {
     IMAGES: ["png", "jpg", "jpeg"],
@@ -40,7 +41,6 @@ export class ViewFilePageComponent {
 
 
   initCanvas() {
-    console.log("initCanvas")
     const canvas = this.canvasRef.nativeElement;
     this.ctx = canvas.getContext('2d')!;
     canvas.width = canvas.offsetWidth;
@@ -92,11 +92,9 @@ export class ViewFilePageComponent {
    * Performs an HTTP-Get. Receives b64 img data. Loads the data into the canvas
    */
   loadImage() {
-    console.log("loadImage");
     this.fileUploadService.getDrawing(this.filename!).subscribe({
       next: (response: any) => {
         const b64ImgData = response.data;
-        console.log(JSON.stringify(response.successfulx));
         this.drawImageOnCanvas(b64ImgData);
       },
       error: (err) => {
@@ -107,9 +105,15 @@ export class ViewFilePageComponent {
     });
   }
 
+  getFileMetadata() {
+    this.fileUploadService.find(this.filename!).subscribe({
+      next: (response: any) => {
+        this.fileMetaData = response.data[0];
+      }
+    })
+  }
+
   private drawImageOnCanvas(b64ImgData: string): void {
-    console.log("drawImageOnCanvas");
-    console.info(b64ImgData);
     const canvas = this.canvasRef.nativeElement;
     const img = new Image();
 
@@ -148,6 +152,7 @@ export class ViewFilePageComponent {
     this.fileType = this.filename.split('.')[1];
 
     this.getFile(this.filename);
+    this.getFileMetadata();
   }
 
 
