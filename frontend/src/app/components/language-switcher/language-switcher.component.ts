@@ -26,7 +26,10 @@ export class LanguageSwitcherComponent implements OnInit{
       const localStorageLang = localStorage.getItem(this.localStorageLanguageKey)!
       this.translateService.use(localStorageLang)
       console.log(`Found language ${localStorageLang} in localStorage`)
+      return
     }
+
+    localStorage.setItem(this.localStorageLanguageKey, "en");
   }
 
   ngAfterViewInit(): void {
