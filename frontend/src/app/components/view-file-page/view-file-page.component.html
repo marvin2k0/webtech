@@ -87,8 +87,10 @@
 <div class="tools" *ngIf="file && !readingMode">
   <div class="tool-item" title="Draw Markings">
     <button (click)="toggleDrawMode()">
-      <svg width="40" height="40" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"></svg>
-      <span>Draw</span>
+        <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 25 Q 20 20, 20 30 Q 20 40, 30 25" stroke="black" fill="none" stroke-width="2"/>
+        </svg>
+        <span>Draw</span>
     </button>
   </div>
   <div class="tool-item" title="Erase Markings">
