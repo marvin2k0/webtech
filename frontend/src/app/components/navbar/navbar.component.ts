@@ -31,7 +31,8 @@ export class NavbarComponent {
     {name: "nav_link_home", path: ""},
     {name: "nav_link_course", path: "courses"},
     {name: "nav_link_contact", path: "contact"},
-    {name: "nav_link_files", path: "files"}
+    {name: "nav_link_files", path: "files"},
+    {name: "nav_link_admin", path: "admin"}
   ]
   activeLink = 0
 

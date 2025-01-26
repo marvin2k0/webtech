@@ -3,11 +3,13 @@
 
   <ul>
     @for (link of links; track link.name) {
+      @if (link.name !== 'nav_link_admin' || (link.name === 'nav_link_admin' && userService.getRole() === '2')) {
       <li>
         <a [ngClass]="{'active': activeLink === $index}" [routerLink]="link.path"
              (click)="setLinkActive($index); closeSidebar()">{{ link.name | translate }}
         </a>
       </li>
+      }
     }
   </ul>
 
