@@ -4,7 +4,7 @@
       <h5>{{ heading }}</h5>
       <a routerLink="{{ actionLink }}">{{ hdLink }}</a>
     </div>
-    <ul class="list">
+    <ul class="list" *ngIf="objectArray.length > 0; else emptyMessage">
       <li class="list-item" *ngFor="let object of objectArray">
         <div class="list-item-content">
           <p class="list-item-title">{{ object.title }}</p>
@@ -13,6 +13,8 @@
         <a [routerLink]="object.link" class="list-item-action">{{ object.linkName }}</a>
       </li>
     </ul>
+    <ng-template #emptyMessage>
+      <p>{{ "card_component_no_items" | translate }}</p>
+    </ng-template>
   </card>
 </div>
-

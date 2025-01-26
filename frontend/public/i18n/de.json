@@ -82,5 +82,7 @@
   "file_page_files_found_sin": "Datei gefunden",
   "file_page_views_sin": "Aufruf",
   "file_page_views_pl": "Aufrufe",
-  "file_page_view_file": "Datei ansehen"
+  "file_page_view_file": "Datei ansehen",
+
+  "card_component_no_items": "Keine Einträge verfügbar"
 }

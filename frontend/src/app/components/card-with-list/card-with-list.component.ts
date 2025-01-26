@@ -1,7 +1,8 @@
 import {Component, Input} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {CardComponent} from '../card/card.component';
-import {NgForOf} from '@angular/common';
+import {NgForOf, NgIf} from '@angular/common';
+import {TranslatePipe} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-card-with-list',
@@ -9,7 +10,9 @@ import {NgForOf} from '@angular/common';
   imports: [
     RouterLink,
     CardComponent,
-    NgForOf
+    NgForOf,
+    NgIf,
+    TranslatePipe
   ],
   templateUrl: './card-with-list.component.html',
   styleUrl: './card-with-list.component.css'
