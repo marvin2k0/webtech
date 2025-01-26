@@ -264,3 +264,8 @@ button svg {
 .files-container {
   margin-block-end: 5rem;
 }
+
+app-interactions {
+  margin-top: .75rem !important;
+  margin-bottom: -2rem;
+}
