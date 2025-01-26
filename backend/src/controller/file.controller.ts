@@ -62,6 +62,12 @@ export async function findFile(req: any, res: any, next: NextFunction) {
     }
 }
 
+/**
+ * Function that checks if user has necessary access files for requested file. Then sends file as content
+ * @param req
+ * @param res
+ * @param next
+ */
 export async function getFile(req: any, res: any, next: NextFunction) {
     try {
         const { rndFilename } = req.params;
@@ -197,6 +203,12 @@ export function editFile(req: any, res: express.Response, next: NextFunction) {
     return;
 }
 
+/**
+ * Adds +1 to the view count.
+ * @param req
+ * @param res
+ * @param next
+ */
 export async function addView(req: any, res: express.Response, next: NextFunction) {
     const { rndFilename } = req.body;
 
@@ -215,8 +227,10 @@ export async function addView(req: any, res: express.Response, next: NextFunctio
     }
 }
 
+
+// Putting this here because the drawings belong to the files
 /**
- * Putting this here because the drawings belong to the files
+ * Uploads a drawing. Saves the drawing base64 encoded to the database
  * @param req
  * @param res
  * @param next
@@ -251,6 +265,12 @@ export async function uploadDrawing(req: any, res: any, next: NextFunction) {
     return ;
 }
 
+/**
+ * Checks if user is permitted to get requested drawing. Returns (sends) the base64 encoded file data
+ * @param req
+ * @param res
+ * @param next
+ */
 export async function getDrawing(req: any, res: any, next: NextFunction) {
     const { rndFilename } = req.query;
     if (!rndFilename) {
@@ -274,8 +294,8 @@ export async function getDrawing(req: any, res: any, next: NextFunction) {
 
 /**
  * Function to check if user is allowed to get / edit file based on their roles and files metadata
- * @param req
- * @param file
+ * @param req - The HTTP-request just passed in here
+ * @param file - The FileDetails of the requested file (metadata coming from database)
  */
 async function canGetFileCallback(req: any, file: FileDetails) {
     // Admins are able to do everything
