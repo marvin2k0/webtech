@@ -326,3 +326,8 @@ button svg {
 .close-btn:hover {
   color: var(--middle-light-gray);
 }
+
+app-interactions {
+  margin-top: 1rem;
+  margin-bottom: -1rem;
+}
