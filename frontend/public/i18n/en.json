@@ -87,5 +87,11 @@
   "file_page_views_pl": "Views",
   "file_page_view_file": "View File",
 
-  "card_component_no_items": "No items available"
+  "card_component_no_items": "No items available",
+
+  "contact_page_headline": "Contact",
+  "contact_page_title": "Send us an E-Mail",
+  "contact_page_description": "Your inquiry is important to us. Our qualified staff will answer you within the next few hours!",
+  "contact_page_send_mail": "Send E-Mail",
+  "contact_page_send_dm": "See on twitter"
 }

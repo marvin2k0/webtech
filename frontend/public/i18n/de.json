@@ -84,5 +84,11 @@
   "file_page_views_pl": "Aufrufe",
   "file_page_view_file": "Datei ansehen",
 
-  "card_component_no_items": "Keine Einträge verfügbar"
+  "card_component_no_items": "Keine Einträge verfügbar",
+
+  "contact_page_headline": "Kontakt",
+  "contact_page_title": "Sende uns eine E-Mail",
+  "contact_page_description": "Dein Anliegen ist uns wichtig. Unser qualifiziertes Personal wird sich innerhalb weniger Minuten bei dir melden!",
+  "contact_page_send_mail": "Sende eine E-Mail",
+  "contact_page_send_dm": "Auf Twitter ansehen"
 }
