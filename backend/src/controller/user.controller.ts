@@ -5,6 +5,24 @@ import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
 import {error, success} from "../model/http/rest-response";
 import {ConflictError} from "../error/conflict.error";
+import {EntityNotFoundError} from "../error/entity.not.found.error";
+
+export const setRole= async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const userId = req.body.userId
+        const newRole = req.body.newRole
+        const user = await User.findByIdAndUpdate(userId, {$set: {role: newRole}})
+
+        if (!user) {
+            throw new EntityNotFoundError("User")
+        }
+
+        res.status(200)
+            .json(success(user.role))
+    } catch (error: unknown) {
+        next(error)
+    }
+}
 
 /**
  * Used to obtain a fresh jwt token for the received user. Token is only provided when password matches
@@ -23,10 +41,11 @@ export const getToken = async (req: Request, res: Response, next: NextFunction) 
             logger.debug(`User ${username} successfully authenticated`)
 
             res.status(200)
-                .json(success<{ accessToken: string, userId: string, username: string}>({
+                .json(success<{ accessToken: string, userId: string, username: string, role: string}>({
                     accessToken: token,
                     userId: _id,
-                    username
+                    username,
+                    role
                 }))
         } else {
             logger.warn(`There was a problem authenticating user ${username}`)
@@ -46,7 +65,7 @@ export const getToken = async (req: Request, res: Response, next: NextFunction) 
 export const getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const data = await User.find({})
-        res.status(200).json({message: data})
+        res.status(200).json(success(data))
     } catch (error: unknown) {
         next(error)
     }

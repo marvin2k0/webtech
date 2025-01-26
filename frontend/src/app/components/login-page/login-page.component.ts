@@ -42,7 +42,12 @@ export class LoginPageComponent {
   errorMessage: string = "";
 
   ngOnInit(): void {
-    if (this.userService.isLoggedIn()) localStorage.removeItem("accessToken");
+    if (this.userService.isLoggedIn()) {
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("userId")
+      localStorage.removeItem("username")
+      localStorage.removeItem("role")
+    }
   }
 
   onSubmit(): void {
@@ -58,17 +63,15 @@ export class LoginPageComponent {
           console.error("Error occurred while trying to log in", response.message);
 
         } else if ("data" in response) {
-          console.log(response.data.accessToken);
           const accessToken = response.data.accessToken;
+          this.router.navigate(['/dashboard']).then();
 
-          // @ToDo:   We might want to use HttpOnly cookies instead of localStorage
           localStorage.setItem("accessToken", accessToken);
-          this.router.navigate(['/dashboard']);
-
-          // Buttons ausblenden etc....
           localStorage.setItem("userId", response.data.userId)
           localStorage.setItem("username", response.data.username)
+          localStorage.setItem("role", response.data.role)
         }
+
         this.isLoading = false;
       },
       error: (err) => {

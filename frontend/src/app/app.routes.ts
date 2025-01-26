@@ -11,6 +11,8 @@ import {CoursePageComponent} from './components/course-page/course-page.componen
 import {FilePageComponent} from './components/file-page/file-page.component';
 import {ViewFilePageComponent} from './components/view-file-page/view-file-page.component';
 import {ContactPageComponent} from './components/contact-page/contact-page.component';
+import {AdminDashboardComponent} from './components/admin-dashboard/admin-dashboard.component';
+import {adminGuard} from './guards/admin.guard';
 
 export const routes: Routes = [
   {path: '', component: LandingPageComponent},
@@ -20,6 +22,7 @@ export const routes: Routes = [
   {path: 'course/:id', component: CoursePageComponent},
   {path: 'userprofile', component: UserProfilePageComponent, canActivate: [AuthGuard]},
   { path: 'dashboard', component: DashboardPageComponent, canActivate: [AuthGuard] },
+  { path: 'admin', component: AdminDashboardComponent, canActivate: [adminGuard] },
   { path: 'files', component: FilePageComponent, canActivate: [AuthGuard] },
   { path: 'files/read', component: ViewFilePageComponent, canActivate: [AuthGuard] },
   { path: 'contact', component: ContactPageComponent},
