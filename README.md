@@ -18,7 +18,7 @@
     <a href="https://github.com/marvin2k0/webtech"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://eduempire.de/">View Demo</a>
+    <a href="https://eduempire.de/" target="_blank">View Demo</a>
     &middot;
     <a href="https://github.com/marvin2k0/webtech/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     &middot;
