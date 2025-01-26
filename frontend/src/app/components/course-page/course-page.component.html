@@ -12,6 +12,7 @@
     </div>
   </div>
   <div class="course-activity-container course-column">
+    <h3>{{ "comment_placeholder" | translate }}</h3>
     <add-comment-bar [referenceId]="courseId" (afterFinished)="onCommentSent($event)" />
 
     <div class="activities">

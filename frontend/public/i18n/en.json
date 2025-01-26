@@ -68,6 +68,9 @@
   "course_search_header": "Search",
   "course_description": "Description",
   "toggle_replies": "Toggle Replies",
+  "default_input_placeholder": "Type something...",
+  "search_placeholder": "Search something",
+  "comment_placeholder": "Write a comment",
 
   "time_minutes_short": "m",
   "time_hours_short": "h",

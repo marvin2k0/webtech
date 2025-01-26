@@ -13,6 +13,10 @@ h1 {
   text-align: center;
 }
 
+h3 {
+  margin-bottom: 1rem;
+}
+
 .course-column {
   flex: 3;
   width: 0;

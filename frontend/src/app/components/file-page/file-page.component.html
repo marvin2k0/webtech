@@ -3,7 +3,7 @@
 <!-- The search bar -->
 <div class="search-box-wrapper">
     <h1>{{ "file_page_search_hd" | translate}}</h1>
-    <input-with-icon (clickFunction)="searchAndLoadFiles($event)"/>
+    <input-with-icon inputPlaceholder="search_placeholder" (clickFunction)="searchAndLoadFiles($event)"/>
     <div class="results">{{ filesFound.length }} {{ filesFound.length == 1 ? ("file_page_files_found_sin" | translate) : ("file_page_files_found_pl" | translate) }}</div>
 </div>
 

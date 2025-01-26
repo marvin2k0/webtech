@@ -3,7 +3,7 @@
 <div class="search-box-wrapper">
   <h1>{{ "course_search_header" | translate }}</h1>
   <div class="search-bar">
-    <input-with-icon (clickFunction)="searchAndLoadCourses($event)" clearAfterSend="false"/>
+    <input-with-icon inputPlaceholder="search_placeholder" (clickFunction)="searchAndLoadCourses($event)" clearAfterSend="false"/>
   </div>
   <div class="results">{{ courses.length }} {{ "course_results" | translate }}</div>
 </div>

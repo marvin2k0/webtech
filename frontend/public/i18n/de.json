@@ -49,7 +49,6 @@
   "landing_page_couldnt_decide_p": "Erstelle einen kostenfreien Account",
   "landing_page_couldnt_decide_link": "Los gehts!",
 
-
   "view_course": "Kurs ansehen",
   "course_join": "Kurs beitreten",
   "leave_course": "Kurs verlassen ",
@@ -58,6 +57,9 @@
   "course_search_header": "Suchen",
   "course_description": "Beschreibung",
   "toggle_replies": "Antworten",
+  "default_input_placeholder": "Schreibe etwas...",
+  "search_placeholder": "Suche etwas",
+  "comment_placeholder": "Schreibe einen Kommentar",
 
   "need_login": "Du musst angemeldet sein, um dies zu tun.",
   "login_page_headline": "Anmelden",
