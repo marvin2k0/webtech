@@ -29,6 +29,7 @@ ul {
   box-shadow: 0 0 1px var(--shadow-color);
   background: var(--card-bg);
   border-radius: var(--border-radius-sm);
+  height: 60px;
 }
 
 .data-name {
