@@ -9,19 +9,21 @@ import {ButtonComponent} from '../button/button.component';
 import {RouterLink} from "@angular/router";
 import {InputWithIconComponent} from "../input-with-icon/input-with-icon.component";
 import {TranslatePipe} from "@ngx-translate/core";
+import {InteractionsComponent} from "../interactions/interactions.component";
 
 @Component({
   selector: 'app-file-page',
   standalone: true,
-  imports: [
-    CardComponent,
-    BackgroundArtComponent,
-    ButtonComponent,
-    SlicePipe,
-    RouterLink,
-    InputWithIconComponent,
-    TranslatePipe
-  ],
+    imports: [
+        CardComponent,
+        BackgroundArtComponent,
+        ButtonComponent,
+        SlicePipe,
+        RouterLink,
+        InputWithIconComponent,
+        TranslatePipe,
+        InteractionsComponent
+    ],
   templateUrl: './file-page.component.html',
   styleUrls: ['./file-page.component.css']
 })

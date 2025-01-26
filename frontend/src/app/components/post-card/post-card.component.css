@@ -37,58 +37,6 @@ p {
   font-weight: 500;
 }
 
-.interactions {
-  width: fit-content;
-  display: flex;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-  margin-top: -0.5rem;
-  font-size: 0.75rem;
-}
-
-.interaction-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  cursor: pointer;
-}
-
-.interaction {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 50%;
-  color: var(--light);
-}
-
-.interaction svg {
-  width: 1rem;
-  height: 1rem;
-}
-
-.interaction.positive {
-  background: var(--primary);
-}
-
-.rating-amount.positive {
-  color: var(--primary);
-}
-
-.rating-amount.negative {
-  color: var(--yellow);
-}
-
-.interaction.negative {
-  background: var(--yellow);
-}
-
-button svg {
-  width: 25px;
-}
-
 .toggle-replies {
   display: block;
   font-size: 0.75rem;

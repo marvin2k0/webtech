@@ -14,6 +14,18 @@ export class InteractionService {
   cachingService: CachingService = inject(CachingService)
   http: HttpClient = inject(HttpClient)
 
+  getRating(referenceId: string) {
+    return this.http.get<IRestResponse>(`${this.baseUrl}/rating/${referenceId}`)
+  }
+
+  upvote(referenceId: string) {
+    return this.http.post<IRestResponse>(`${this.baseUrl}/upvote`, {referenceId})
+  }
+
+  downvote(referenceId: string) {
+    return this.http.post<IRestResponse>(`${this.baseUrl}/downvote`, {referenceId})
+  }
+
   saveComment(referenceId: string, text: string) {
     return this.http.post<IRestResponse>(this.baseUrl, {referenceId, text})
   }
