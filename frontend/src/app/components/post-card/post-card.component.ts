@@ -5,6 +5,7 @@ import {SlicePipe, TitleCasePipe} from '@angular/common';
 import {CommentComponent} from '../comment/comment.component';
 import {InteractionService} from '../../services/interaction.service';
 import {TranslatePipe} from '@ngx-translate/core';
+import {InteractionsComponent} from '../interactions/interactions.component';
 
 @Component({
   selector: 'app-post-card',
@@ -14,7 +15,8 @@ import {TranslatePipe} from '@ngx-translate/core';
     SlicePipe,
     CommentComponent,
     TitleCasePipe,
-    TranslatePipe
+    TranslatePipe,
+    InteractionsComponent
   ],
   templateUrl: './post-card.component.html',
   styleUrl: './post-card.component.css'

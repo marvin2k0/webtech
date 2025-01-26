@@ -1,7 +1,74 @@
 import {Response, NextFunction} from "express";
-import {logger} from "../utils/Logger";
 import {success} from "../model/http/rest-response";
 import CommentModel, {CommentDetails} from "../model/comment.model";
+import VoteModel, {VoteDetails} from "../model/vote.model";
+import {EntityNotFoundError} from "../error/entity.not.found.error";
+import {ObjectId} from "mongodb";
+
+export const getVotes = async (req: any, res: Response, next: NextFunction) => {
+    try {
+        const referenceId = req.params.referenceId
+        const userId = req.userId
+        const vote: VoteDetails | null = await VoteModel.findOne({referenceId})
+
+        if (!vote) {
+            res.status(200).json(success({
+                upvote: false,
+                downvote: false,
+                upvotes: 0,
+                downvotes: 0
+            }))
+            return
+        }
+
+        const isUpvote = vote.upvotes.some(uid => new ObjectId(userId).equals(uid))
+
+        res.status(200).json(success({
+            upvote: isUpvote,
+            downvote: !isUpvote,
+            upvotes: vote.upvotes.length,
+            downvotes: vote.downvotes.length
+        }))
+    } catch (error: unknown) {
+        next(error)
+    }
+}
+
+export const upvote = async (req: any, res: Response, next: NextFunction) => {
+    try {
+        const referenceId = req.body.referenceId
+        const userId = req.userId
+        const vote: VoteDetails = await VoteModel.findOneAndUpdate({referenceId}, {$addToSet: {upvotes: userId}, $pull: {downvotes: userId}}, {upsert: true, new: true})
+        const isUpvote = vote.upvotes.some(uid => new ObjectId(userId).equals(uid))
+
+        res.status(200).json(success({
+            upvote: isUpvote,
+            downvote: !isUpvote,
+            upvotes: vote.upvotes.length,
+            downvotes: vote.downvotes.length
+        }))
+    } catch (error: unknown) {
+        next(error)
+    }
+}
+
+export const downvote = async (req: any, res: Response, next: NextFunction) => {
+    try {
+        const referenceId = req.body.referenceId
+        const userId = req.userId
+        const vote: VoteDetails = await VoteModel.findOneAndUpdate({referenceId}, {$addToSet: {downvotes: userId}, $pull: {upvotes: userId}}, {upsert: true, new: true})
+        const isUpvote = vote.upvotes.some(uid => new ObjectId(userId).equals(uid))
+
+        res.status(200).json(success({
+            upvote: isUpvote,
+            downvote: !isUpvote,
+            upvotes: vote.upvotes.length,
+            downvotes: vote.downvotes.length
+        }))
+    } catch (error: unknown) {
+        next(error)
+    }
+}
 
 export const getCommentByReference = async (req: any, res: Response, next: NextFunction) => {
     try {

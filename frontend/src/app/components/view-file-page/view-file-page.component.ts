@@ -1,15 +1,15 @@
-import {ChangeDetectorRef, Component, ElementRef, inject, ViewChild} from '@angular/core';
+import {Component, ElementRef, inject, ViewChild} from '@angular/core';
 import {CardComponent} from "../card/card.component";
 import {NgIf} from "@angular/common";
 import {FileUploadService} from '../../services/file-upload.service';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 import {ActivatedRoute, RouterLink} from '@angular/router';
 import {BackgroundArtComponent} from '../background-art/background-art.component';
-import {CommentComponent} from "../comment/comment.component";
 import {CommentDetails} from "../../model/comment.model";
 import {InteractionService} from "../../services/interaction.service";
 import {PostCardComponent} from "../post-card/post-card.component";
 import {AddCommentBarComponent} from "../add-comment-bar/add-comment-bar.component";
+import {InteractionsComponent} from '../interactions/interactions.component';
 
 @Component({
   selector: 'app-view-file-page',
@@ -18,10 +18,10 @@ import {AddCommentBarComponent} from "../add-comment-bar/add-comment-bar.compone
     CardComponent,
     NgIf,
     BackgroundArtComponent,
-    CommentComponent,
     PostCardComponent,
     AddCommentBarComponent,
-    RouterLink
+    RouterLink,
+    InteractionsComponent
   ],
   templateUrl: './view-file-page.component.html',
   styleUrl: './view-file-page.component.css'
