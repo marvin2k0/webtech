@@ -17,7 +17,7 @@ const port = process.env.PORT || 8080
 const dbUser = process.env.DB_USER!
 const dbPassword = process.env.DB_PASSWORD!
 const dbName = process.env.DB_NAME!
-const mongoUri = `mongodb+srv://${dbUser}:${dbPassword}@webtech.umbdw.mongodb.net/?retryWrites=true&w=majority&appName=${dbName}`
+const mongoUri = `mongodb+srv://${dbUser}:${dbPassword}@webtech.4ltojkb.mongodb.net/appName=${dbName}`
 
 if (!(dbUser && dbPassword && dbName)) {
     logger.error("DB_USER or DB_PASSWORD variables are not set but are needed for the system to start.")
